@@ -1,0 +1,9 @@
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalData.Service.dll
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalData.Service.pdb
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalData.Domain.dll
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalData.SqlRepository.dll
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalData.Domain.pdb
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalData.SqlRepository.pdb
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\obj\Debug\DigitalData.Service.csprojResolveAssemblyReference.cache
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\obj\Debug\DigitalData.Service.dll
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\obj\Debug\DigitalData.Service.pdb

@@ -1,0 +1,4 @@
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\bin\Debug\DigitalData.Domain.dll
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\bin\Debug\DigitalData.Domain.pdb
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\obj\Debug\DigitalData.Domain.dll
+C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\obj\Debug\DigitalData.Domain.pdb
