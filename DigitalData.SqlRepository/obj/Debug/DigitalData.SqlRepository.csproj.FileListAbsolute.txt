@@ -5,3 +5,13 @@ C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.SqlRepository\bin\Debug\Dig
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.dll
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.SqlRepository.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.SqlRepository.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Domain.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\Excel.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Domain.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\Excel.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.csprojResolveAssemblyReference.cache
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.pdb

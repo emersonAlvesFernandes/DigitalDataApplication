@@ -32,7 +32,7 @@ namespace DigitalData.WebApi.Controllers
 
         [HttpPost]
         [Route("")]
-        [ResponseType(typeof(bool))]
+        [ResponseType(typeof(DefaultData))]
         public async Task<IHttpActionResult> CreateAsync([FromBody] DefaultDataCreate defaultCreate,
         [FromUri] int campaignId)
         {
@@ -40,9 +40,9 @@ namespace DigitalData.WebApi.Controllers
             var defaultCreateEntity =
                 TypeAdapter.Adapt<DefaultDataCreate, DefaultData>(defaultCreate);
 
-            var createSucceed = await Task.Run(() => appservice.Create(defaultCreateEntity));
+            var entityCreated = await Task.Run(() => appservice.Create(defaultCreateEntity));
 
-            return this.Ok(createSucceed);
+            return this.Ok(entityCreated);
         }
 
         [HttpGet]
@@ -63,6 +63,21 @@ namespace DigitalData.WebApi.Controllers
             var entity = await Task.Run(() => appservice.Read(id));
 
             return this.Ok(entity);
+        }
+
+        [HttpPost]
+        [Route("import")]
+        [ResponseType(typeof(DefaultData))]
+        public async Task<IHttpActionResult> ImportAsync([FromBody] DefaultDataExcelCreate defaultDataExcelCreate,
+        [FromUri] int campaignId)
+        {
+            var defaultDataEntity =
+                TypeAdapter.Adapt<DefaultDataExcelCreate, DefaultDataExcel>(defaultDataExcelCreate);
+
+            var entityCollection = await Task.Run(() => appservice
+                .ImportExcelFile(defaultDataEntity));
+
+            return this.Ok(entityCollection);
         }
 
     }

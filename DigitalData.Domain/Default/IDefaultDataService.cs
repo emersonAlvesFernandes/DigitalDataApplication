@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace DigitalData.Domain.Default
 {
     public interface IDefaultDataService
-    {        
-        bool Create(DefaultData defaultData);
+    {
+        DefaultData Create(DefaultData defaultData);
 
         IEnumerable<DefaultData> Read();
 

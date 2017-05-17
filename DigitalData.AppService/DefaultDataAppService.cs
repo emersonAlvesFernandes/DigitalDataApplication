@@ -23,7 +23,7 @@ namespace DigitalData.AppService
             this.defaultDataService = new DefaultDataService();
         }
 
-        public bool Create(DefaultData defaultData)
+        public DefaultData Create(DefaultData defaultData)
         {
             return defaultDataService.Create(defaultData);
         }
@@ -36,6 +36,12 @@ namespace DigitalData.AppService
         public DefaultData Read(int id)
         {
             return defaultDataService.Read(id);
+        }
+
+        public List<DefaultData> ImportExcelFile(DefaultDataExcel file)
+        {
+            file.SetDefaultData();
+            return file.DefaultDataCollection;
         }
     }
 }

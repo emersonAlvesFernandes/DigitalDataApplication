@@ -22,7 +22,7 @@ namespace DigitalData.Service
             this.defaultDataRepository = new DefaultDataRepository();
         }
 
-        public bool Create(DefaultData defaultData)
+        public DefaultData Create(DefaultData defaultData)
         {            
             return defaultDataRepository.Create(defaultData);
         }

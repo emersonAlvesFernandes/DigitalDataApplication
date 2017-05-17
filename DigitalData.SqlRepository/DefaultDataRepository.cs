@@ -9,7 +9,7 @@ namespace DigitalData.SqlRepository
 {
     public class DefaultDataRepository : IDefaultDataRepository
     {
-        public bool Create(DefaultData defaultData)
+        public DefaultData Create(DefaultData defaultData)
         {
             throw new NotImplementedException();
         }

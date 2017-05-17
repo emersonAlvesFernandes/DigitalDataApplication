@@ -8,7 +8,7 @@ namespace DigitalData.Domain.Default
 {
     public interface IDefaultDataRepository
     {
-        bool Create(DefaultData defaultData);
+        DefaultData Create(DefaultData defaultData);
 
         IEnumerable<DefaultData> Read();
 

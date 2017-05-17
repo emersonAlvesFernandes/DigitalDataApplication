@@ -17,5 +17,6 @@ namespace DigitalData.Domain.Default
         public int Age { get; set; }
 
         public DateTime BirthDate { get; set; }
+
     }
 }

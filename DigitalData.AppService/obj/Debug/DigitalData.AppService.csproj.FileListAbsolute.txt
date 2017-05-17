@@ -9,3 +9,17 @@ C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.AppService\bin\Debug\Digita
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.AppService\obj\Debug\DigitalData.AppService.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.AppService\obj\Debug\DigitalData.AppService.dll
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.AppService\obj\Debug\DigitalData.AppService.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.AppService.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.AppService.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Domain.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Service.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\Excel.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.SqlRepository.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Domain.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Service.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\Excel.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.SqlRepository.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.csprojResolveAssemblyReference.cache
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.pdb

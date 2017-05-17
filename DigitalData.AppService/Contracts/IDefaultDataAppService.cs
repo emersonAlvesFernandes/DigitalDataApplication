@@ -9,10 +9,12 @@ namespace DigitalData.AppService.Contracts
 {
     public interface IDefaultDataAppService
     {
-        bool Create(DefaultData defaultData);
+        DefaultData Create(DefaultData defaultData);
 
         IEnumerable<DefaultData> Read();
 
         DefaultData Read(int id);
+
+        List<DefaultData> ImportExcelFile(DefaultDataExcel file);
     }
 }
