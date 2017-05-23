@@ -48,12 +48,21 @@
   <ItemGroup>
     <Compile Include="Default\DefaultData.cs" />
     <Compile Include="Default\DefaultDataExcel.cs" />
-    <Compile Include="Default\IDefaultDataRepository.cs" />
-    <Compile Include="Default\IDefaultDataService.cs" />
+    <Compile Include="Default\Contracts\IDefaultDataRepository.cs" />
+    <Compile Include="Default\Contracts\IDefaultDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Company\" />
+    <Folder Include="Feature\" />
+    <Folder Include="GroupItem\" />
+    <Folder Include="Planning\" />
+    <Folder Include="SubItem\" />
+    <Folder Include="UserProfile\" />
+    <Folder Include="User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

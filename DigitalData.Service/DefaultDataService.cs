@@ -1,4 +1,5 @@
-﻿using DigitalData.Domain.Default;
+﻿using DigitalData.Domain.Contracts.Default;
+using DigitalData.Domain.Default;
 using DigitalData.SqlRepository;
 using System;
 using System.Collections.Generic;

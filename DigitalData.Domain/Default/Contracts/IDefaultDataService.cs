@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DigitalData.Domain.Default;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalData.Domain.Default
+namespace DigitalData.Domain.Contracts.Default
 {
     public interface IDefaultDataService
     {
