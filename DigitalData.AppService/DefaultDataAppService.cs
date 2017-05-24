@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Default;
 using DigitalData.Service;
+using DigitalData.Domain.Contracts.Default;
 
 namespace DigitalData.AppService
 {
