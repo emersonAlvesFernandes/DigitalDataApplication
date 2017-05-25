@@ -8,20 +8,20 @@ namespace DigitalData.Domain.Entities.Item.Contracts
 {
     public interface IItemService
     {
-        Item Create(Item item); 
+        ItemEntity Create(ItemEntity item); 
         
-        IEnumerable<Item> GetAll();
+        IEnumerable<ItemEntity> GetAll();
         
-        Item GetById(int id);
+        ItemEntity GetById(int id);
 
-        Item Update(Item item);
+        ItemEntity Update(ItemEntity item);
 
         bool Delete(int id);
 
 
-        IEnumerable<Item> GetByCompanyId(int companyId);
+        IEnumerable<ItemEntity> GetByCompanyId(int companyId);
 
-        Item Relate(int companyId, int id);
+        ItemEntity Relate(int companyId, int id);
 
         bool UnRelate(int companyId, int id);
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DigitalData.Domain.Entities.Planning;
+using DigitalData.Domain.Entities.SubItem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Domain.Entities.Item
 {
-    public class Item
+    public class ItemEntity
     {
         public int Id { get; set; }
 
@@ -14,8 +16,10 @@ namespace DigitalData.Domain.Entities.Item
 
         public bool Desdobramento { get; set; }
 
-        public Planning.Planning YearPlanning { get; set; }
+        public List<PlanningEntity> MonthPlanning { get; set; }
 
-        public SubItem.SubItem SubItem { get; set; }
+        public PlanningEntity TotalYearPlanning { get; set; }
+        
+        public SubItemEntity SubItem { get; set; }
     }
 }

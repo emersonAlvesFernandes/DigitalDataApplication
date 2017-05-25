@@ -2,7 +2,7 @@
 
 namespace DigitalData.Domain.Entities.Company
 {
-    public class Company
+    public class CompanyEntity
     {
         public int Id { get; set; }
 
@@ -12,7 +12,7 @@ namespace DigitalData.Domain.Entities.Company
 
         public string Email { get; set; }
 
-        public Item.Item Item{ get; set; }
+        public Item.ItemEntity Item{ get; set; }
 
         public ClientUser Client { get; set; }
     }

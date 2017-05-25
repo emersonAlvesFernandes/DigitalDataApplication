@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Domain.Entities.Planning
 {
-    public class Planning
+    public class PlanningEntity
     {
         public int Id { get; set; }
 
@@ -23,5 +23,11 @@ namespace DigitalData.Domain.Entities.Planning
         public double RedTo { get; set; }
 
         public double Budgeted { get; set; }        
+        
+    }
+
+    public class YearPlanning : PlanningEntity
+    {
+        public double Projected { get; set; }
     }
 }

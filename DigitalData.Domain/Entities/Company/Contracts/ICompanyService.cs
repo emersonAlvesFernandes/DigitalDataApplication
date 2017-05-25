@@ -8,13 +8,13 @@ namespace DigitalData.Domain.Entities.Company.Contracts
 {
     public interface ICompanyService
     {
-        Company Create(Company company);
+        CompanyEntity Create(CompanyEntity company);
 
-        IEnumerable<Company> GetAll();
+        IEnumerable<CompanyEntity> GetAll();
 
-        Company GetById(int id);
+        CompanyEntity GetById(int id);
 
-        Company Update(Company company);
+        CompanyEntity Update(CompanyEntity company);
 
         bool Delete(int id);
     }

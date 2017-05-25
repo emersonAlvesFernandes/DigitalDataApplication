@@ -10,7 +10,7 @@ namespace DigitalData.SqlRepository.Entities.Company
 {
     public class CompanyRepository : ICompanyRepository
     {
-        public Domain.Entities.Company.Company Create(Domain.Entities.Company.Company company)
+        public CompanyEntity Create(CompanyEntity company)
         {
             throw new NotImplementedException();
         }
@@ -20,17 +20,17 @@ namespace DigitalData.SqlRepository.Entities.Company
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Domain.Entities.Company.Company> GetAll()
+        public IEnumerable<CompanyEntity> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Domain.Entities.Company.Company GetById(int id)
+        public CompanyEntity GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Domain.Entities.Company.Company Update(Domain.Entities.Company.Company company)
+        public CompanyEntity Update(Domain.Entities.Company.CompanyEntity company)
         {
             throw new NotImplementedException();
         }
