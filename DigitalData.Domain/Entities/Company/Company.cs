@@ -1,12 +1,6 @@
-﻿using DigitalData.Domain.User;
-using DigitalData.Domain.Item;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DigitalData.Domain.Entities.User;
 
-namespace DigitalData.Domain.Company
+namespace DigitalData.Domain.Entities.Company
 {
     public class Company
     {

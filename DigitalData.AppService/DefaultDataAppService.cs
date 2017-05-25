@@ -1,12 +1,8 @@
 ﻿using DigitalData.AppService.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DigitalData.Domain.Default;
 using DigitalData.Service;
-using DigitalData.Domain.Contracts.Default;
+using DigitalData.Domain.Entities.Default;
+using DigitalData.Domain.Entities.Default.Contracts.Default;
 
 namespace DigitalData.AppService
 {

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalData.Domain.Company
+namespace DigitalData.Domain.Entities.Company.Contracts
 {
-    public interface ICompany
+    public interface ICompanyService
     {
         Company Create(Company company);
 
-        IEnumerable<Company> Get();
+        IEnumerable<Company> GetAll();
 
-        Company Get(int id);
+        Company GetById(int id);
 
         Company Update(Company company);
 

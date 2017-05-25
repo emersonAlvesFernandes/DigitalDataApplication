@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalData.Domain.User
+namespace DigitalData.Domain.Entities.User
 {
     public class AdminUser : User
     {

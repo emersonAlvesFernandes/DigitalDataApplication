@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalData.Domain.Default
+namespace DigitalData.Domain.Entities.Default
 {
     public class DefaultDataExcel
     {

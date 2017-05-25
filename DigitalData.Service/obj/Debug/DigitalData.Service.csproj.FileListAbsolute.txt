@@ -7,6 +7,7 @@ C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\bin\Debug\DigitalDa
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\obj\Debug\DigitalData.Service.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\obj\Debug\DigitalData.Service.dll
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Service\obj\Debug\DigitalData.Service.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.csprojResolveAssemblyReference.cache
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.Service.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.Service.pdb
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.Domain.dll
@@ -16,6 +17,5 @@ C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.Domain.pdb
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.SqlRepository.pdb
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\Excel.pdb
-C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.csprojResolveAssemblyReference.cache
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.pdb

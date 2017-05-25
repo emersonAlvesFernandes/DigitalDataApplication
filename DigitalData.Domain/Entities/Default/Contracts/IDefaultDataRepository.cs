@@ -1,13 +1,9 @@
-﻿using DigitalData.Domain.Default;
-using System;
+﻿using DigitalData.Domain.Entities.Default;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DigitalData.Domain.Contracts.Default
 {
-    public interface IDefaultDataService
+    public interface IDefaultDataRepository
     {
         DefaultData Create(DefaultData defaultData);
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalData.Domain.SubItem
+namespace DigitalData.Domain.Entities.SubItem
 {
     public class SubItem
     {
@@ -12,7 +12,7 @@ namespace DigitalData.Domain.SubItem
 
         public string Name { get; set; }
 
-        public Planning.Planning MonthlyPlanning { get; set; }
+        public Planning.Planning MonthPlanning { get; set; }
         //public Planning MonthlyPlanning { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 using DigitalData.AppService;
 using DigitalData.AppService.Contracts;
-using DigitalData.Domain.Default;
+using DigitalData.Domain.Entities.Default;
 using DigitalData.WebApi.Models;
 using FastMapper;
 using System;

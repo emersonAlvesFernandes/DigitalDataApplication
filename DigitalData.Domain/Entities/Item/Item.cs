@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DigitalData.Domain.Planning;
-using DigitalData.Domain.SubItem;
 
-namespace DigitalData.Domain.Item
+namespace DigitalData.Domain.Entities.Item
 {
     public class Item
     {
@@ -16,8 +14,8 @@ namespace DigitalData.Domain.Item
 
         public bool Desdobramento { get; set; }
 
-        public Planning.Planning YearPlanning { get; set; }        
+        public Planning.Planning YearPlanning { get; set; }
 
-        public SubItem.SubItem SubItem { get; set; }       
+        public SubItem.SubItem SubItem { get; set; }
     }
 }

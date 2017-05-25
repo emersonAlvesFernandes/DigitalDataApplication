@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalData.Domain.Planning
+namespace DigitalData.Domain.Entities.Planning
 {
     public class Planning
     {
@@ -22,7 +22,6 @@ namespace DigitalData.Domain.Planning
 
         public double RedTo { get; set; }
 
-        public double Budgeted { get; set; }
-
+        public double Budgeted { get; set; }        
     }
 }
