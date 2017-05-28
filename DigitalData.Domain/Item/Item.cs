@@ -16,7 +16,11 @@ namespace DigitalData.Domain.Item
 
         public bool Desdobramento { get; set; }
 
-        public Planning.Planning YearPlanning { get; set; }        
+        public Planning.Planning YearPlanning { get; set; }
+
+        public double TotalBudgetedValue { get; set; }
+
+        public double TotalProjectedValue { get; set; }
 
         public SubItem.SubItem SubItem { get; set; }       
     }

@@ -13,6 +13,9 @@ namespace DigitalData.Domain.SubItem
         public string Name { get; set; }
 
         public Planning.Planning MonthlyPlanning { get; set; }
-        //public Planning MonthlyPlanning { get; set; }
+
+        public double TotalBudgetedValue { get; set; }
+
+        public double TotalProjectedValue { get; set; }
     }
 }

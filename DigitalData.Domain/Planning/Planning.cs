@@ -24,5 +24,7 @@ namespace DigitalData.Domain.Planning
 
         public double Budgeted { get; set; }
 
+
+
     }
 }
