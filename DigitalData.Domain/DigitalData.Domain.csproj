@@ -46,26 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Company\Company.cs" />
-    <Compile Include="Company\ICompany.cs" />
-    <Compile Include="Default\DefaultData.cs" />
-    <Compile Include="Default\DefaultDataExcel.cs" />
-    <Compile Include="Default\Contracts\IDefaultDataRepository.cs" />
-    <Compile Include="Default\Contracts\IDefaultDataService.cs" />
-    <Compile Include="Item\Item.cs" />
-    <Compile Include="Planning\Planning.cs" />
+    <Compile Include="Entities\Company\Company.cs" />
+    <Compile Include="Entities\Company\Contracts\ICompanyRepository.cs" />
+    <Compile Include="Entities\Company\Contracts\ICompanyService.cs" />
+    <Compile Include="Entities\Default\DefaultData.cs" />
+    <Compile Include="Entities\Default\DefaultDataExcel.cs" />
+    <Compile Include="Entities\Default\Contracts\IDefaultDataRepository.cs" />
+    <Compile Include="Entities\Default\Contracts\IDefaultDataService.cs" />
+    <Compile Include="Entities\Item\Contracts\IItemRepository.cs" />
+    <Compile Include="Entities\Item\Contracts\IItemService.cs" />
+    <Compile Include="Entities\Item\Item.cs" />
+    <Compile Include="Entities\Planning\Contracts\IPlanningRepository.cs" />
+    <Compile Include="Entities\Planning\Contracts\IPlanningService.cs" />
+    <Compile Include="Entities\Planning\Planning.cs" />
+    <Compile Include="Entities\SubItem\Contracts\ISubItemRepository.cs" />
+    <Compile Include="Entities\SubItem\Contracts\ISubItemService.cs" />
+    <Compile Include="Enums\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubItem\SubItem.cs" />
-    <Compile Include="User\AdminUser.cs" />
-    <Compile Include="User\ClientUser.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="Entities\SubItem\SubItem.cs" />
+    <Compile Include="Entities\User\AdminUser.cs" />
+    <Compile Include="Entities\User\ClientUser.cs" />
+    <Compile Include="Entities\User\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Feature\" />
-    <Folder Include="UserProfile\" />
+    <Folder Include="Entities\Feature\" />
+    <Folder Include="Entities\UserProfile\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

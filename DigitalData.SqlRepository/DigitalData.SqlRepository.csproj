@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultDataRepository.cs" />
+    <Compile Include="Entities\Company\CompanyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +49,11 @@
       <Project>{c5cc88d7-fcb9-4e9e-a966-0f9495f3f51d}</Project>
       <Name>DigitalData.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Item\" />
+    <Folder Include="Entities\Planning\" />
+    <Folder Include="Entities\SubItem\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

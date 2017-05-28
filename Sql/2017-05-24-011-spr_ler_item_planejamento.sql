@@ -18,7 +18,7 @@ begin
 	from 
 		dbo.tbl_planejamento planejamento
 			inner join dbo.tbl_empresa_item_subitem relac
-				--on planejamento.id_emp_item_sitem = relac.id
+				on planejamento.id_emp_item_sitem = relac.id
 					
 	where 
 		relac.id_empresa = @id_empresa

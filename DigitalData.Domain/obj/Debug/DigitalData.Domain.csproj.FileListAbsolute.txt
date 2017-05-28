@@ -2,3 +2,11 @@ C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\bin\Debug\DigitalDat
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\bin\Debug\DigitalData.Domain.pdb
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\obj\Debug\DigitalData.Domain.dll
 C:\Users\Pichau\Source\Repos\DigitalData\DigitalData.Domain\obj\Debug\DigitalData.Domain.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Debug\DigitalData.Domain.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Debug\DigitalData.Domain.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Debug\Excel.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Debug\Excel.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Debug\DigitalData.Domain.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Debug\DigitalData.Domain.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Debug\DigitalData.Domain.csprojResolveAssemblyReference.cache

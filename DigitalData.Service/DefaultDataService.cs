@@ -1,11 +1,8 @@
 ﻿using DigitalData.Domain.Contracts.Default;
-using DigitalData.Domain.Default;
+using DigitalData.Domain.Entities.Default;
+using DigitalData.Domain.Entities.Default.Contracts.Default;
 using DigitalData.SqlRepository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DigitalData.Service
 {

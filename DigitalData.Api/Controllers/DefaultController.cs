@@ -1,13 +1,9 @@
 ﻿using DigitalData.Api.ViewModels;
 using DigitalData.AppService;
 using DigitalData.AppService.Contracts;
-using DigitalData.Domain.Default;
+using DigitalData.Domain.Entities.Default;
 using FastMapper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
