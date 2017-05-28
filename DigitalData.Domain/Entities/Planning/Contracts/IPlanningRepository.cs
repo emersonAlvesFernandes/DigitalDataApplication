@@ -8,15 +8,15 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
 {
     public interface IPlanningRepository
     {
-        Planning Create(int companyId, int itemId, int? subItemId, Planning planning);
+        PlanningEntity Create(int companyId, int itemId, int? subItemId, PlanningEntity planning);
 
-        IEnumerable<Planning> GetSubItemPlanning(int companyId, int itemId, int subItemId);
+        IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId);
 
-        IEnumerable<Planning> GetItemPlanning(int companyId, int itemId);
+        IEnumerable<PlanningEntity> GetItemPlanning(int companyId, int itemId);
 
-        Planning Get(int idPlanning);
+        PlanningEntity Get(int idPlanning);
 
-        Planning Update(int idPlanning, Planning planning);
+        PlanningEntity Update(int idPlanning, PlanningEntity planning);
 
         bool Delete(int idPlanning);
     }
