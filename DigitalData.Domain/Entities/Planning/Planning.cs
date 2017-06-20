@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Domain.Planning
 {
-    public class Planning
+    public class PlanningEntity
     {
         public int Id { get; set; }
 

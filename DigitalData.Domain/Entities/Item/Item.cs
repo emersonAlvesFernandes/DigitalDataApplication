@@ -1,5 +1,6 @@
 ﻿using DigitalData.Domain.Entities.Planning;
 using DigitalData.Domain.Entities.SubItem;
+using DigitalData.Domain.Planning;
 using System;
 using System.Collections.Generic;
 using System.Linq;

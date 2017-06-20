@@ -183,7 +183,6 @@ C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\pt-br\System.Web.Http.resources.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.pdb
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\roslyn\csc.exe
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\roslyn\csc.exe.config
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\roslyn\csc.rsp
@@ -276,5 +275,6 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\tr\Fluen
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\zh-CN\FluentValidation.resources.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\pt-br\System.Net.Http.Formatting.resources.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\pt-br\System.Web.Http.resources.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.pdb
