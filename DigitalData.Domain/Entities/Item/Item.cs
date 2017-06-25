@@ -19,8 +19,8 @@ namespace DigitalData.Domain.Entities.Item
 
         public List<PlanningEntity> MonthPlanning { get; set; }
 
-        public PlanningEntity TotalYearPlanning { get; set; }
+        public PlanningEntity YearPlanning { get; set; }
         
-        public SubItemEntity SubItem { get; set; }
+        public List<SubItemEntity> SubItems { get; set; }
     }
 }

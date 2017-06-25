@@ -10,9 +10,13 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
     {
         SubItemEntity Create(int itemId, SubItemEntity item);
 
+
         IEnumerable<SubItemEntity> GetAll(int itemId);
 
         SubItemEntity GetById(int id);
+
+        List<SubItemEntity> GetByItemId(int itemId);
+
 
         SubItemEntity Update(SubItemEntity subItem);
 

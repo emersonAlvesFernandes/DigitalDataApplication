@@ -46,7 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Address\AddressEntity.cs" />
+    <Compile Include="Entities\Address\Contracts\IAddressRepository.cs" />
+    <Compile Include="Entities\Address\Contracts\IAddressService.cs" />
     <Compile Include="Entities\Company\Company.cs" />
+    <Compile Include="Entities\Company\Contracts\ICompanyAppService.cs" />
     <Compile Include="Entities\Company\Contracts\ICompanyRepository.cs" />
     <Compile Include="Entities\Company\Contracts\ICompanyService.cs" />
     <Compile Include="Entities\Default\DefaultData.cs" />
@@ -59,6 +63,7 @@
     <Compile Include="Entities\Planning\Contracts\IPlanningRepository.cs" />
     <Compile Include="Entities\Planning\Contracts\IPlanningService.cs" />
     <Compile Include="Entities\Planning\Planning.cs" />
+    <Compile Include="Entities\Store\StoreEntity.cs" />
     <Compile Include="Entities\SubItem\Contracts\ISubItemRepository.cs" />
     <Compile Include="Entities\SubItem\Contracts\ISubItemService.cs" />
     <Compile Include="Enums\Class1.cs" />
@@ -67,6 +72,10 @@
     <Compile Include="Entities\User\AdminUser.cs" />
     <Compile Include="Entities\User\ClientUser.cs" />
     <Compile Include="Entities\User\User.cs" />
+    <Compile Include="ValueObjects\Cnpj.cs" />
+    <Compile Include="ValueObjects\Cpf.cs" />
+    <Compile Include="ValueObjects\Document.cs" />
+    <Compile Include="ValueObjects\Email.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

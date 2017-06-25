@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DigitalData.Domain.Entities.Company.Contracts
+{
+    public interface ICompanyAppService
+    {
+        CompanyEntity Create(CompanyEntity company);
+
+        IEnumerable<CompanyEntity> GetAll();
+    }
+}

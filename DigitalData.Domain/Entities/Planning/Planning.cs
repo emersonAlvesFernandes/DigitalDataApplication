@@ -23,8 +23,5 @@ namespace DigitalData.Domain.Planning
         public double RedTo { get; set; }
 
         public double Budgeted { get; set; }
-
-
-
     }
 }
