@@ -7,59 +7,59 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Utils
 {
-    internal static class ObjectExtensions
+    public static class ObjectExtensions
     {
-        internal static int ToInt32(this object source, int defaultValue = 0)
+        public static int ToInt32(this object source, int defaultValue = 0)
         {
             return TryConvert(source, defaultValue, Convert.ToInt32);
         }
 
-        internal static int? ToInt32Nullable(this object source)
+        public static int? ToInt32Nullable(this object source)
         {
             return TryConvert(source, null, obj => (int?)Convert.ToInt32(obj));
         }
 
-        internal static long ToInt64(this object source, long defaultValue = 0)
+        public static long ToInt64(this object source, long defaultValue = 0)
         {
             return TryConvert(source, defaultValue, Convert.ToInt64);
         }
 
-        internal static long? ToInt64Nullable(this object source)
+        public static long? ToInt64Nullable(this object source)
         {
             return TryConvert(source, null, obj => (long?)Convert.ToInt64(obj));
         }
 
-        internal static bool ToBoolean(this object source, bool defaultValue = false)
+        public static bool ToBoolean(this object source, bool defaultValue = false)
         {
             return TryConvert(source, defaultValue, Convert.ToBoolean);
         }
 
-        internal static bool? ToBooleanNullable(this object source)
+        public static bool? ToBooleanNullable(this object source)
         {
             return TryConvert(source, null, obj => (bool?)Convert.ToBoolean(obj));
         }
 
-        internal static double ToDouble(this object source, double defaultValue = 0)
+        public static double ToDouble(this object source, double defaultValue = 0)
         {
             return TryConvert(source, defaultValue, Convert.ToDouble);
         }
 
-        internal static double? ToDoubleNullable(this object source)
+        public static double? ToDoubleNullable(this object source)
         {
             return TryConvert(source, null, obj => (double?)Convert.ToDouble(obj));
         }
 
-        internal static decimal ToDecimal(this object source, decimal defaultValue = 0)
+        public static decimal ToDecimal(this object source, decimal defaultValue = 0)
         {
             return TryConvert(source, defaultValue, Convert.ToDecimal);
         }
 
-        internal static decimal? ToDecimalNullable(this object source)
+        public static decimal? ToDecimalNullable(this object source)
         {
             return TryConvert(source, null, obj => (decimal?)Convert.ToDecimal(obj));
         }
 
-        internal static DateTime? ToDateTime(this object source, DateTime? defaultValue = null)
+        public static DateTime? ToDateTime(this object source, DateTime? defaultValue = null)
         {
             var minDefaultValue = defaultValue ?? DateTime.MinValue;
             var dateTime = TryConvert(source, minDefaultValue, Convert.ToDateTime);
@@ -70,7 +70,7 @@ namespace DigitalData.Utils
             return dateTime.ToUniversalTime().Truncate(TimeSpan.FromMilliseconds(1));
         }
 
-        internal static DateTime Truncate(this DateTime dateTime, TimeSpan timeSpan)
+        public static DateTime Truncate(this DateTime dateTime, TimeSpan timeSpan)
         {
             if (timeSpan == TimeSpan.Zero)
                 return dateTime;
@@ -78,32 +78,32 @@ namespace DigitalData.Utils
             return dateTime.AddTicks(-(dateTime.Ticks % timeSpan.Ticks));
         }
 
-        internal static float ToSingle(this object source, float defaultValue = 0)
+        public static float ToSingle(this object source, float defaultValue = 0)
         {
             return TryConvert(source, defaultValue, Convert.ToSingle);
         }
 
-        internal static float? ToSingleNullable(this object source)
+        public static float? ToSingleNullable(this object source)
         {
             return TryConvert(source, null, obj => (float?)Convert.ToSingle(obj));
         }
 
-        internal static string ToTrimmedString(this object source, string defaultValue = "")
+        public static string ToTrimmedString(this object source, string defaultValue = "")
         {
             return TryConvert(source, defaultValue, Convert.ToString).Trim();
         }
 
-        internal static char ToChar(this object source, char defaultValue = '\0')
+        public static char ToChar(this object source, char defaultValue = '\0')
         {
             return TryConvert(source, defaultValue, Convert.ToChar);
         }
 
-        internal static char? ToCharNullable(this object source)
+        public static char? ToCharNullable(this object source)
         {
             return TryConvert(source, null, obj => (char?)Convert.ToChar(obj));
         }
 
-        internal static string ToYesNoLetter(this object input, string defaultValue = "N")
+        public static string ToYesNoLetter(this object input, string defaultValue = "N")
         {
             if (input == null)
                 return defaultValue;
@@ -114,26 +114,26 @@ namespace DigitalData.Utils
             return "N";
         }
 
-        internal static TType ToNormalizedObject<TType>(this TType source)
+        public static TType ToNormalizedObject<TType>(this TType source)
         {
             return (TType)source.ToNormalizedObject(typeof(TType));
         }
 
-        internal static TEnum ToEnum<TEnum>(this object source) where TEnum : struct
+        public static TEnum ToEnum<TEnum>(this object source) where TEnum : struct
         {
             TEnum result;
             Enum.TryParse(source.ToTrimmedString(), true, out result);
             return result;
         }
 
-        internal static TEnum ToEnum<TEnum>(this char source) where TEnum : struct
+        public static TEnum ToEnum<TEnum>(this char source) where TEnum : struct
         {
             TEnum result;
             Enum.TryParse(source.ToInt32().ToString(), true, out result);
             return result;
         }
 
-        internal static List<int> ToIntList(this string ids)
+        public static List<int> ToIntList(this string ids)
         {
             var ret = new List<int>();
 
@@ -152,7 +152,7 @@ namespace DigitalData.Utils
             return ret;
         }
 
-        internal static object TryCast(this object source, Type type)
+        public static object TryCast(this object source, Type type)
         {
             if (source == null)
                 return null;
@@ -178,7 +178,7 @@ namespace DigitalData.Utils
             throw new NotSupportedException($"Cannot cast {type.Name}");
         }
 
-        internal static TType TryCast<TType>(this object source)
+        public static TType TryCast<TType>(this object source)
         {
             if (source == null)
                 return default(TType);

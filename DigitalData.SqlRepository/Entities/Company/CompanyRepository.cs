@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 using DigitalData.Domain.Entities.Address.Contracts;
 using DigitalData.Domain.Entities.Address;
+using DigitalData.Utils;
 
 namespace DigitalData.SqlRepository.Entities.Company
 {
@@ -69,7 +70,7 @@ namespace DigitalData.SqlRepository.Entities.Company
                     {
                         Id = dataReader["id"].ToInt32(),
                         Name = dataReader["nom_empre"].ToString(),
-                        
+                        //TODO: continuar aqui
                         
                     };
                     collection.Add(c);
