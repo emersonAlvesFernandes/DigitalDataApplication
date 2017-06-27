@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace DigitalData.Domain.Entities.Address.Contracts
 {
     public interface IAddressService
-    {
+    {        
         AddressEntity CreateCompanyAddress(int companyId, AddressEntity address);
+
+        AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address);
+
+        AddressEntity GetCompanyAddress(int companyId);
     }
 }

@@ -198,3 +198,5 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.pdb
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\DigitalData.Utils.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\DigitalData.Utils.pdb

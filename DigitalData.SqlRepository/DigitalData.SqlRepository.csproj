@@ -45,6 +45,7 @@
     <Compile Include="DefaultDataRepository.cs" />
     <Compile Include="Entities\Address\AddressRepository.cs" />
     <Compile Include="Entities\Company\CompanyRepository.cs" />
+    <Compile Include="Entities\Item\ItemRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
   </ItemGroup>
@@ -59,7 +60,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\Item\" />
     <Folder Include="Entities\Planning\" />
     <Folder Include="Entities\SubItem\" />
   </ItemGroup>

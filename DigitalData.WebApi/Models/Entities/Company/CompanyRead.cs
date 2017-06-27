@@ -8,6 +8,8 @@ namespace DigitalData.WebApi.Models.Entities.Company
 {
     public class CompanyRead
     {
+        public int Id  { get; set; }
+
         public string Name { get; set; }
 
         public string Cnpj { get; set; }

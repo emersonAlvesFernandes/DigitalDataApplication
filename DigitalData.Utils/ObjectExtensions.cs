@@ -70,6 +70,17 @@ namespace DigitalData.Utils
             return dateTime.ToUniversalTime().Truncate(TimeSpan.FromMilliseconds(1));
         }
 
+        public static DateTime ToDateTime(this object source)
+        {
+            var minDefaultValue = DateTime.MinValue;
+            var dateTime = TryConvert(source, minDefaultValue, Convert.ToDateTime);
+
+            if (dateTime < SqlDateTime.MinValue.Value)
+                return SqlDateTime.MinValue.Value;
+
+            return dateTime.ToUniversalTime().Truncate(TimeSpan.FromMilliseconds(1));
+        }
+
         public static DateTime Truncate(this DateTime dateTime, TimeSpan timeSpan)
         {
             if (timeSpan == TimeSpan.Zero)

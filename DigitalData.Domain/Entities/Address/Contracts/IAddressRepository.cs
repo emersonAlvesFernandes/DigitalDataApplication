@@ -9,6 +9,10 @@ namespace DigitalData.Domain.Entities.Address.Contracts
     public interface IAddressRepository
     {
         AddressEntity CreateCompanyAddress(int companyId, AddressEntity address);
-        
+
+        AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address);
+
+        AddressEntity GetCompanyAddress(int companyId);
+
     }
 }

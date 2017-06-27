@@ -21,7 +21,7 @@ namespace DigitalData.Domain.Entities.Item.Contracts
 
         IEnumerable<ItemEntity> GetByCompanyId(int companyId);
 
-        ItemEntity Relate(int companyId, int id);
+        bool Relate(int companyId, int id);
 
         bool UnRelate(int companyId, int id);
     }

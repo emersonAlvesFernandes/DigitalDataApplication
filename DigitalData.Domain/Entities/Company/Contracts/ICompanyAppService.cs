@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalData.Domain.Entities.Address;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,14 @@ namespace DigitalData.Domain.Entities.Company.Contracts
     {
         CompanyEntity Create(CompanyEntity company);
 
-        IEnumerable<CompanyEntity> GetAll();
+        IEnumerable<CompanyEntity> GetAll();        
+
+        CompanyEntity GetById(int id);
+
+        CompanyEntity Update(CompanyEntity company);
+
+        bool Delete(int id);
+
+        AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address);
     }
 }

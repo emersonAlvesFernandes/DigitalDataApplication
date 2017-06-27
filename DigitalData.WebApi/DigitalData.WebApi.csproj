@@ -133,9 +133,11 @@
     </Compile>
     <Compile Include="Models\DefaultDataCreate.cs" />
     <Compile Include="Models\DefaultDataExcelCreate.cs" />
+    <Compile Include="Models\Entities\Address\AddressCreate.cs" />
     <Compile Include="Models\Entities\Address\AddressDto.cs" />
     <Compile Include="Models\Entities\Company\CompanyCreate.cs" />
     <Compile Include="Models\Entities\Company\CompanyRead.cs" />
+    <Compile Include="Models\Entities\Company\CompanySummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,14 +14,11 @@ namespace DigitalData.Service
 {
     public class CompanyService : ICompanyService
     {
-
-        private readonly ICompanyRepository _companyRepository;
-        private readonly IAddressRepository _addressRepository;
+        private readonly ICompanyRepository _companyRepository;        
 
         public CompanyService()
         {
-            this._companyRepository = new CompanyRepository();
-            this._addressRepository = new AddressRepository();
+            this._companyRepository = new CompanyRepository();            
         }
 
         public CompanyService(ICompanyRepository repository)
@@ -36,7 +33,7 @@ namespace DigitalData.Service
         
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return _companyRepository.Delete(id);
         }
 
         public IEnumerable<CompanyEntity> GetAll()
@@ -46,12 +43,12 @@ namespace DigitalData.Service
 
         public CompanyEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            return _companyRepository.GetById(id);
         }
 
         public CompanyEntity Update(CompanyEntity company)
         {
-            throw new NotImplementedException();
+            return _companyRepository.Update(company);
         }
     }
 }

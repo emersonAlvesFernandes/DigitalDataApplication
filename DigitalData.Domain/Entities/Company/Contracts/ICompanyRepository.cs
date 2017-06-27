@@ -17,5 +17,7 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         CompanyEntity Update(CompanyEntity company);
 
         bool Delete(int id);
+
+        //TODO: Criar método para obter o logo separadamente
     }
 }
