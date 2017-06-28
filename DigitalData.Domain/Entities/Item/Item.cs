@@ -26,7 +26,6 @@ namespace DigitalData.Domain.Entities.Item
             this.CreationDate = DateTime.Now;
             this.LastUpdate = DateTime.Now;
         }
-
         public ItemEntity(int id, string name, string description, bool Desdobramento, DateTime creationDate, DateTime lastUpdate)
         {
             this.Id = id;
@@ -36,8 +35,6 @@ namespace DigitalData.Domain.Entities.Item
             this.CreationDate = creationDate;
             this.LastUpdate = lastUpdate;
         }
-
-
 
         public int Id { get; set; }
 

@@ -32,14 +32,15 @@ namespace DigitalData.Domain.Entities.Company
             CreationDate = creationDate;
             LastUpdate = lastUpdate;            
         }
-
+    
         public CompanyEntity(
             int id,
             string name,
             string cnpj,
             string website,
             string email,
-            bool isActive)
+            bool isActive,
+            AddressEntity address)
         {
             Id = id;
             Name = name;
@@ -49,6 +50,7 @@ namespace DigitalData.Domain.Entities.Company
             IsActive = isActive;
             CreationDate = DateTime.Now;
             LastUpdate = DateTime.Now;
+            Address = address;
         }
 
         public CompanyEntity(

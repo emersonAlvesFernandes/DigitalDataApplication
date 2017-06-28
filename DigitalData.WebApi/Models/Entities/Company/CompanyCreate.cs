@@ -1,4 +1,6 @@
-﻿using DigitalData.WebApi.Models.Entities.Address;
+﻿using DigitalData.Domain.Entities.Address;
+using DigitalData.Domain.Entities.Company;
+using DigitalData.WebApi.Models.Entities.Address;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,20 @@ namespace DigitalData.WebApi.Models.Entities.Company
 
         public string Email { get; set; }
 
-        public AddressDto Address { get; set; }        
+        public AddressCreate Address { get; set; }        
+
+        public CompanyEntity ToEntity(AddressEntity addressEntity)
+        {            
+            var companyEntity = new CompanyEntity(0, 
+                this.Name, 
+                this.Cnpj, 
+                this.WebSite, 
+                this.Email, 
+                true,
+                addressEntity);
+
+            return companyEntity;
+        }
     }
 
     public class CompanyCreateValidator : AbstractValidator<CompanyCreate>

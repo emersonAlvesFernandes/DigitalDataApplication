@@ -22,6 +22,7 @@ namespace DigitalData.SqlRepository.Entities.Address
                 using (var cmd = new SqlCommand("spr_ins_empre_ender", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_empre", entityId);
                     cmd.Parameters.AddWithValue("@des_logra", address.Address);
                     cmd.Parameters.AddWithValue("@num_logra", address.Number);
                     cmd.Parameters.AddWithValue("@num_cep", address.Zipcode);
@@ -30,13 +31,10 @@ namespace DigitalData.SqlRepository.Entities.Address
                     cmd.Parameters.AddWithValue("@nom_estad", address.State);
                     cmd.Parameters.AddWithValue("@nom_bairr", address.Neighborhood);
 
-                    address.Id = (int)cmd.ExecuteScalar();
-
-                }
-
-                base.CloseConnection();
-
-                return address;
+                    var Id = (int)cmd.ExecuteScalar();
+                    var newAddress = new AddressEntity(Id, address);
+                    return newAddress;
+                }                                                
             }
             finally
             {
@@ -59,17 +57,21 @@ namespace DigitalData.SqlRepository.Entities.Address
                     var dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        var address = new AddressEntity()
-                        {
-                            Id = dataReader["id"].ToInt32(),
-                            Address = dataReader["des_logra"].ToString(),
-                            Number = dataReader["num_logra"].ToString(),
-                            Complement = dataReader["val_compl"].ToString(),
-                            Zipcode = dataReader["num_cep"].ToString(),
-                            Neighborhood = dataReader["nom_bairr"].ToString(),
-                            City = dataReader["nom_cidad"].ToString(),
-                            State = dataReader["nom_estad"].ToString()
-                        };
+
+                        var Id = dataReader["id"].ToInt32();
+                        var Address = dataReader["des_logra"].ToString();
+                        var Number = dataReader["num_logra"].ToString();
+                        var Complement = dataReader["val_compl"].ToString();
+                        var Zipcode = dataReader["num_cep"].ToString();
+                        var Neighborhood = dataReader["nom_bairr"].ToString();
+                        var City = dataReader["nom_cidad"].ToString();
+                        var State = dataReader["nom_estad"].ToString();
+
+
+                        var address = new AddressEntity(Id, Address,
+                            Number, Complement, Zipcode, Neighborhood,
+                            City, State);
+                        
 
                         return address;                        
                     }
@@ -103,14 +105,11 @@ namespace DigitalData.SqlRepository.Entities.Address
                     cmd.Parameters.AddWithValue("@nom_cidad", address.City);
                     cmd.Parameters.AddWithValue("@nom_estad", address.State);
                     cmd.Parameters.AddWithValue("@nom_bairr", address.Neighborhood);
-
-                    address.Id = (int)cmd.ExecuteScalar();
-
-                }
-
-                base.CloseConnection();
-
-                return address;
+                    
+                    var Id = (int)cmd.ExecuteScalar();
+                    var newAddress = new AddressEntity(Id, address);
+                    return newAddress;
+                }                                
             }
             finally
             {

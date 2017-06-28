@@ -43,6 +43,7 @@
     <Compile Include="AddressService.cs" />
     <Compile Include="CompanyService.cs" />
     <Compile Include="DefaultDataService.cs" />
+    <Compile Include="ItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using DigitalData.Domain.Entities.Company;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,21 @@ namespace DigitalData.WebApi.Models.Entities.Company
 
         public string WebSite { get; set; }
 
-        public string Email { get; set; }        
+        public string Email { get; set; }
+
+        public CompanyEntity ToEntity()
+        {
+            var companyEntity = new CompanyEntity(Id,
+                this.Name,
+                this.Cnpj,
+                this.WebSite,
+                this.Email,
+                true,
+                DateTime.Now,
+                DateTime.Now);
+
+            return companyEntity;
+        }
     }
 
     public class CompanySummaryValidator : AbstractValidator<CompanySummary>

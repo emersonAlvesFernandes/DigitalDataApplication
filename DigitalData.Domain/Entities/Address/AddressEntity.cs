@@ -8,20 +8,50 @@ namespace DigitalData.Domain.Entities.Address
 {
     public class AddressEntity
     {
-        public int Id { get; set; }               
 
-        public string Address { get; set; }        
+        public AddressEntity(int id, string address, string number, string complement, string zipcode,
+            string neighborhood, string city, string state)
+        {
+            this.Id = id;
+            this.Address = address;
+            this.Number = number;
+            this.Complement = complement;
+            this.Zipcode = zipcode;
+            this.Neighborhood = neighborhood;
+            this.City = city;
+            this.State = state;
 
-        public string Number { get; set; }
+            //Validate
+        }
 
-        public string Complement { get; set; }
+        public AddressEntity(int id, AddressEntity a)
+        {
+            this.Id = id;
+            this.Address = a.Address;
+            this.Number = a.Number;
+            this.Complement = a.Complement;
+            this.Zipcode = a.Zipcode;
+            this.Neighborhood = a.Neighborhood;
+            this.City = a.City;
+            this.State = a.State;
 
-        public string Zipcode { get; set; }        
+            //Validate
+        }
 
-        public string Neighborhood { get; set; }
+        public int Id { get; private set; }               
 
-        public string City { get; set; }
+        public string Address { get; private set; }        
 
-        public string State { get; set; }
+        public string Number { get; private set; }
+
+        public string Complement { get; private set; }
+
+        public string Zipcode { get; private set; }        
+
+        public string Neighborhood { get; private set; }
+
+        public string City { get; private set; }
+
+        public string State { get; private set; }
     }
 }

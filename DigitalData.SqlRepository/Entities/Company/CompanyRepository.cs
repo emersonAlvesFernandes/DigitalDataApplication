@@ -176,9 +176,8 @@ namespace DigitalData.SqlRepository.Entities.Company
                     cmd.Parameters.AddWithValue("@val_logo", company.Logo);
                     cmd.Parameters.AddWithValue("@des_site", company.WebSite);
                     cmd.Parameters.AddWithValue("@des_email", company.Email);
-                    cmd.Parameters.AddWithValue("@dat_criac", company.CreationDate);
-                    cmd.Parameters.AddWithValue("@dat_atual", company.LastUpdate);
-                    cmd.Parameters.AddWithValue("@ind_ativa", company.IsActive);
+                    
+                    cmd.ExecuteNonQuery();
                     
                     return company;
                 }

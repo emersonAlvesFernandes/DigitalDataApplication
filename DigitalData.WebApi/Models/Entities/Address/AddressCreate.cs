@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalData.Domain.Entities.Address;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,9 +7,7 @@ using System.Web;
 namespace DigitalData.WebApi.Models.Entities.Address
 {
     public class AddressCreate
-    {
-        public int CompanyId { get; set; }
-
+    {        
         public string Address { get; set; }
 
         public string Number { get; set; }
@@ -22,5 +21,12 @@ namespace DigitalData.WebApi.Models.Entities.Address
         public string City { get; set; }
 
         public string State { get; set; }
+
+
+        public AddressEntity ToEntity()
+        {
+            var a = new AddressEntity(0, Address, Number, Complement, Zipcode, Neighborhood, City, State);
+            return a;
+        }
     }
 }

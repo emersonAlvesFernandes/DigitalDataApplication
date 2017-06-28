@@ -57,6 +57,7 @@
     <Compile Include="Entities\Default\DefaultDataExcel.cs" />
     <Compile Include="Entities\Default\Contracts\IDefaultDataRepository.cs" />
     <Compile Include="Entities\Default\Contracts\IDefaultDataService.cs" />
+    <Compile Include="Entities\Item\Contracts\IItemAppService.cs" />
     <Compile Include="Entities\Item\Contracts\IItemRepository.cs" />
     <Compile Include="Entities\Item\Contracts\IItemService.cs" />
     <Compile Include="Entities\Item\Item.cs" />

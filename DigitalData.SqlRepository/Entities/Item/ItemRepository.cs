@@ -19,11 +19,11 @@ namespace DigitalData.SqlRepository.Entities.Item
             base.OpenConnection();
             try
             {
-                using (var cmd = new SqlCommand("spr_ins_Item", connection))
+                using (var cmd = new SqlCommand("spr_ins_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@nom_item", item.Name);
-                    cmd.Parameters.AddWithValue("@des_desdo", item.Desdobramento);
+                    cmd.Parameters.AddWithValue("@ind_desdo", item.Desdobramento);
                     cmd.Parameters.AddWithValue("@des_descr", item.Description);
 
                     var id = (int)cmd.ExecuteScalar();

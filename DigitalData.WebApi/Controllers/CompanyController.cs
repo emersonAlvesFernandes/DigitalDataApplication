@@ -34,12 +34,19 @@ namespace DigitalData.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        [ResponseType(typeof(List<CompanyEntity>))]
+        [ResponseType(typeof(List<CompanyRead>))]
         public async Task<IHttpActionResult> GetAllAsync()
         {            
             var collection = await Task.Run(() => _companyAppService.GetAll());
 
-            return this.Ok(collection);
+            var readCollection = new List<CompanyRead>();
+            foreach (var c in collection)
+            {
+                var readCompany = TypeAdapter.Adapt<CompanyEntity, CompanyRead>(c);
+                readCollection.Add(readCompany);
+            }
+
+            return this.Ok(readCollection);
         }
 
         [HttpGet]
@@ -47,9 +54,11 @@ namespace DigitalData.WebApi.Controllers
         [ResponseType(typeof(CompanyEntity))]
         public async Task<IHttpActionResult> GetByIdAsync([FromUri] int id)
         {
-            var company = await Task.Run(() => _companyAppService.GetById(id));            
-            //var companyRead = TypeAdapter.Adapt<CompanyEntity, CompanyRead>(company);                        
-            return this.Ok(company);
+            var company = await Task.Run(() => _companyAppService.GetById(id));
+
+            var companyRead = TypeAdapter.Adapt<CompanyEntity, CompanyRead>(company);
+
+            return this.Ok(companyRead);
         }
 
         [HttpPost]
@@ -57,11 +66,16 @@ namespace DigitalData.WebApi.Controllers
         [ResponseType(typeof(CompanyEntity))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]CompanyCreate company)
         {
-            var companyEntity = TypeAdapter.Adapt<CompanyCreate, CompanyEntity>(company);            
-            var results = new CompanyCreateValidator().Validate(company);            
-            if(!results.IsValid)
-                return this.BadRequest(string.Join(" , ", results.Errors));
+            var validationResults = new CompanyCreateValidator().Validate(company);
 
+            if (!validationResults.IsValid)
+                return this.BadRequest(string.Join(" , ", validationResults.Errors));
+
+            //var companyEntity = TypeAdapter.Adapt<CompanyCreate, CompanyEntity>(company);            
+
+            var addressCreate = company.Address.ToEntity();
+            var companyEntity = company.ToEntity(addressCreate);
+                        
             var createdCompany = await Task.Run(() => _companyAppService.Create(companyEntity));            
 
             return this.Ok(createdCompany);
@@ -72,10 +86,13 @@ namespace DigitalData.WebApi.Controllers
         [ResponseType(typeof(CompanySummary))]
         public async Task<IHttpActionResult> UpdateAsync([FromBody]CompanySummary company)
         {
-            var companyEntity = TypeAdapter.Adapt<CompanySummary, CompanyEntity>(company);
+            //var companyEntity = TypeAdapter.Adapt<CompanySummary, CompanyEntity>(company);
+
             var results = new CompanySummaryValidator().Validate(company);
             if (!results.IsValid)
                 return this.BadRequest(string.Join(" , ", results.Errors));
+
+            var companyEntity = company.ToEntity();            
 
             var updatedCompany = await Task.Run(() => _companyAppService.Update(companyEntity));
 
@@ -85,14 +102,14 @@ namespace DigitalData.WebApi.Controllers
         [HttpPut]
         [Route("{id}/address")]
         [ResponseType(typeof(CompanySummary))]
-        public async Task<IHttpActionResult> UpdateAddressAsync([FromBody]AddressCreate address)
+        public async Task<IHttpActionResult> UpdateAddressAsync([FromUri] int companyId, [FromBody]AddressCreate address)
         {            
             var addresEntity = TypeAdapter.Adapt<AddressCreate, AddressEntity>(address);
             //var results = new CompanySummaryValidator().Validate(company);
             //if (!results.IsValid)
             //    return this.BadRequest(string.Join(" , ", results.Errors));
 
-            var updatedCompany = await Task.Run(() => _companyAppService.UpdateCompanyAddress(address.CompanyId, addresEntity));
+            var updatedCompany = await Task.Run(() => _companyAppService.UpdateCompanyAddress(companyId, addresEntity));
 
             return this.Ok(updatedCompany);
         }
