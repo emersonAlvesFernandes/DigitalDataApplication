@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Api", "0 - Api", "{2366EC66-CB3A-45C8-978B-94FB34570ADA}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Model", "2 - Model", "{67BB1D34-8816-446B-80AE-3C4095EBE598}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Repository", "3 - Repository", "{99CB99F0-083F-4067-BB24-27DE021090B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalData.Api", "DigitalData.Api\DigitalData.Api.csproj", "{89F62596-2F6D-4EC8-9462-CE184E670414}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7D08B87A-1A6C-4C75-9692-C9F7011AF500}"
 EndProject
@@ -37,10 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89F62596-2F6D-4EC8-9462-CE184E670414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89F62596-2F6D-4EC8-9462-CE184E670414}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89F62596-2F6D-4EC8-9462-CE184E670414}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89F62596-2F6D-4EC8-9462-CE184E670414}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F87881AA-36BB-4491-89FA-A7EA550A63E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F87881AA-36BB-4491-89FA-A7EA550A63E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F87881AA-36BB-4491-89FA-A7EA550A63E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,7 +64,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{89F62596-2F6D-4EC8-9462-CE184E670414} = {2366EC66-CB3A-45C8-978B-94FB34570ADA}
 		{7D08B87A-1A6C-4C75-9692-C9F7011AF500} = {67BB1D34-8816-446B-80AE-3C4095EBE598}
 		{82B80F8C-D4FE-4F4F-9BE8-78E0FC44300E} = {67BB1D34-8816-446B-80AE-3C4095EBE598}
 		{F87881AA-36BB-4491-89FA-A7EA550A63E4} = {6E08CA1F-4EC8-4E9F-AD56-AAB11169FC9A}
