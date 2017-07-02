@@ -9,13 +9,21 @@ using DigitalData.Domain.Entities.Address.Contracts;
 using System.Transactions;
 using DigitalData.Domain.Entities.Address;
 using DigitalData.Service;
+using DigitalData.Domain.Entities.Item.Contracts;
 
 namespace DigitalData.AppService
 {
     public class CompanyAppService : ICompanyAppService
     {
         private ICompanyService _companyService;
-        private IAddressService _addressService;
+        private IAddressService _addressService;        
+
+        public CompanyAppService(ICompanyService companyService, 
+            IAddressService addressService)
+        {
+            this._companyService = companyService;
+            this._addressService = addressService;            
+        }
 
         public CompanyAppService()
         {
@@ -70,5 +78,7 @@ namespace DigitalData.AppService
         {
             return _addressService.UpdateCompanyAddress(companyId, address);
         }
+
+
     }
 }

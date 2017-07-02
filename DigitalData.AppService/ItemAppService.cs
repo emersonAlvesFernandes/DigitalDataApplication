@@ -23,9 +23,9 @@ namespace DigitalData.AppService
             _service = service;
         }
 
-        public ItemEntity Create(ItemEntity item)
+        public ItemEntity Create(ItemEntity item, int userId)
         {
-            return _service.Create(item);
+            return _service.Create(item, userId);
         }
 
         public bool Delete(int id)
@@ -35,12 +35,28 @@ namespace DigitalData.AppService
 
         public IEnumerable<ItemEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _service.GetAll();
         }
 
-        public ItemEntity Update(int id)
+        public ItemEntity GetById(int itemId)
         {
-            throw new NotImplementedException();
+            return _service.GetById(itemId);
+        }
+
+        public ItemEntity Update(ItemEntity item, int id)
+        {
+            return _service.Update(item, id);
+        }
+
+        public bool Relate(int companyId, int id, int userId)
+        {
+            //do not need to check if exists because of database FK's;
+            return _service.Relate(companyId, id, userId);
+        }
+
+        public IEnumerable<ItemEntity> GetByCompanyId(int companyId)
+        {
+            return _service.GetByCompanyId(companyId);
         }
     }
 }

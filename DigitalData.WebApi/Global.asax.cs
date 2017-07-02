@@ -13,11 +13,11 @@ namespace DigitalData.WebApi
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
-        {
-            // Código que é executado na inicialização do aplicativo
+        {            
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            UnityConfig.RegisterComponents();
         }
     }
 }

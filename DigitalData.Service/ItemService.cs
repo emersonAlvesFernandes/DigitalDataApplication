@@ -17,14 +17,15 @@ namespace DigitalData.Service
         {
             this._repository = new ItemRepository();
         }
+
         public ItemService(IItemRepository repository)
         {
             this._repository = repository;
         }
 
-        public ItemEntity Create(ItemEntity item)
+        public ItemEntity Create(ItemEntity item, int userId)
         {
-            return _repository.Create(item);
+            return _repository.Create(item, userId);
         }
 
         public bool Delete(int id)
@@ -34,22 +35,22 @@ namespace DigitalData.Service
 
         public IEnumerable<ItemEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public IEnumerable<ItemEntity> GetByCompanyId(int companyId)
         {
-            throw new NotImplementedException();
+            return _repository.GetByCompanyId(companyId);
         }
 
         public ItemEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id);
         }
 
-        public ItemEntity Relate(int companyId, int id)
+        public bool Relate(int companyId, int id, int userId)
         {
-            throw new NotImplementedException();
+            return _repository.Relate(companyId, id, userId);
         }
 
         public bool UnRelate(int companyId, int id)
@@ -57,9 +58,9 @@ namespace DigitalData.Service
             throw new NotImplementedException();
         }
 
-        public ItemEntity Update(ItemEntity item)
+        public ItemEntity Update(ItemEntity item, int userId)
         {
-            throw new NotImplementedException();
+            return _repository.Update(item, userId);
         }
     }
 }

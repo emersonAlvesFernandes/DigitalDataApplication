@@ -26,7 +26,7 @@ namespace DigitalData.Domain.Entities.Item
             this.CreationDate = DateTime.Now;
             this.LastUpdate = DateTime.Now;
         }
-        public ItemEntity(int id, string name, string description, bool Desdobramento, DateTime creationDate, DateTime lastUpdate)
+        public ItemEntity(int id, string name, string description, bool Desdobramento, DateTime creationDate, DateTime? lastUpdate)
         {
             this.Id = id;
             this.Name = name;
@@ -46,7 +46,7 @@ namespace DigitalData.Domain.Entities.Item
 
         public DateTime CreationDate { get; set; }
 
-        public DateTime LastUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
 
         public List<PlanningEntity> MonthPlanning { get; set; }
 

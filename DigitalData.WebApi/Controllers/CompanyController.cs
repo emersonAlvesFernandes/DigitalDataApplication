@@ -17,7 +17,7 @@ using System.Web.Http.Description;
 
 namespace DigitalData.WebApi.Controllers
 {
-    [RoutePrefix("api/company")]
+    [RoutePrefix("api/companies")]
     public class CompanyController : ApiController
     {
         private readonly ICompanyAppService _companyAppService;

@@ -8,28 +8,39 @@ using DigitalData.Domain.Entities.Item;
 using System.Data.SqlClient;
 using System.Data;
 using DigitalData.Utils;
+using System.Transactions;
 
 namespace DigitalData.SqlRepository.Entities.Item
 {
     public class ItemRepository : RepositoryBase, IItemRepository
     {
-        public ItemEntity Create(ItemEntity item)
+        //OK
+        public ItemEntity Create(ItemEntity item, int userId)
         {
             base.Initialize();
             base.OpenConnection();
             try
-            {
+            {                
                 using (var cmd = new SqlCommand("spr_ins_item", connection))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nom_item", item.Name);
-                    cmd.Parameters.AddWithValue("@ind_desdo", item.Desdobramento);
-                    cmd.Parameters.AddWithValue("@des_descr", item.Description);
+                    using (SqlTransaction tr = connection.BeginTransaction())
+                    {
+                        cmd.Transaction = tr;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@nom_item", item.Name);
+                        cmd.Parameters.AddWithValue("@ind_desdo", item.Desdobramento);
+                        cmd.Parameters.AddWithValue("@des_descr", item.Description);
+                        cmd.Parameters.AddWithValue("@cod_usu", userId);
 
-                    var id = (int)cmd.ExecuteScalar();
-                    var i = new ItemEntity(id, item.Name, item.Description, item.Desdobramento);
-                    return i;
-                }
+                        var id = (int)cmd.ExecuteScalar();
+                        this.CreateRelation(id, cmd);
+
+                        tr.Commit();
+
+                        var i = new ItemEntity(id, item.Name, item.Description, item.Desdobramento);                                                
+                        return i;
+                    }                   
+                }                                    
             }
             catch (Exception ex)
             {
@@ -41,11 +52,30 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
+        //OK
+        private void CreateRelation(int id_item, SqlCommand cmd)
+        {                        
+            try
+            {                
+                cmd.Parameters.Clear();
+                cmd.CommandText = "spr_ins_item_subitem";                
+                cmd.Parameters.AddWithValue("@item_id", id_item);
+                cmd.ExecuteNonQuery();                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }            
+        }
+
+        // Funcionalidade não existirá
+        // apenas o 
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
+        //OK
         public IEnumerable<ItemEntity> GetAll()
         {
             try
@@ -84,6 +114,7 @@ namespace DigitalData.SqlRepository.Entities.Item
             }                            
         }
 
+        //OK
         public ItemEntity GetById(int companyId)
         {
             try
@@ -123,6 +154,7 @@ namespace DigitalData.SqlRepository.Entities.Item
 
         }
 
+        //TODO: TESTAR
         public IEnumerable<ItemEntity> GetByCompanyId(int companyId)
         {
             try
@@ -132,10 +164,10 @@ namespace DigitalData.SqlRepository.Entities.Item
                 base.connection = new SqlConnection(connectionstring);
                 this.OpenConnection();
 
-                using (var cmd = new SqlCommand("spr_ler_item_empre", connection))
+                using (var cmd = new SqlCommand("spr_ler_empre_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", companyId);
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
 
                     var dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
@@ -163,18 +195,19 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
-        
-        public bool Relate(int companyId, int id)
+        //TODO: TESTAR
+        public bool Relate(int companyId, int id, int userId)
         {
             base.Initialize();
             base.OpenConnection();
             try
             {
-                using (var cmd = new SqlCommand("spr_ins_Item_empre", connection))
+                using (var cmd = new SqlCommand("spr_ins_empre_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_empre", companyId);
-                    cmd.Parameters.AddWithValue("@id_item", id);                    
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
+                    cmd.Parameters.AddWithValue("@id_item", id);
+                    cmd.Parameters.AddWithValue("@cod_usu", userId);
 
                     var idRelation = (int)cmd.ExecuteScalar();                                        
                 }
@@ -190,13 +223,14 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
+        //TODO: TESTAR
         public bool UnRelate(int companyId, int id)
         {
             base.Initialize();
             base.OpenConnection();
             try
             {
-                using (var cmd = new SqlCommand("spr_del_Item_empre", connection))
+                using (var cmd = new SqlCommand("spr_del_empre_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_empre", companyId);
@@ -216,19 +250,24 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
-        public ItemEntity Update(ItemEntity item)
+        //OK
+        public ItemEntity Update(ItemEntity item, int userId)
         {
             base.Initialize();
             base.OpenConnection();
             try
             {
-                using (var cmd = new SqlCommand("spr_ins_Item", connection))
+                using (var cmd = new SqlCommand("spr_upd_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", item.Id);
                     cmd.Parameters.AddWithValue("@nom_item", item.Name);
-                    cmd.Parameters.AddWithValue("@des_desdo", item.Desdobramento);
+                    cmd.Parameters.AddWithValue("@ind_desdo", item.Desdobramento);                    
                     cmd.Parameters.AddWithValue("@des_descr", item.Description);
-                    
+                    cmd.Parameters.AddWithValue("@cod_usu", userId);
+
+                    cmd.ExecuteNonQuery();
+
                     return item;
                 }
             }

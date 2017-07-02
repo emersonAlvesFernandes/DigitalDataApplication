@@ -12,8 +12,8 @@ namespace DigitalData.SqlRepository
     public class RepositoryBase : IRepositoryBase
     {
         public SqlConnection connection { get; set; }
-        //public string connectionstring = ConfigurationManager.ConnectionStrings["DigitalDataSqlDb"].ConnectionString;
-        public string connectionstring = ConfigurationManager.ConnectionStrings["CnnStr"].ConnectionString;
+        public string connectionstring = ConfigurationManager.ConnectionStrings["DigitalDataSqlDb"].ConnectionString;
+        //public string connectionstring = ConfigurationManager.ConnectionStrings["CnnStr"].ConnectionString;
 
         public RepositoryBase()
         {
@@ -44,6 +44,7 @@ namespace DigitalData.SqlRepository
         public void Initialize()
         {
             this.connection = new SqlConnection(connectionstring);
+            
         }
 
         public bool OpenConnection()

@@ -1,8 +1,0 @@
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Release\DigitalData.Domain.dll
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Release\DigitalData.Domain.pdb
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Release\Excel.dll
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Release\Excel.pdb
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Release\DigitalData.Domain.csprojResolveAssemblyReference.cache
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Release\DigitalData.Domain.dll
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Release\DigitalData.Domain.pdb
