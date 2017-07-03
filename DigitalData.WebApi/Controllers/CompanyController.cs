@@ -96,20 +96,28 @@ namespace DigitalData.WebApi.Controllers
 
             var updatedCompany = await Task.Run(() => _companyAppService.Update(companyEntity));
 
-            return this.Ok(updatedCompany);
+            
+            var viewModel = TypeAdapter.Adapt<CompanyEntity, CompanySummary>(updatedCompany); 
+            
+            return this.Ok(viewModel);
         }
 
-        [HttpPut]
-        [Route("{id}/address")]
-        [ResponseType(typeof(CompanySummary))]
-        public async Task<IHttpActionResult> UpdateAddressAsync([FromUri] int companyId, [FromBody]AddressCreate address)
-        {            
-            var addresEntity = TypeAdapter.Adapt<AddressCreate, AddressEntity>(address);
-            //var results = new CompanySummaryValidator().Validate(company);
-            //if (!results.IsValid)
-            //    return this.BadRequest(string.Join(" , ", results.Errors));
 
-            var updatedCompany = await Task.Run(() => _companyAppService.UpdateCompanyAddress(companyId, addresEntity));
+        //TODO: TESTAR
+        [HttpPut]
+        [Route("address/{addressId}")]
+        [ResponseType(typeof(AddressSummary))]
+        public async Task<IHttpActionResult> UpdateAddressAsync([FromUri] int addressId, [FromBody]AddressCreate address)
+        {
+
+            var validationResults = new AddressCreateValidator().Validate(address);
+            if (!validationResults.IsValid)
+                return this.BadRequest(string.Join(" , ", validationResults.Errors));
+            
+            var addresEntity = TypeAdapter.Adapt<AddressCreate, AddressEntity>(address);
+            addresEntity.Id = addressId;
+                        
+            var updatedCompany = await Task.Run(() => _companyAppService.UpdateCompanyAddress(addressId, addresEntity));
 
             return this.Ok(updatedCompany);
         }

@@ -17,6 +17,7 @@ namespace DigitalData.Domain.Entities.Item
 
         }
 
+        //Construtor de criação da VM
         public ItemEntity(int id, string name, string description, bool Desdobramento)
         {
             this.Id = id;
@@ -25,13 +26,17 @@ namespace DigitalData.Domain.Entities.Item
             this.Desdobramento = Desdobramento;
             this.CreationDate = DateTime.Now;
             this.LastUpdate = DateTime.Now;
+            this.IsActive = true;
         }
-        public ItemEntity(int id, string name, string description, bool Desdobramento, DateTime creationDate, DateTime? lastUpdate)
+
+        // Construtor de leitura de objetos do banco
+        public ItemEntity(int id, string name, string description, bool Desdobramento, bool isActive, DateTime creationDate, DateTime? lastUpdate)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
             this.Desdobramento = Desdobramento;
+            this.IsActive = isActive;
             this.CreationDate = creationDate;
             this.LastUpdate = lastUpdate;
         }
@@ -43,6 +48,8 @@ namespace DigitalData.Domain.Entities.Item
         public string Description { get; set; }
 
         public bool Desdobramento { get; set; }
+
+        public bool IsActive { get; set; }
 
         public DateTime CreationDate { get; set; }
 

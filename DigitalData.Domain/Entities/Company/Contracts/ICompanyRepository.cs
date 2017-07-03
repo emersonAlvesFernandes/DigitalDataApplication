@@ -18,6 +18,8 @@ namespace DigitalData.Domain.Entities.Company.Contracts
 
         bool Delete(int id);
 
+        IEnumerable<CompanyEntity> GetCompanyByItem(int itemId);
+
         //TODO: Criar método para obter o logo separadamente
     }
 }

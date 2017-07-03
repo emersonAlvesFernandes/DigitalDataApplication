@@ -13,8 +13,7 @@ using System.Transactions;
 namespace DigitalData.SqlRepository.Entities.Item
 {
     public class ItemRepository : RepositoryBase, IItemRepository
-    {
-        //OK
+    {        
         public ItemEntity Create(ItemEntity item, int userId)
         {
             base.Initialize();
@@ -30,6 +29,7 @@ namespace DigitalData.SqlRepository.Entities.Item
                         cmd.Parameters.AddWithValue("@nom_item", item.Name);
                         cmd.Parameters.AddWithValue("@ind_desdo", item.Desdobramento);
                         cmd.Parameters.AddWithValue("@des_descr", item.Description);
+                        cmd.Parameters.AddWithValue("@ind_ativa", item.IsActive);
                         cmd.Parameters.AddWithValue("@cod_usu", userId);
 
                         var id = (int)cmd.ExecuteScalar();
@@ -37,7 +37,7 @@ namespace DigitalData.SqlRepository.Entities.Item
 
                         tr.Commit();
 
-                        var i = new ItemEntity(id, item.Name, item.Description, item.Desdobramento);                                                
+                        var i = new ItemEntity(id, item.Name, item.Description, item.Desdobramento);
                         return i;
                     }                   
                 }                                    
@@ -51,8 +51,7 @@ namespace DigitalData.SqlRepository.Entities.Item
                 base.CloseConnection();
             }
         }
-
-        //OK
+        
         private void CreateRelation(int id_item, SqlCommand cmd)
         {                        
             try
@@ -67,22 +66,38 @@ namespace DigitalData.SqlRepository.Entities.Item
                 throw;
             }            
         }
-
-        // Funcionalidade não existirá
-        // apenas o 
+                
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            base.Initialize();
+            base.OpenConnection();
+            try
+            {
+                using (var cmd = new SqlCommand("spr_del_item", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_item", id);                    
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
         }
-
-        //OK
+     
         public IEnumerable<ItemEntity> GetAll()
         {
             try
             {
                 var collection = new List<ItemEntity>();
-
-                base.connection = new SqlConnection(connectionstring);
+                
+                base.Initialize();
                 this.OpenConnection();
 
                 using (var cmd = new SqlCommand("spr_ler_item", connection))
@@ -96,8 +111,9 @@ namespace DigitalData.SqlRepository.Entities.Item
                         var desdo = dataReader["ind_desdo"].ToBoolean();
                         var creationDate = dataReader["dat_criac"].ToDateTime();
                         var lastUpdate = dataReader["dat_atual"].ToDateTime();
+                        var isActive = dataReader["ind_ativa"].ToBoolean(); 
 
-                        var item = new ItemEntity(id, name, description, desdo, creationDate, lastUpdate);
+                        var item = new ItemEntity(id, name, description, desdo, isActive, creationDate, lastUpdate);
 
                         collection.Add(item);
                     }                    
@@ -113,9 +129,8 @@ namespace DigitalData.SqlRepository.Entities.Item
                 base.CloseConnection();
             }                            
         }
-
-        //OK
-        public ItemEntity GetById(int companyId)
+        
+        public ItemEntity GetById(int id)
         {
             try
             {
@@ -125,19 +140,20 @@ namespace DigitalData.SqlRepository.Entities.Item
                 using (var cmd = new SqlCommand("spr_ler_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", companyId);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     var dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        var id = dataReader["id"].ToInt32();
+                        var itemId = dataReader["id"].ToInt32();
                         var name = dataReader["nom_item"].ToString();
                         var description = dataReader["des_descr"].ToString();
                         var desdo = dataReader["ind_desdo"].ToBoolean();
                         var creationDate = dataReader["dat_criac"].ToDateTime();
                         var lastUpdate = dataReader["dat_atual"].ToDateTime();
+                        var isActive = dataReader["ind_ativa"].ToBoolean();
 
-                        var item = new ItemEntity(id, name, description, desdo, creationDate, lastUpdate);
+                        var item = new ItemEntity(itemId, name, description, desdo, isActive, creationDate, lastUpdate);
                         return item;
                     }
                 }
@@ -153,16 +169,15 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
 
         }
-
-        //TODO: TESTAR
+        
         public IEnumerable<ItemEntity> GetByCompanyId(int companyId)
         {
             try
             {
                 var collection = new List<ItemEntity>();
 
-                base.connection = new SqlConnection(connectionstring);
-                this.OpenConnection();
+                base.Initialize();
+                this.OpenConnection();                
 
                 using (var cmd = new SqlCommand("spr_ler_empre_item", connection))
                 {
@@ -178,8 +193,9 @@ namespace DigitalData.SqlRepository.Entities.Item
                         var desdo = dataReader["ind_desdo"].ToBoolean();
                         var creationDate = dataReader["dat_criac"].ToDateTime();
                         var lastUpdate = dataReader["dat_atual"].ToDateTime();
+                        var isActive = dataReader["ind_ativa"].ToBoolean();
 
-                        var item = new ItemEntity(id, name, description, desdo, creationDate, lastUpdate);
+                        var item = new ItemEntity(id, name, description, desdo, isActive, creationDate, lastUpdate);
                         collection.Add(item); 
                     }                    
                 }
@@ -195,7 +211,6 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
-        //TODO: TESTAR
         public bool Relate(int companyId, int id, int userId)
         {
             base.Initialize();
@@ -223,8 +238,7 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
-        //TODO: TESTAR
-        public bool UnRelate(int companyId, int id)
+        public bool UnRelate(int companyId, int id, int userId)
         {
             base.Initialize();
             base.OpenConnection();
@@ -233,10 +247,11 @@ namespace DigitalData.SqlRepository.Entities.Item
                 using (var cmd = new SqlCommand("spr_del_empre_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_empre", companyId);
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
                     cmd.Parameters.AddWithValue("@id_item", id);
+                    cmd.Parameters.AddWithValue("@cod_usu", userId);
 
-                    var idRelation = (int)cmd.ExecuteScalar();
+                    cmd.ExecuteNonQuery();
                 }
                 return true;
             }
@@ -250,7 +265,6 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
 
-        //OK
         public ItemEntity Update(ItemEntity item, int userId)
         {
             base.Initialize();
@@ -282,3 +296,4 @@ namespace DigitalData.SqlRepository.Entities.Item
         }
     }
 }
+

@@ -20,40 +20,40 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/03/2017 09:14:04</publishTime>
     </File>
     <File Include="bin/DigitalData.AppService.dll">
-      <publishTime>07/01/2017 17:16:09</publishTime>
+      <publishTime>07/02/2017 14:26:54</publishTime>
     </File>
     <File Include="bin/DigitalData.AppService.pdb">
-      <publishTime>07/01/2017 17:16:09</publishTime>
+      <publishTime>07/02/2017 14:26:54</publishTime>
     </File>
     <File Include="bin/DigitalData.Domain.dll">
-      <publishTime>07/01/2017 16:36:29</publishTime>
+      <publishTime>07/02/2017 13:30:28</publishTime>
     </File>
     <File Include="bin/DigitalData.Domain.pdb">
-      <publishTime>07/01/2017 16:36:29</publishTime>
+      <publishTime>07/02/2017 13:30:28</publishTime>
     </File>
     <File Include="bin/DigitalData.Service.dll">
-      <publishTime>07/01/2017 17:16:09</publishTime>
+      <publishTime>07/02/2017 14:26:54</publishTime>
     </File>
     <File Include="bin/DigitalData.Service.pdb">
-      <publishTime>07/01/2017 17:16:09</publishTime>
+      <publishTime>07/02/2017 14:26:54</publishTime>
     </File>
     <File Include="bin/DigitalData.SqlRepository.dll">
-      <publishTime>07/01/2017 17:16:09</publishTime>
+      <publishTime>07/02/2017 14:26:53</publishTime>
     </File>
     <File Include="bin/DigitalData.SqlRepository.pdb">
-      <publishTime>07/01/2017 17:16:09</publishTime>
+      <publishTime>07/02/2017 14:26:53</publishTime>
     </File>
     <File Include="bin/DigitalData.Utils.dll">
-      <publishTime>07/01/2017 16:36:29</publishTime>
+      <publishTime>07/02/2017 13:30:28</publishTime>
     </File>
     <File Include="bin/DigitalData.Utils.pdb">
-      <publishTime>07/01/2017 16:36:29</publishTime>
+      <publishTime>07/02/2017 13:30:28</publishTime>
     </File>
     <File Include="bin/DigitalData.WebApi.dll">
-      <publishTime>07/01/2017 17:16:12</publishTime>
+      <publishTime>07/02/2017 14:26:57</publishTime>
     </File>
     <File Include="bin/DigitalData.WebApi.pdb">
-      <publishTime>07/01/2017 17:16:12</publishTime>
+      <publishTime>07/02/2017 14:26:57</publishTime>
     </File>
     <File Include="bin/es/FluentValidation.resources.dll">
       <publishTime>03/03/2017 09:14:04</publishTime>
@@ -296,7 +296,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/17/2017 00:45:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/01/2017 17:16:13</publishTime>
+      <publishTime>07/02/2017 13:30:35</publishTime>
     </File>
   </ItemGroup>
 </Project>

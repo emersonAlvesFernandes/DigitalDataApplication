@@ -37,11 +37,10 @@ namespace DigitalData.WebApi.Controllers
             var user = 1;
 
             var validationResults = new ItemCreateValidator().Validate(itemCreate);
-
             if (!validationResults.IsValid)
                 return this.BadRequest(string.Join(" , ", validationResults.Errors));
 
-            var itemEntity = TypeAdapter.Adapt<ItemCreate, ItemEntity>(itemCreate);
+            var itemEntity = itemCreate.ToEntity();
 
             var createdItem = await Task.Run(() => _appService.Create(itemEntity, user));
 
@@ -91,11 +90,15 @@ namespace DigitalData.WebApi.Controllers
         [HttpPut]
         [Route("{id}")]
         [ResponseType(typeof(ItemRead))]
-        public async Task<IHttpActionResult> UpdateAsync([FromBody]ItemCreate item, [FromUri]int id)
+        public async Task<IHttpActionResult> UpdateAsync([FromBody]ItemCreate itemCreate, [FromUri]int id)
         {
+            //It does not allow activate item by this method
+
             var userId = 1;
 
-            var itemEntity = TypeAdapter.Adapt<ItemCreate, ItemEntity>(item);
+            //var itemEntity = TypeAdapter.Adapt<ItemCreate, ItemEntity>(item);
+            var itemEntity = itemCreate.ToEntity();
+
             itemEntity.Id = id;
 
             var updItem = await Task.Run(() => _appService.Update(itemEntity, userId));
@@ -114,6 +117,27 @@ namespace DigitalData.WebApi.Controllers
 
             var isRelated = await Task.Run(() => _appService.Relate(companyId, itemId, userId));
             
+            return this.Ok(isRelated);
+        }
+
+        [HttpPut]
+        [Route("unrelate/{companyId}/{itemId}")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> UnrelateAsync([FromUri]int companyId, [FromUri]int itemId)
+        {
+            var userId = 1;
+
+            var isRelated = await Task.Run(() => _appService.Unrelate(companyId, itemId, userId));
+
+            return this.Ok(isRelated);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> DeleteAsync([FromUri]int id)
+        {            
+            var isRelated = await Task.Run(() => _appService.Delete(id));
             return this.Ok(isRelated);
         }
     }

@@ -50,5 +50,10 @@ namespace DigitalData.Service
         {
             return _companyRepository.Update(company);
         }
+
+        public IEnumerable<CompanyEntity> GetCompanyByItem(int itemId)
+        {
+            return _companyRepository.GetCompanyByItem(itemId);
+        }
     }
 }

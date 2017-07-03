@@ -40,7 +40,7 @@ namespace DigitalData.WebApi.Models.Entities.Company
     {
         public CompanySummaryValidator()
         {
-            RuleFor(x => x.Name)
+            RuleFor(x => x.Id)
                 .NotEmpty().WithMessage("Id is required");
 
             RuleFor(x => x.Name)

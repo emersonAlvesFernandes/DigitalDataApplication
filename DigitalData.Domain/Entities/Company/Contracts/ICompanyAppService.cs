@@ -19,6 +19,6 @@ namespace DigitalData.Domain.Entities.Company.Contracts
 
         bool Delete(int id);
 
-        AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address);
+        AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address);
     }
 }

@@ -64,7 +64,10 @@ namespace DigitalData.AppService
         public CompanyEntity GetById(int id)
         {
             var company = _companyService.GetById(id);
-            company.Address = _addressService.GetCompanyAddress(company.Id);
+
+            if (company != null)
+                company.Address = _addressService.GetCompanyAddress(company.Id);
+
             return company;
         }
 
@@ -74,11 +77,14 @@ namespace DigitalData.AppService
             return ret;
         }
 
-        public AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address)
+        public AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address)
         {
-            return _addressService.UpdateCompanyAddress(companyId, address);
+            var existingAddress = _addressService.GetById(addressId);
+
+            if (existingAddress != null)
+                return _addressService.UpdateCompanyAddress(addressId, address);
+            else
+                throw new Exception("invalid update: address does not exists");
         }
-
-
     }
 }

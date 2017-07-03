@@ -20,6 +20,6 @@ namespace DigitalData.WebApi.Models.Entities.Company
 
         public string Email { get; set; }
 
-        public AddressDto Address { get; set; }
+        public AddressSummary Address { get; set; }
     }
 }

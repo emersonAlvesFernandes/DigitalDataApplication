@@ -88,7 +88,7 @@ namespace DigitalData.SqlRepository.Entities.Address
             }
         }
 
-        public AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address)
+        public AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address)
         {
             base.Initialize();
             base.OpenConnection();
@@ -97,7 +97,7 @@ namespace DigitalData.SqlRepository.Entities.Address
                 using (var cmd = new SqlCommand("spr_upd_empre_ender", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", address.Id);
+                    cmd.Parameters.AddWithValue("@id", addressId);
                     cmd.Parameters.AddWithValue("@des_logra", address.Address);
                     cmd.Parameters.AddWithValue("@num_logra", address.Number);
                     cmd.Parameters.AddWithValue("@num_cep", address.Zipcode);
@@ -105,11 +105,56 @@ namespace DigitalData.SqlRepository.Entities.Address
                     cmd.Parameters.AddWithValue("@nom_cidad", address.City);
                     cmd.Parameters.AddWithValue("@nom_estad", address.State);
                     cmd.Parameters.AddWithValue("@nom_bairr", address.Neighborhood);
-                    
-                    var Id = (int)cmd.ExecuteScalar();
-                    var newAddress = new AddressEntity(Id, address);
+
+                    //var Id = (int)cmd.ExecuteScalar();
+                    cmd.ExecuteNonQuery();
+                    var newAddress = new AddressEntity(addressId, address);
                     return newAddress;
                 }                                
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
+
+        public AddressEntity GetById(int id)
+        {
+            try
+            {
+                base.connection = new SqlConnection(connectionstring);
+                this.OpenConnection();
+
+                using (var cmd = new SqlCommand("spr_ler_endereco", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+
+                        var Id = dataReader["id"].ToInt32();
+                        var Address = dataReader["des_logra"].ToString();
+                        var Number = dataReader["num_logra"].ToString();
+                        var Complement = dataReader["val_compl"].ToString();
+                        var Zipcode = dataReader["num_cep"].ToString();
+                        var Neighborhood = dataReader["nom_bairr"].ToString();
+                        var City = dataReader["nom_cidad"].ToString();
+                        var State = dataReader["nom_estad"].ToString();
+
+                        var address = new AddressEntity(Id, Address,
+                            Number, Complement, Zipcode, Neighborhood,
+                            City, State);
+
+                        return address;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
             finally
             {

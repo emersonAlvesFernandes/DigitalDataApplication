@@ -6,57 +6,113 @@ using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Entities.Item;
 using DigitalData.Service;
+using DigitalData.Domain.Entities.Company.Contracts;
 
 namespace DigitalData.AppService
 {
     public class ItemAppService : IItemAppService
     {
-        private readonly IItemService _service;
+        private readonly IItemService _itemService;
+        private readonly ICompanyService _companyService;
 
         public ItemAppService()
         {
-            _service = new ItemService();
+            _itemService = new ItemService();
         }
 
-        public ItemAppService(IItemService service)
+        public ItemAppService(IItemService service, ICompanyService companyService)
         {
-            _service = service;
+            _itemService = service;
+            _companyService = companyService;
         }
 
         public ItemEntity Create(ItemEntity item, int userId)
         {
-            return _service.Create(item, userId);
+            return _itemService.Create(item, userId);
         }
 
-        public bool Delete(int id)
+        public bool Delete(int itemId)
         {
-            throw new NotImplementedException();
+            var companiesWithItem = _companyService.GetCompanyByItem(itemId);
+            if (companiesWithItem.Count() > 0)
+                throw new Exception("item.already.related.to.company");
+
+            var item = _itemService.GetById(itemId);
+
+            if (item == null)
+                throw new Exception("invalid.id");
+
+            return _itemService.Delete(itemId);            
         }
 
         public IEnumerable<ItemEntity> GetAll()
         {
-            return _service.GetAll();
+            var collection = _itemService.GetAll();
+
+            var validCollection = collection.Where(x => x.IsActive == true).ToList();
+
+            return validCollection;
         }
 
         public ItemEntity GetById(int itemId)
         {
-            return _service.GetById(itemId);
+            return _itemService.GetById(itemId);
         }
 
-        public ItemEntity Update(ItemEntity item, int id)
+        public ItemEntity Update(ItemEntity item, int userId)
         {
-            return _service.Update(item, id);
+            var existingItem = _itemService.GetById(item.Id);
+
+            if (existingItem == null)
+                throw new Exception("invalid.item.id");
+
+            return _itemService.Update(item, userId);
         }
 
         public bool Relate(int companyId, int id, int userId)
         {
-            //do not need to check if exists because of database FK's;
-            return _service.Relate(companyId, id, userId);
+            this.ValidateItemCompanyRelation(companyId, id);
+
+            var companyItems = _itemService.GetByCompanyId(companyId);
+            var containItem = companyItems
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+            if (containItem != null)
+                throw new Exception("relation.already.exists");
+
+            return _itemService.Relate(companyId, id, userId);
         }
 
         public IEnumerable<ItemEntity> GetByCompanyId(int companyId)
         {
-            return _service.GetByCompanyId(companyId);
+            return _itemService.GetByCompanyId(companyId);
+        }
+
+        public bool Unrelate(int companyId, int id, int userId)
+        {
+            this.ValidateItemCompanyRelation(companyId, id);
+
+            var companyItems = _itemService.GetByCompanyId(companyId);
+
+            var containItem = companyItems
+                .FirstOrDefault(x => x.Id == id);
+            if (containItem == null)
+                throw new Exception("relation.does.not.exists");
+
+
+            return _itemService.Unrelate(companyId, id, userId);
+        }
+
+        private void ValidateItemCompanyRelation(int companyId, int id)
+        {
+            var item = _itemService.GetById(id);
+            if (item == null)
+                throw new Exception("invalid.item.id");
+
+            var company = _companyService.GetById(companyId);
+            if (company == null)
+                throw new Exception("invalid.company.id");            
         }
     }
 }

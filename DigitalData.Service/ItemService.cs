@@ -30,7 +30,7 @@ namespace DigitalData.Service
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return _repository.Delete(id);
         }
 
         public IEnumerable<ItemEntity> GetAll()
@@ -53,9 +53,9 @@ namespace DigitalData.Service
             return _repository.Relate(companyId, id, userId);
         }
 
-        public bool UnRelate(int companyId, int id)
+        public bool Unrelate(int companyId, int id, int userId)
         {
-            throw new NotImplementedException();
+            return _repository.UnRelate(companyId, id, userId);
         }
 
         public ItemEntity Update(ItemEntity item, int userId)

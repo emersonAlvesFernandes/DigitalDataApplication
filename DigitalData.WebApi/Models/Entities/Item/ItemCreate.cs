@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using DigitalData.Domain.Entities.Item;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,13 @@ namespace DigitalData.WebApi.Models.Entities.Item
         public string Description { get; set; }
 
         public bool Desdobramento { get; set; }
+
+        public ItemEntity ToEntity()
+        {
+            var entity = new ItemEntity(0, this.Name, this.Description, this.Desdobramento);
+            return entity;
+        }
+
     }
     public class ItemCreateValidator : AbstractValidator<ItemCreate>
     {

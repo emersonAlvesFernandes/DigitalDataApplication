@@ -14,5 +14,7 @@ namespace DigitalData.WebApi.Models.Entities.Item
         public string Description { get; set; }
 
         public bool Desdobramento { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

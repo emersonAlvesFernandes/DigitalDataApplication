@@ -16,7 +16,6 @@ namespace DigitalData.SqlRepository.Entities.Company
     public class CompanyRepository : RepositoryBase, ICompanyRepository
     {
 
-        //OK
         public CompanyEntity Create(CompanyEntity company)
         {
             base.Initialize();
@@ -50,7 +49,6 @@ namespace DigitalData.SqlRepository.Entities.Company
             }                        
         }
         
-        //OK
         public bool Delete(int id)
         {
             base.Initialize();
@@ -75,7 +73,6 @@ namespace DigitalData.SqlRepository.Entities.Company
             }
         }
 
-        //OK
         public IEnumerable<CompanyEntity> GetAll()
         {
             try
@@ -117,7 +114,6 @@ namespace DigitalData.SqlRepository.Entities.Company
             }                        
         }
 
-        //OK
         public CompanyEntity GetById(int id)
         {
             try
@@ -160,7 +156,6 @@ namespace DigitalData.SqlRepository.Entities.Company
             }
         }
 
-        //OK
         public CompanyEntity Update(CompanyEntity company)
         {
             base.Initialize();
@@ -191,5 +186,50 @@ namespace DigitalData.SqlRepository.Entities.Company
                 base.CloseConnection();
             }
         }
+
+        public IEnumerable<CompanyEntity> GetCompanyByItem(int itemId)
+        {
+            try
+            {
+                var collection = new List<CompanyEntity>();
+
+                base.connection = new SqlConnection(connectionstring);
+                this.OpenConnection();
+
+                using (var cmd = new SqlCommand("spr_ler_empresa_por_item", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_item", itemId);
+
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+
+                        var id = dataReader["id"].ToInt32();
+                        var name = dataReader["nom_empre"].ToString();
+                        var cnpj = dataReader["des_cnpj"].ToString();
+                        //var Logo = dataReader["val_logo"].,
+                        var webSite = dataReader["des_site"].ToString();
+                        var email = dataReader["des_email"].ToString();
+                        var creationDate = dataReader["dat_criac"].ToDateTime();
+                        var lastUpdate = dataReader["dat_atual"].ToDateTime();
+                        var isActive = dataReader["ind_ativa"].ToBoolean();
+
+                        var c = new CompanyEntity(id, name, cnpj, webSite, email, isActive, creationDate, lastUpdate);
+                        collection.Add(c);
+                    }
+                }
+                return collection;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
+
     }
 }
