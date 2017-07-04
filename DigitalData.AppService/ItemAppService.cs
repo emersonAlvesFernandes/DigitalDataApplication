@@ -114,5 +114,14 @@ namespace DigitalData.AppService
             if (company == null)
                 throw new Exception("invalid.company.id");            
         }
+
+        public IEnumerable<ItemEntity> GetAvailableItens(int companyId)
+        {
+            var allItems = _itemService.GetAll();
+            var companyItems = _itemService.GetByCompanyId(companyId);
+            var availableItems = allItems.Except(companyItems).ToList();
+            return availableItems;
+        }
+
     }
 }

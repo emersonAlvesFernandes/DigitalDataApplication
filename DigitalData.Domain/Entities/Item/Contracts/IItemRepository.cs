@@ -24,5 +24,6 @@ namespace DigitalData.Domain.Entities.Item.Contracts
         bool Relate(int companyId, int id, int userId);
 
         bool UnRelate(int companyId, int id, int userId);
+       
     }
 }

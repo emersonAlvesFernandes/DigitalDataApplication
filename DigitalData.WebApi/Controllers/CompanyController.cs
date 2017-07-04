@@ -101,9 +101,7 @@ namespace DigitalData.WebApi.Controllers
             
             return this.Ok(viewModel);
         }
-
-
-        //TODO: TESTAR
+        
         [HttpPut]
         [Route("address/{addressId}")]
         [ResponseType(typeof(AddressSummary))]

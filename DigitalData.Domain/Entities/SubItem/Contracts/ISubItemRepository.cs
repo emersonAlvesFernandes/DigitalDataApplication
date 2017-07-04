@@ -8,19 +8,19 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
 {
     public interface ISubItemRepository
     {
-        SubItemEntity Create(int itemId, SubItemEntity item);
+        SubItemEntity Create(int itemId, SubItemEntity item, int userId);
 
         IEnumerable<SubItemEntity> GetAll(int itemId);
 
         SubItemEntity GetById(int id);
 
-        SubItemEntity Update(SubItemEntity subItem);
+        SubItemEntity Update(SubItemEntity subItem, int userId);
 
-        bool Delete(int id);
+        bool Delete(int id, int userId);
 
 
-        SubItemEntity Relate(int companyId, int itemid, int id);
+        SubItemEntity Relate(int companyId, int itemid, int id, int userId);
 
-        bool UnRelate(int companyId, int itemid, int id);
+        bool UnRelate(int companyId, int itemid, int id, int userId);
     }
 }

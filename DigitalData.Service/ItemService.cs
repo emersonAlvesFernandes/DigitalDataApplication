@@ -61,6 +61,6 @@ namespace DigitalData.Service
         public ItemEntity Update(ItemEntity item, int userId)
         {
             return _repository.Update(item, userId);
-        }
+        }        
     }
 }

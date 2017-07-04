@@ -87,6 +87,19 @@ namespace DigitalData.WebApi.Controllers
             return this.Ok(readItems);
         }
 
+        [HttpGet]
+        [Route("available/company/{id}")]
+        [ResponseType(typeof(IEnumerable<ItemRead>))]
+        public async Task<IHttpActionResult> GetAvailableItemsByCompanyIdAsync([FromUri]int id)
+        {
+            var item = await Task.Run(() => _appService.GetAvailableItens(id));
+
+            var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>
+                ,IEnumerable<ItemRead>>(item);
+
+            return this.Ok(readItems);
+        }
+
         [HttpPut]
         [Route("{id}")]
         [ResponseType(typeof(ItemRead))]
@@ -140,5 +153,6 @@ namespace DigitalData.WebApi.Controllers
             var isRelated = await Task.Run(() => _appService.Delete(id));
             return this.Ok(isRelated);
         }
+
     }
 }

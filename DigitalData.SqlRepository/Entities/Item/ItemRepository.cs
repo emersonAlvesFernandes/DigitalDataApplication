@@ -33,7 +33,7 @@ namespace DigitalData.SqlRepository.Entities.Item
                         cmd.Parameters.AddWithValue("@cod_usu", userId);
 
                         var id = (int)cmd.ExecuteScalar();
-                        this.CreateRelation(id, cmd);
+                        //this.CreateRelation(id, cmd);
 
                         tr.Commit();
 
@@ -52,20 +52,20 @@ namespace DigitalData.SqlRepository.Entities.Item
             }
         }
         
-        private void CreateRelation(int id_item, SqlCommand cmd)
-        {                        
-            try
-            {                
-                cmd.Parameters.Clear();
-                cmd.CommandText = "spr_ins_item_subitem";                
-                cmd.Parameters.AddWithValue("@item_id", id_item);
-                cmd.ExecuteNonQuery();                
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }            
-        }
+        //private void CreateRelation(int id_item, SqlCommand cmd)
+        //{                        
+        //    try
+        //    {                
+        //        cmd.Parameters.Clear();
+        //        cmd.CommandText = "spr_ins_item_subitem";                
+        //        cmd.Parameters.AddWithValue("@id_item", id_item);
+        //        cmd.ExecuteNonQuery();                
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }            
+        //}
                 
         public bool Delete(int id)
         {
@@ -294,6 +294,7 @@ namespace DigitalData.SqlRepository.Entities.Item
                 base.CloseConnection();
             }
         }
+        
     }
 }
 

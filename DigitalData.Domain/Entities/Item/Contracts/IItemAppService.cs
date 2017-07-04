@@ -24,5 +24,7 @@ namespace DigitalData.Domain.Entities.Item.Contracts
 
         bool Unrelate(int companyId, int id, int userId);
 
+        IEnumerable<ItemEntity> GetAvailableItens(int companyId);
+
     }
 }
