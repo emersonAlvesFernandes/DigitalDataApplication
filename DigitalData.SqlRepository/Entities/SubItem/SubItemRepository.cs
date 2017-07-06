@@ -25,14 +25,18 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                     {
                         cmd.Transaction = tr;
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id_item", item.Name);
+                        cmd.Parameters.AddWithValue("@id_item", itemId);
                         cmd.Parameters.AddWithValue("@nom_subitem", item.Name);                        
                         cmd.Parameters.AddWithValue("@des_descr", item.Description);
+
+                        cmd.Parameters.AddWithValue("@dat_criac", item.CreationDate);
+                        cmd.Parameters.AddWithValue("@dat_atual", item.LastUpdate);
+
                         cmd.Parameters.AddWithValue("@ind_ativa", item.IsActive);
                         cmd.Parameters.AddWithValue("@cod_usu", userId);
 
                         var subItemId = (int)cmd.ExecuteScalar();
-                        //this.CreateRelation(itemId, subItemId, cmd);
+                        this.CreateRelation(itemId, subItemId, cmd);
 
                         tr.Commit();
 
@@ -52,21 +56,21 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             }
         }
 
-        //private void CreateRelation(int itemId, int subitemId, SqlCommand cmd)
-        //{
-        //    try
-        //    {
-        //        cmd.Parameters.Clear();
-        //        cmd.CommandText = "spr_ins_item_subitem";
-        //        cmd.Parameters.AddWithValue("@id_item", itemId);
-        //        cmd.Parameters.AddWithValue("@id_subitem", subitemId);
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+        private void CreateRelation(int itemId, int subitemId, SqlCommand cmd)
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.CommandText = "spr_ins_item_subitem";
+                cmd.Parameters.AddWithValue("@id_item", itemId);
+                cmd.Parameters.AddWithValue("@id_subitem", subitemId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public bool Delete(int id, int userId)
         {

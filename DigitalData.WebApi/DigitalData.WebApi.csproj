@@ -153,6 +153,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DefaultDataController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\SubItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +166,8 @@
     <Compile Include="Models\Entities\Company\CompanySummary.cs" />
     <Compile Include="Models\Entities\Item\ItemCreate.cs" />
     <Compile Include="Models\Entities\Item\ItemRead.cs" />
+    <Compile Include="Models\Entities\SubItem\SubItemCreate.cs" />
+    <Compile Include="Models\Entities\SubItem\SubItemRead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

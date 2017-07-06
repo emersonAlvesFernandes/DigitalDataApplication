@@ -8,23 +8,23 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
 {
     public interface ISubItemService
     {
-        SubItemEntity Create(int itemId, SubItemEntity item);
+        SubItemEntity Create(int itemId, SubItemEntity subItem, int username);
 
 
-        IEnumerable<SubItemEntity> GetAll(int itemId);
+        //IEnumerable<SubItemEntity> GetAll(int itemId);
 
-        SubItemEntity GetById(int id);
+        //SubItemEntity GetById(int id);
 
-        List<SubItemEntity> GetByItemId(int itemId);
-
-
-        SubItemEntity Update(SubItemEntity subItem);
-
-        bool Delete(int id);
+        //List<SubItemEntity> GetByItemId(int itemId);
 
 
-        SubItemEntity Relate(int companyId, int itemid, int id);
+        //SubItemEntity Update(SubItemEntity subItem);
 
-        bool UnRelate(int companyId, int itemid, int id);
+        //bool Delete(int id);
+
+
+        //SubItemEntity Relate(int companyId, int itemid, int id);
+
+        //bool UnRelate(int companyId, int itemid, int id);
     }
 }

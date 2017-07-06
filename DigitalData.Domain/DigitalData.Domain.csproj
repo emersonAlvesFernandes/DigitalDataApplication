@@ -65,6 +65,7 @@
     <Compile Include="Entities\Planning\Contracts\IPlanningService.cs" />
     <Compile Include="Entities\Planning\Planning.cs" />
     <Compile Include="Entities\Store\StoreEntity.cs" />
+    <Compile Include="Entities\SubItem\Contracts\ISubItemAppService.cs" />
     <Compile Include="Entities\SubItem\Contracts\ISubItemRepository.cs" />
     <Compile Include="Entities\SubItem\Contracts\ISubItemService.cs" />
     <Compile Include="Enums\Class1.cs" />

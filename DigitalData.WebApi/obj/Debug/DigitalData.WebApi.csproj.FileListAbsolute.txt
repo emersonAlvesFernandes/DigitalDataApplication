@@ -210,3 +210,6 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.pdb
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\System.Web.Cors.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\System.Web.Http.Cors.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\System.Web.Http.Cors.xml

@@ -31,7 +31,7 @@ namespace DigitalData.WebApi.Models.Entities.Item
                 .Length(0, 100).WithMessage("Item Name cannot be more than 100 characters.");
 
             RuleFor(x => x.Description)
-                .NotEmpty().WithMessage("Cnpj is required")
+                .NotEmpty().WithMessage("Description is required")
                 .Length(0, 200).WithMessage("Descrição deve no máximo 200 caracteres.");
 
 

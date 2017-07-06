@@ -45,6 +45,7 @@
     <Compile Include="DefaultDataService.cs" />
     <Compile Include="ItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubItemService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DigitalData.Domain\DigitalData.Domain.csproj">
