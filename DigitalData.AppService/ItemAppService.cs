@@ -73,13 +73,7 @@ namespace DigitalData.AppService
         {
             this.ValidateItemCompanyRelation(companyId, id);
 
-            var companyItems = _itemService.GetByCompanyId(companyId);
-            var containItem = companyItems
-                .Where(x => x.Id == id)
-                .FirstOrDefault();
 
-            if (containItem != null)
-                throw new Exception("relation.already.exists");
 
             return _itemService.Relate(companyId, id, userId);
         }
@@ -112,7 +106,12 @@ namespace DigitalData.AppService
 
             var company = _companyService.GetById(companyId);
             if (company == null)
-                throw new Exception("invalid.company.id");            
+                throw new Exception("invalid.company.id");
+
+            var companyItems = _itemService.GetByCompanyId(companyId);
+            var containItem = companyItems.FirstOrDefault(x => x.Id == id);
+            if (containItem != null)
+                throw new Exception("relation.already.exists");
         }
 
         public IEnumerable<ItemEntity> GetAvailableItens(int companyId)

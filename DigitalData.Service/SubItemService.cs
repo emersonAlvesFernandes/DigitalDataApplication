@@ -21,5 +21,30 @@ namespace DigitalData.Service
         {
             return _repository.Create(itemId, subItem, username);
         }
+
+        public IEnumerable<SubItemEntity> GetByItemId(int itemId)
+        {
+            return _repository.GetByItemId(itemId);
+        }
+
+        public bool Delete(int id, int userId)
+        {
+            return _repository.Delete(id, userId);
+        }
+
+        public bool Relate(int companyId, int itemId, int id, int userId)
+        {
+            return _repository.Relate(companyId, itemId, id, userId);
+        }
+
+        public SubItemEntity GetById(int id)
+        {
+            return _repository.GetById(id);
+        }
+
+        public bool UnRelate(int companyId, int itemid, int id, int userId)
+        {
+            return _repository.UnRelate(companyId, itemid, id, userId);
+        }
     }
 }

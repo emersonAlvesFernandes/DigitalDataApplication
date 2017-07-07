@@ -10,17 +10,16 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
     {
         SubItemEntity Create(int itemId, SubItemEntity subItem, int userId);
 
-        //IEnumerable<SubItemEntity> GetAll(int itemId);
+        SubItemEntity GetById(int id);
 
-        //SubItemEntity GetById(int id);
-
+        IEnumerable<SubItemEntity> GetByItemId(int itemId);
+        
         //SubItemEntity Update(SubItemEntity subItem, int userId);
 
-        //bool Delete(int id, int userId);
+        bool Delete(int id, int userId);
 
+        bool Relate(int companyId, int itemId, int id, int userId);
 
-        //SubItemEntity Relate(int companyId, int itemid, int id, int userId);
-
-        //bool UnRelate(int companyId, int itemid, int id, int userId);
+        bool UnRelate(int companyId, int itemid, int id, int userId);
     }
 }

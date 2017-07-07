@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Entities.SubItem;
 using DigitalData.Domain.Entities.Item.Contracts;
+using DigitalData.Domain.Entities.Company.Contracts;
 
 namespace DigitalData.AppService
 {
@@ -13,12 +14,14 @@ namespace DigitalData.AppService
     {
         private readonly ISubItemService _subItemService;
         private readonly IItemService _itemService;
+        private readonly ICompanyService _companyService;
 
-        
-        public SubItemAppService(ISubItemService subItemService, IItemService itemService)
+
+        public SubItemAppService(ISubItemService subItemService, IItemService itemService, ICompanyService companyService)
         {
             this._subItemService = subItemService;
             this._itemService = itemService;
+            this._companyService = companyService;
         }
 
         public SubItemEntity Create(int itemId, SubItemEntity subItem, int userId)
@@ -29,6 +32,50 @@ namespace DigitalData.AppService
                 throw new Exception("invelida.id");
 
             return _subItemService.Create(itemId, subItem, userId);
+        }
+
+        public IEnumerable<SubItemEntity> GetByItemId(int itemId)
+        {
+            var SubItems = _subItemService.GetByItemId(itemId);
+
+            var validSubItems = SubItems.ToList()
+                .Where(x => x.IsActive == true);                
+
+            return validSubItems;
+        }
+
+        public bool Delete(int id, int userId)
+        {
+            return _subItemService.Delete(id, userId);
+        }
+
+        public bool Relate(int companyId, int itemId, int id, int userId)
+        {
+            this.ValidateSubItemCompanyRelation(companyId, itemId, id);
+
+            var isRelated = _subItemService.Relate(companyId, itemId, id, userId);
+
+            return isRelated;
+        }
+
+        public bool UnRelate(int companyId, int itemid, int id, int userId)
+        {
+            return _subItemService.UnRelate(companyId, itemid, id,  userId);
+        }
+
+        private void ValidateSubItemCompanyRelation(int companyId, int itemId, int id)
+        {
+            var company = _companyService.GetById(companyId);
+            if (company == null || company.IsActive == false)
+                throw new Exception("invalid.company.id");
+
+            var item = _itemService.GetById(itemId);
+            if (item == null || item.IsActive == false)
+                throw new Exception("invalid.item.id");
+                    
+            var subitem = _subItemService.GetById(id);
+            if (subitem == null || subitem.IsActive == false)
+                throw new Exception("invalid.subitem.id");            
         }
     }
 }
