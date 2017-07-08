@@ -9,9 +9,9 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
 {
     public interface IPlanningRepository
     {
-        PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning);
+        PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int userId);
 
-        PlanningEntity CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning);
+        PlanningEntity CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int userId);
 
         IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId);
 

@@ -19,6 +19,7 @@ namespace DigitalData.Domain.Enums
         SEP = 9,
         OCT = 10,
         NOV = 11,
-        DEC = 12
+        DEC = 12,
+        ALL = 13
     };
 }

@@ -9,13 +9,16 @@ using System.Web;
 
 namespace DigitalData.WebApi.Models.Entities.Company
 {
+
+
     public class CompanyCreate
-    {        
+    {
+        
         public string Name { get; set; }
 
         public string Cnpj { get; set; }
 
-        public byte[] Logo { get; set; }
+        //public byte[] Logo { get; set; }
 
         public string WebSite { get; set; }
 

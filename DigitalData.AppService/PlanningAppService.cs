@@ -14,10 +14,20 @@ namespace DigitalData.AppService
 {
     public class PlanningAppService : IPlanningAppService
     {
-        private readonly ICompanyService _companyService;
-        private readonly IItemService _itemService;
-        private readonly ISubItemService _subItemService;
-        private readonly IPlanningService _planningService;
+        private readonly ICompanyService    _companyService;
+        private readonly IItemService       _itemService;
+        private readonly ISubItemService    _subItemService;
+        private readonly IPlanningService   _planningService;
+
+
+        public PlanningAppService (ICompanyService companyService, IItemService itemService, ISubItemService subItemService, IPlanningService planningService)
+        {
+            _companyService = companyService;
+            _itemService = itemService;
+            _subItemService = subItemService;
+            _planningService = planningService;
+        }
+
 
         public IDictionary<PlanningEntity, List<PlanningEntity>> Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning, PlanningEntity yearPlanning)
         {
@@ -32,7 +42,7 @@ namespace DigitalData.AppService
                     monthPlanningCollection.Add(monthPlanning);
                 }
 
-                var yearPlanningEntity = _planningService.CreateYearPlanning(companyId, itemId, subItemId, p);
+                var yearPlanningEntity = _planningService.CreateYearPlanning(companyId, itemId, subItemId, yearPlanning);
 
                 var dictionaryEntity = new Dictionary<PlanningEntity, List<PlanningEntity>>();
                 dictionaryEntity.Add(yearPlanningEntity, monthPlanningCollection);

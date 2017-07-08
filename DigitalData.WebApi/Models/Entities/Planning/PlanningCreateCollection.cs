@@ -55,18 +55,15 @@ namespace DigitalData.WebApi.Models.Entities.Planning
 
         public double Budgeted { get; set; }
 
+        public int Month { get; set; }
+        
         public PlanningEntity ToEntity()
         {
             var entity = new PlanningEntity(0, DoneValue, PlannedValue, 
                 GreenFrom, GreenTo, RedFrom, RedTo, Budgeted, DateTime.Now);
 
             return entity;
-        }
-
-        List<string> Validate()
-        {
-
-        }
+        }        
     }
 
     public class PlanningCreateDtoValidator : AbstractValidator<PlanningCreateDto>

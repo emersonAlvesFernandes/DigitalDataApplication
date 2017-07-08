@@ -26,6 +26,10 @@ namespace DigitalData.Domain.Planning
 
         public DateTime CreationDate { get; set; }
 
+        public string StatusColor { get; set; } //TODO: criar enum
+
+        public int Month { get; set; } //TODO: criar enum
+
         public PlanningEntity(int id, double doneValue, double plannedValue, 
             double greenFrom, double greenTo, double redFrom, 
             double redTo, double budgeted, DateTime creationDate)
@@ -39,6 +43,15 @@ namespace DigitalData.Domain.Planning
             RedTo = redTo;
             Budgeted = budgeted;
             CreationDate = creationDate;
+        }
+
+        public void SetStatusColor()
+        {
+            if (DoneValue > GreenFrom && DoneValue < GreenTo)
+                StatusColor = "VERDE";
+                
+            if(DoneValue > RedFrom && DoneValue < RedTo)
+                StatusColor = "VERMELHO";
         }
     }
 }
