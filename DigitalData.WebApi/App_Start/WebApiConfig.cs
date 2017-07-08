@@ -24,8 +24,9 @@ namespace DigitalData.WebApi
 
 
             //CORS
+            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             var corsAttr = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors();
+            config.EnableCors(corsAttr);
 
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();

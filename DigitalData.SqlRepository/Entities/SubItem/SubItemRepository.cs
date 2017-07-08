@@ -125,7 +125,7 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                 base.Initialize();
                 this.OpenConnection();
 
-                using (var cmd = new SqlCommand("spr_ler_subitem", connection))
+                using (var cmd = new SqlCommand("spr_ler_item_subitem", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_item", itemId);

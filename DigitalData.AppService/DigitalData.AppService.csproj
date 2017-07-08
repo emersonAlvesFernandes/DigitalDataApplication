@@ -45,6 +45,7 @@
     <Compile Include="Contracts\IDefaultDataAppService.cs" />
     <Compile Include="DefaultDataAppService.cs" />
     <Compile Include="ItemAppService.cs" />
+    <Compile Include="PlanningAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubItemAppService.cs" />
   </ItemGroup>
