@@ -1,4 +1,5 @@
 ﻿using DigitalData.Domain.Planning;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,15 @@ namespace DigitalData.WebApi.Models.Entities.Planning
 
     public class PlanningCreateCollection
     {
-        List<PlanningCreateDto> MonthlyPlanning { get; set; }
+        public int CompanyId { get; set; }
 
-        PlanningCreateDto YearPlanning { get; set; }
+        public int ItemId { get; set; }
+
+        public int SubItemId { get; set; }
+
+        public List<PlanningCreateDto> MonthlyPlanning { get; set; }
+
+        public PlanningCreateDto YearPlanning { get; set; }
 
         public List<PlanningEntity> GetEntityMonthlyPlanningCollection()
         {
@@ -54,6 +61,21 @@ namespace DigitalData.WebApi.Models.Entities.Planning
                 GreenFrom, GreenTo, RedFrom, RedTo, Budgeted, DateTime.Now);
 
             return entity;
+        }
+
+        List<string> Validate()
+        {
+
+        }
+    }
+
+    public class PlanningCreateDtoValidator : AbstractValidator<PlanningCreateDto>
+    {
+        public PlanningCreateDtoValidator()
+        {
+            RuleFor(x => x.PlannedValue).NotEmpty().WithMessage("O valor planejado é obrigatório");
+
+            RuleFor(x => x.Budgeted).NotEmpty().WithMessage("O valor orçado é obrigatório");            
         }
     }
 }

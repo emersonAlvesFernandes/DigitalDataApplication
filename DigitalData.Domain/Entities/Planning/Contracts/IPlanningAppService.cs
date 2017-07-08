@@ -9,7 +9,7 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
 {
     public interface IPlanningAppService
     {
-        PlanningEntity Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning,
+        IDictionary<PlanningEntity, List<PlanningEntity>> Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning,
             PlanningEntity yearPlanning);
 
         //IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId);

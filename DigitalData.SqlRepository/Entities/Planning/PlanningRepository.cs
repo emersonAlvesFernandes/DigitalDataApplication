@@ -10,7 +10,12 @@ namespace DigitalData.SqlRepository.Entities.Planning
 {
     public class PlanningRepository : IPlanningRepository
     {
-        public PlanningEntity Create(int companyId, int itemId, int? subItemId, PlanningEntity planning)
+        public PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PlanningEntity CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning)
         {
             throw new NotImplementedException();
         }

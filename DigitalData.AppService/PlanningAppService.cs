@@ -8,6 +8,7 @@ using DigitalData.Domain.Planning;
 using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.Domain.Entities.SubItem.Contracts;
+using System.Transactions;
 
 namespace DigitalData.AppService
 {
@@ -18,14 +19,30 @@ namespace DigitalData.AppService
         private readonly ISubItemService _subItemService;
         private readonly IPlanningService _planningService;
 
-        public PlanningEntity Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning, PlanningEntity yearPlanning)
+        public IDictionary<PlanningEntity, List<PlanningEntity>> Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning, PlanningEntity yearPlanning)
         {
-            //Check if relation is valid 
-            // get full nested lists 
-            // find combination 
-            // validate
+            this.ValidateRelation(companyId, itemId, subItemId);
+            
+            using (var transaction = new TransactionScope())
+            {
+                var monthPlanningCollection = new List<PlanningEntity>();
+                foreach (var p in montlyPlanning)
+                {
+                    var monthPlanning = _planningService.CreateMonthPlanning(companyId, itemId, subItemId, p);
+                    monthPlanningCollection.Add(monthPlanning);
+                }
 
-            throw new NotImplementedException();
+                var yearPlanningEntity = _planningService.CreateYearPlanning(companyId, itemId, subItemId, p);
+
+                var dictionaryEntity = new Dictionary<PlanningEntity, List<PlanningEntity>>();
+                dictionaryEntity.Add(yearPlanningEntity, monthPlanningCollection);
+
+                transaction.Complete();
+
+                // Notificate client;
+
+                return dictionaryEntity;
+            }                               
         }        
 
         private void ValidateRelation(int companyId, int itemId, int? subItemId)
@@ -45,8 +62,7 @@ namespace DigitalData.AppService
                 var foundSubItem = itemSubitems.Where(x => x.Id == subItemId);
                 if (foundSubItem == null)
                     throw new Exception("subitem.invalid");
-            }
-
+            }            
         }
 
     }

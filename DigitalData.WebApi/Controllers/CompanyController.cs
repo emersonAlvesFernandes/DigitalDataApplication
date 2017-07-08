@@ -50,7 +50,7 @@ namespace DigitalData.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         [ResponseType(typeof(CompanyEntity))]
         public async Task<IHttpActionResult> GetByIdAsync([FromUri] int id)
         {

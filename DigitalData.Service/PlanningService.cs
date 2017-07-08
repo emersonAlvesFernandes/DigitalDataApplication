@@ -10,7 +10,14 @@ namespace DigitalData.Service
 {
     public class PlanningService : IPlanningService
     {
-        public PlanningEntity Create(int companyId, int itemId, int? subItemId, PlanningEntity planning)
+
+
+        PlanningEntity IPlanningService.CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning)
+        {
+            throw new NotImplementedException();
+        }
+
+        PlanningEntity IPlanningService.CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning)
         {
             throw new NotImplementedException();
         }
@@ -39,5 +46,7 @@ namespace DigitalData.Service
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
