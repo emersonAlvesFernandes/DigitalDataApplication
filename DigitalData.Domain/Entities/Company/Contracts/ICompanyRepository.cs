@@ -21,5 +21,7 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         IEnumerable<CompanyEntity> GetCompanyByItem(int itemId);
 
         //TODO: Criar método para obter o logo separadamente
+
+        int GetCompanyItemSubItemRelationId(int companyId, int itemId, int? subItemId);
     }
 }

@@ -27,6 +27,7 @@ namespace DigitalData.WebApi.Controllers
         [ResponseType(typeof(PlanningReadCollectionDto))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]PlanningCreateCollection createDto)
         {
+            var userId = 1;
 
             var yearDto = new PlanningCreateDtoValidator().Validate(createDto.YearPlanning);
             if(!yearDto.IsValid)
@@ -36,11 +37,21 @@ namespace DigitalData.WebApi.Controllers
             
             var yearPlanningEntity = createDto.GetEntityYearPlanningCollection();
 
-            var dictionary = await Task.Run(() => _app.Create(createDto.CompanyId, createDto.ItemId, createDto.SubItemId, monthlyPlanningEntity, yearPlanningEntity));
+            var dictionary = await Task.Run(() => _app.Create(createDto.CompanyId, createDto.ItemId, createDto.SubItemId, monthlyPlanningEntity, yearPlanningEntity, userId));
 
             var readDto = new PlanningReadCollectionDto(dictionary);
 
             return this.Ok(readDto);
         }
+
+        [HttpGet]
+        [Route("{subItemId}")]
+        [ResponseType(typeof(PlanningReadCollectionDto))]
+        public async Task<IHttpActionResult> GetAllBySubItemAsync([FromBody]int subItemId)
+        {
+
+            return this.Ok();
+        }
+
     }
 }

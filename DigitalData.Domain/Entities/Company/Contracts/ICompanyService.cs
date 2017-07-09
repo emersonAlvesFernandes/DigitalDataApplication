@@ -19,5 +19,7 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         bool Delete(int id);
 
         IEnumerable<CompanyEntity> GetCompanyByItem(int itemId);
+
+        int GetCompanyItemSubItemRelationId(int compnyId, int itemId, int? subItemId);
     }
 }

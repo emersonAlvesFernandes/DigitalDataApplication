@@ -218,3 +218,4 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\Micro
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\Owin.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\Microsoft.Owin.xml
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\Microsoft.Owin.Cors.xml
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\DigitalData.WebApi.xml

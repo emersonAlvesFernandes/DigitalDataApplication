@@ -18,12 +18,7 @@ namespace DigitalData.WebApi.Controllers
     public class SubItemController : ApiController
     {
         private readonly ISubItemAppService _appService;
-
-        //public SubItemController()
-        //{
-        //    this._appService = new SubItemAppService();
-        //}
-
+        
         public SubItemController(ISubItemAppService appService)
         {
             this._appService = appService;
@@ -31,7 +26,7 @@ namespace DigitalData.WebApi.Controllers
 
         [HttpPost]
         [Route("")]
-        [ResponseType(typeof(SubItemRead))]
+        [ResponseType(typeof(SubItemSummaryRead))]
         public async Task<IHttpActionResult> CreateAsync([FromUri]int itemId, [FromBody]SubItemCreate subitemCreate)
         {
             var user = 1;
@@ -44,7 +39,7 @@ namespace DigitalData.WebApi.Controllers
 
             var createdSubItem = await Task.Run(() => _appService.Create(itemId, subItemEntity, user));
 
-            var itemRead = new SubItemRead()
+            var itemRead = new SubItemSummaryRead()
                 .ToSubItemRead(createdSubItem);
 
             return this.Ok(itemRead);
@@ -52,13 +47,26 @@ namespace DigitalData.WebApi.Controllers
 
         [HttpGet]
         [Route("{itemId}")]
-        [ResponseType(typeof(IEnumerable<SubItemRead>))]
+        [ResponseType(typeof(IEnumerable<SubItemSummaryRead>))]
         public async Task<IHttpActionResult> GetByItemIdAsync([FromUri] int itemId)
         {
             var collection = await Task.Run(()=> _appService.GetByItemId(itemId));
 
-            var itemReadCollection = new SubItemRead()
+            var itemReadCollection = new SubItemSummaryRead()
                 .ToSubItemReadCollection(collection);
+
+            return this.Ok(itemReadCollection);
+        }
+
+        [HttpGet]
+        [Route("{itemId}/scores")]
+        [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
+        public async Task<IHttpActionResult> GetByItemIdWithScoresAsync([FromUri] int companyId, [FromUri] int itemId)
+        {
+            var collection = await Task.Run(() => _appService.GetByItemIdWithScores(companyId, itemId));
+
+            var itemReadCollection = new SubItemCompleteRead()
+                .ToSubItemCompleteReadCollection(collection);
 
             return this.Ok(itemReadCollection);
         }

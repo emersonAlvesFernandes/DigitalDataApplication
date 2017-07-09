@@ -13,7 +13,6 @@ namespace DigitalData.SqlRepository.Entities.SubItem
 {
     public class SubItemRepository : RepositoryBase, ISubItemRepository
     {     
-        // OK
         public SubItemEntity Create(int itemId, SubItemEntity item, int userId)
         {
             base.Initialize();
@@ -57,7 +56,6 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             }
         }
         
-        // OK
         private void CreateRelation(int itemId, int subitemId, SqlCommand cmd)
         {
             try
@@ -74,7 +72,6 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             }
         }
 
-        // TESTAR
         public SubItemEntity GetById(int id)
         {
             try
@@ -115,7 +112,11 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             }
         }
 
-        // TESTAR
+        public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<SubItemEntity> GetByItemId(int itemId)
         {
             try
@@ -157,7 +158,6 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             }
         }
         
-        // OK
         public bool Delete(int id, int userId)
         {
             base.Initialize();
@@ -181,8 +181,7 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                 base.CloseConnection();
             }
         }
-
-        // TODO
+        
         public SubItemEntity Update(SubItemEntity subItem, int userId)
         {
             throw new NotImplementedException();
@@ -243,6 +242,8 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             {
                 base.CloseConnection();
             }
-        }        
+        }
+
+
     }
 }

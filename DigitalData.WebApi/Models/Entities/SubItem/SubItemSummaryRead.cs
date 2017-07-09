@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DigitalData.WebApi.Models.Entities.SubItem
 {
-    public class SubItemRead
+    public class SubItemSummaryRead
     {
         public int Id { get; set; }
 
@@ -15,9 +15,9 @@ namespace DigitalData.WebApi.Models.Entities.SubItem
         public string Description { get; private set; }
 
 
-        public SubItemRead ToSubItemRead(SubItemEntity entity)
+        public SubItemSummaryRead ToSubItemRead(SubItemEntity entity)
         {
-            return new SubItemRead
+            return new SubItemSummaryRead
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -25,13 +25,13 @@ namespace DigitalData.WebApi.Models.Entities.SubItem
             };            
         }
 
-        public List<SubItemRead> ToSubItemReadCollection(IEnumerable<SubItemEntity> entityCollection)
+        public List<SubItemSummaryRead> ToSubItemReadCollection(IEnumerable<SubItemEntity> entityCollection)
         {
-            var readCollection = new List<SubItemRead>();
+            var readCollection = new List<SubItemSummaryRead>();
 
             foreach(var entity in entityCollection)
             {
-                var subItemRead = new SubItemRead
+                var subItemRead = new SubItemSummaryRead
                 {
                     Id = entity.Id,
                     Name = entity.Name,

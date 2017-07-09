@@ -28,21 +28,23 @@ namespace DigitalData.AppService
             _planningService = planningService;
         }
 
-
-        public IDictionary<PlanningEntity, List<PlanningEntity>> Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning, PlanningEntity yearPlanning)
+        public IDictionary<PlanningEntity, List<PlanningEntity>> Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning, PlanningEntity yearPlanning, int userId)
         {
             this.ValidateRelation(companyId, itemId, subItemId);
-            
+
+            var relationId = GetRelationId(companyId, itemId, subItemId);
+
+
             using (var transaction = new TransactionScope())
             {
                 var monthPlanningCollection = new List<PlanningEntity>();
                 foreach (var p in montlyPlanning)
                 {
-                    var monthPlanning = _planningService.CreateMonthPlanning(companyId, itemId, subItemId, p);
+                    var monthPlanning = _planningService.CreateMonthPlanning(companyId, itemId, subItemId, p, relationId, userId);
                     monthPlanningCollection.Add(monthPlanning);
                 }
 
-                var yearPlanningEntity = _planningService.CreateYearPlanning(companyId, itemId, subItemId, yearPlanning);
+                var yearPlanningEntity = _planningService.CreateYearPlanning(companyId, itemId, subItemId, yearPlanning, relationId,  userId);
 
                 var dictionaryEntity = new Dictionary<PlanningEntity, List<PlanningEntity>>();
                 dictionaryEntity.Add(yearPlanningEntity, monthPlanningCollection);
@@ -75,5 +77,22 @@ namespace DigitalData.AppService
             }            
         }
 
+        private int GetRelationId(int companyId, int itemId, int? subItemId)
+        {
+            var id = _companyService.GetCompanyItemSubItemRelationId(companyId, itemId, subItemId);
+            if (id == null || id == 0)
+                throw new Exception("invalid.company.item.subitem.relation");
+            return id;
+        }
+
+        public PlanningEntity FillDoneValue(int PlanningId, PlanningEntity planning, int clientId)
+        {            
+            return null;
+        }
+
+        public PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId)
+        {
+            return null;
+        }
     }
 }

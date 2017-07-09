@@ -26,21 +26,21 @@ namespace DigitalData.Domain.Entities.SubItem
             LastUpdate = lastUpdate;
         }
 
-        public int Id { get;  set; }
+        public int Id { get; set; }
 
-        public string Name { get;  private set; }
+        public string Name { get; set; }
 
-        public string Description { get;  private set; }        
+        public string Description { get; set; }        
 
-        public bool IsActive { get;  private set; }
+        public bool IsActive { get; set; }
 
-        public DateTime CreationDate { get;  private set; }
+        public DateTime CreationDate { get; set; }
 
-        public DateTime? LastUpdate { get;  private set; }
+        public DateTime? LastUpdate { get; set; }
 
-        public List<PlanningEntity> MonthPlanning { get;  private set; }
+        public List<PlanningEntity> MonthPlanning { get; set; }
 
-        public PlanningEntity YearPlanning { get;  private set; }
+        public PlanningEntity YearPlanning { get; set; }
 
         //public SubItemEntity GetNew(string name, string description)
         //{

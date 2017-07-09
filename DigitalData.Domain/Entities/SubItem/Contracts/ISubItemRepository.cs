@@ -13,8 +13,8 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
         SubItemEntity GetById(int id);
 
         IEnumerable<SubItemEntity> GetByItemId(int itemId);
-        
-        //SubItemEntity Update(SubItemEntity subItem, int userId);
+
+        IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId);
 
         bool Delete(int id, int userId);
 

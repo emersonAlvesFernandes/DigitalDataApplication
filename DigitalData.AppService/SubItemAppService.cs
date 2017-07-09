@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using DigitalData.Domain.Entities.SubItem;
 using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.Domain.Entities.Company.Contracts;
+using DigitalData.Domain.Entities.Planning.Contracts;
+using DigitalData.Domain.Planning;
 
 namespace DigitalData.AppService
 {
@@ -15,13 +17,15 @@ namespace DigitalData.AppService
         private readonly ISubItemService _subItemService;
         private readonly IItemService _itemService;
         private readonly ICompanyService _companyService;
+        private readonly IPlanningService _planningService;
 
 
-        public SubItemAppService(ISubItemService subItemService, IItemService itemService, ICompanyService companyService)
+        public SubItemAppService(ISubItemService subItemService, IItemService itemService, ICompanyService companyService, IPlanningService planningService)
         {
             this._subItemService = subItemService;
             this._itemService = itemService;
             this._companyService = companyService;
+            this._planningService = planningService;
         }
 
         public SubItemEntity Create(int itemId, SubItemEntity subItem, int userId)
@@ -76,6 +80,22 @@ namespace DigitalData.AppService
             var subitem = _subItemService.GetById(id);
             if (subitem == null || subitem.IsActive == false)
                 throw new Exception("invalid.subitem.id");            
+        }
+
+        public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
+        {
+            var subItens = _subItemService.GetByItemId(itemId)
+                .Where(x=> x.IsActive == true);
+
+            
+            foreach(var si in subItens)
+            {                
+                var plannings = _planningService.GetSubItemPlanning(companyId, itemId, si.Id);
+                si.MonthPlanning = plannings.ToList();
+            }
+
+            return subItens;
+            //return _subItemService.GetByItemIdWithScores(companyId, itemId);
         }
     }
 }

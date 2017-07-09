@@ -10,43 +10,43 @@ namespace DigitalData.Service
 {
     public class PlanningService : IPlanningService
     {
+        private readonly IPlanningRepository _repository;
 
-
-        PlanningEntity IPlanningService.CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning)
+        public PlanningService(IPlanningRepository repository)
         {
-            throw new NotImplementedException();
+            _repository = repository;
         }
 
-        PlanningEntity IPlanningService.CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning)
+        public PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int relationId, int userId)
         {
-            throw new NotImplementedException();
+            return _repository.CreateMonthPlanning(companyId, itemId, subItemId, planning, relationId, userId);
         }
 
-        public bool Delete(int idPlanning)
+        public PlanningEntity CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int relationId, int userId)
         {
-            throw new NotImplementedException();
+            return _repository.CreateYearPlanning(companyId, itemId, subItemId, planning, relationId, userId);
         }
-
-        public PlanningEntity Get(int idPlanning)
+        
+        public IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId)
         {
-            throw new NotImplementedException();
+            return _repository.GetSubItemPlanning(companyId, itemId, subItemId);
         }
 
         public IEnumerable<PlanningEntity> GetItemPlanning(int companyId, int itemId)
         {
-            throw new NotImplementedException();
+            return _repository.GetItemPlanning(companyId, itemId);
         }
 
-        public IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId)
+        public PlanningEntity FillDoneValue(int planningId, PlanningEntity planning, int clientId)
         {
-            throw new NotImplementedException();
+            return _repository.FillDoneValue(planningId, planning, clientId);
         }
 
-        public PlanningEntity Update(int idPlanning, PlanningEntity planning)
+        public PlanningEntity Update(int idPlanning, PlanningEntity planning, int adminId)
         {
-            throw new NotImplementedException();
+            return _repository.Update(idPlanning, planning, adminId);
         }
 
-
+        
     }
 }

@@ -41,7 +41,7 @@ namespace DigitalData.WebApi.Models.Entities.Planning
 
     public class PlanningCreateDto
     {
-        public double DoneValue { get; set; }
+        public double? DoneValue { get; set; }
 
         public double PlannedValue { get; set; }
 
@@ -56,11 +56,14 @@ namespace DigitalData.WebApi.Models.Entities.Planning
         public double Budgeted { get; set; }
 
         public int Month { get; set; }
-        
+
+        public int Year { get; set; }        
+
         public PlanningEntity ToEntity()
         {
             var entity = new PlanningEntity(0, DoneValue, PlannedValue, 
-                GreenFrom, GreenTo, RedFrom, RedTo, Budgeted, DateTime.Now);
+                GreenFrom, GreenTo, RedFrom, RedTo, Budgeted, DateTime.Now, 
+                Month, Year);
 
             return entity;
         }        

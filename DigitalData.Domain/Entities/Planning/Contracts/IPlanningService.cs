@@ -9,18 +9,16 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
 {
     public interface IPlanningService
     {
-        PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning);
+        PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int relationId, int userId);
 
-        PlanningEntity CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning);
+        PlanningEntity CreateYearPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int relationId, int userId);
 
         IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId);
 
         IEnumerable<PlanningEntity> GetItemPlanning(int companyId, int itemId);
 
-        PlanningEntity Get(int idPlanning);
+        PlanningEntity FillDoneValue(int PlanningId, PlanningEntity planning, int clientId);
 
-        PlanningEntity Update(int idPlanning, PlanningEntity planning);
-
-        bool Delete(int idPlanning);
+        PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId);
     }
 }

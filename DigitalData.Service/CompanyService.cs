@@ -55,5 +55,10 @@ namespace DigitalData.Service
         {
             return _companyRepository.GetCompanyByItem(itemId);
         }
+
+        public int GetCompanyItemSubItemRelationId(int companyId, int itemId, int? subItemId)
+        {
+            return _companyRepository.GetCompanyItemSubItemRelationId(companyId, itemId, subItemId);
+        }
     }
 }

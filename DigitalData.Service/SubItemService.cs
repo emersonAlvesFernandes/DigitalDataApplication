@@ -27,6 +27,11 @@ namespace DigitalData.Service
             return _repository.GetByItemId(itemId);
         }
 
+        public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
+        {
+            return _repository.GetByItemIdWithScores(companyId, itemId);
+        }
+
         public bool Delete(int id, int userId)
         {
             return _repository.Delete(id, userId);
@@ -46,5 +51,7 @@ namespace DigitalData.Service
         {
             return _repository.UnRelate(companyId, itemid, id, userId);
         }
+
+
     }
 }

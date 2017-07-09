@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\DigitalData.WebApi.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,6 +160,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminDataController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DefaultDataController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -178,8 +180,9 @@
     <Compile Include="Models\Entities\Item\ItemRead.cs" />
     <Compile Include="Models\Entities\Planning\PlanningCreateCollection.cs" />
     <Compile Include="Models\Entities\Planning\PlanningReadCollectionDto.cs" />
+    <Compile Include="Models\Entities\SubItem\SubItemCompleteRead.cs" />
     <Compile Include="Models\Entities\SubItem\SubItemCreate.cs" />
-    <Compile Include="Models\Entities\SubItem\SubItemRead.cs" />
+    <Compile Include="Models\Entities\SubItem\SubItemSummaryRead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

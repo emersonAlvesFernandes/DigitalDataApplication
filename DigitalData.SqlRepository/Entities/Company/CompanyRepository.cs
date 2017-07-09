@@ -231,5 +231,37 @@ namespace DigitalData.SqlRepository.Entities.Company
             }
         }
 
+        public int GetCompanyItemSubItemRelationId(int companyId, int itemId, int? subItemId)
+        {
+            try
+            {
+                base.connection = new SqlConnection(connectionstring);
+                this.OpenConnection();
+                var id = 0;
+
+                using (var cmd = new SqlCommand("spr_ler_empre_item_subitem_id", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
+                    cmd.Parameters.AddWithValue("@id_item", itemId);
+                    cmd.Parameters.AddWithValue("@id_subitem", subItemId);
+
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        id = dataReader["id"].ToInt32();                        
+                    }                    
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
     }
 }
