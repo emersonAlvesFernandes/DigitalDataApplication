@@ -10,7 +10,7 @@ namespace DigitalData.Domain.Entities.Address.Contracts
     {
         AddressEntity CreateCompanyAddress(int companyId, AddressEntity address);
 
-        AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address);
+        AddressEntity UpdateCompanyAddress(AddressEntity address);
 
         AddressEntity GetCompanyAddress(int companyId);
 

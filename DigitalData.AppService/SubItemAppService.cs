@@ -82,6 +82,13 @@ namespace DigitalData.AppService
                 throw new Exception("invalid.subitem.id");            
         }
 
+
+        /// <summary>
+        /// Returns SubItens With Plannings
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
         public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
         {
             var subItens = _subItemService.GetByItemId(itemId)

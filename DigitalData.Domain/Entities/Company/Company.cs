@@ -8,20 +8,37 @@ namespace DigitalData.Domain.Entities.Company
 {
     public class CompanyEntity
     {
+        
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Cnpj { get; set; }
+
+        public byte[] Logo { get; set; }
+
+        public string WebSite { get; set; }
+
+        public string Email { get; set; }
+
+        public AddressEntity Address { get; set; }
+
+        public ClientUser Client { get;  set; }
+
+        public bool IsActive { get; set; }
+
+        public DateTime CreationDate { get; set; }
+
+        public DateTime LastUpdate { get;  set; }
+
+        
         public CompanyEntity()
         {
 
         }
 
-        public CompanyEntity( 
-            int id, 
-            string name, 
-            string cnpj,
-            string website, 
-            string email, 
-            bool isActive,
-            DateTime creationDate,
-            DateTime lastUpdate)
+        public CompanyEntity(int id, string name, string cnpj, string website, string email, bool isActive, DateTime creationDate, DateTime lastUpdate)
         {
             Id = id;
             Name = name;
@@ -30,17 +47,10 @@ namespace DigitalData.Domain.Entities.Company
             Email = email;
             IsActive = isActive;
             CreationDate = creationDate;
-            LastUpdate = lastUpdate;            
+            LastUpdate = lastUpdate;
         }
-    
-        public CompanyEntity(
-            int id,
-            string name,
-            string cnpj,
-            string website,
-            string email,
-            bool isActive,
-            AddressEntity address)
+
+        public CompanyEntity(int id, string name, string cnpj, string website, string email, bool isActive, AddressEntity address)
         {
             Id = id;
             Name = name;
@@ -53,9 +63,7 @@ namespace DigitalData.Domain.Entities.Company
             Address = address;
         }
 
-        public CompanyEntity(
-            int id,
-            CompanyEntity ce)
+        public CompanyEntity(int id, CompanyEntity ce)
         {
             Id = id;
             Name = ce.Name;
@@ -66,28 +74,6 @@ namespace DigitalData.Domain.Entities.Company
             CreationDate = ce.CreationDate;
             LastUpdate = ce.LastUpdate;
         }
-
-        public int Id { get; private set; }
-
-        public string Name { get; private set; }
-
-        public string Cnpj { get; private set; }
-
-        public byte[] Logo { get; private set; }
-
-        public string WebSite { get; private set; }
-
-        public string Email { get; private set; }
-
-        public AddressEntity Address { get; set; }
-
-        public ClientUser Client { get;  set; }        
-
-        public DateTime CreationDate { get; set; }
-
-        public DateTime LastUpdate { get;  set; }
-
-        public bool IsActive { get; private set; }
 
         public void SetCreationDate()
         {

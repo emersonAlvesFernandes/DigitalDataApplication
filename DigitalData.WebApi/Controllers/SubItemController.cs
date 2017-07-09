@@ -58,8 +58,17 @@ namespace DigitalData.WebApi.Controllers
             return this.Ok(itemReadCollection);
         }
 
+        /// <summary>
+        ///     Returns SubItens With Plannings
+        /// </summary>
+        /// <remarks>
+        ///     Use this on click of item line
+        /// </remarks>
+        /// <param name="companyId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("{itemId}/scores")]
+        [Route("{companyId}/{itemId}/plannings")]
         [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
         public async Task<IHttpActionResult> GetByItemIdWithScoresAsync([FromUri] int companyId, [FromUri] int itemId)
         {

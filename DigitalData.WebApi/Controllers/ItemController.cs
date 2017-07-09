@@ -154,5 +154,8 @@ namespace DigitalData.WebApi.Controllers
             return this.Ok(isRelated);
         }
 
+        //TODO: Criar uma action que traga todos os itens.
+        // cada um com um sumarizado de seus subitens;
+
     }
 }

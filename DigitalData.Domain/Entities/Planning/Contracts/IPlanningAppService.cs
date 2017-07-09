@@ -12,7 +12,7 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
         IDictionary<PlanningEntity, List<PlanningEntity>> Create(int companyId, int itemId, int? subItemId, List<PlanningEntity> montlyPlanning,
             PlanningEntity yearPlanning, int userId);
 
-        PlanningEntity FillDoneValue(int PlanningId, PlanningEntity planning, int clientId);
+        PlanningEntity FillDoneValue(PlanningEntity planning, int clientId);
 
         PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId);
     }

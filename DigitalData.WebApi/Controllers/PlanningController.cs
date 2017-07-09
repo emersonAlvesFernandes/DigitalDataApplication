@@ -44,13 +44,22 @@ namespace DigitalData.WebApi.Controllers
             return this.Ok(readDto);
         }
 
-        [HttpGet]
-        [Route("{subItemId}")]
-        [ResponseType(typeof(PlanningReadCollectionDto))]
-        public async Task<IHttpActionResult> GetAllBySubItemAsync([FromBody]int subItemId)
+        [HttpPut]
+        [Route("")]
+        [ResponseType(typeof(PlanningRead))]
+        public async Task<IHttpActionResult> GetAllBySubItemAsync([FromBody]PlanningRead updateDto)
         {
+            var clientId = 1;
 
-            return this.Ok();
+            var dto = new PlanningReadValidator().Validate(updateDto);
+            if(!dto.IsValid)
+                return this.BadRequest(string.Join(" , ", dto.Errors));
+
+            var entity = updateDto.ToPlanningEntity();
+
+            var updated = Task.Run(()=> _app.FillDoneValue(entity, clientId));
+
+            return this.Ok(updated);
         }
 
     }

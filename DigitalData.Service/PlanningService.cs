@@ -37,9 +37,9 @@ namespace DigitalData.Service
             return _repository.GetItemPlanning(companyId, itemId);
         }
 
-        public PlanningEntity FillDoneValue(int planningId, PlanningEntity planning, int clientId)
+        public PlanningEntity FillDoneValue(PlanningEntity planning, int clientId)
         {
-            return _repository.FillDoneValue(planningId, planning, clientId);
+            return _repository.FillDoneValue(planning, clientId);
         }
 
         public PlanningEntity Update(int idPlanning, PlanningEntity planning, int adminId)

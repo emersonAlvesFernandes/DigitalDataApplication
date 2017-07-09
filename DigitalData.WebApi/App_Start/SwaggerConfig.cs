@@ -2,6 +2,7 @@ using System.Web.Http;
 using WebActivatorEx;
 using DigitalData.WebApi;
 using Swashbuckle.Application;
+using System;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -32,7 +33,7 @@ namespace DigitalData.WebApi
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "DigitalData.WebApi");
+                        c.SingleApiVersion("v1", "CEA - Vitrine Digital | last update: " + DateTime.SpecifyKind(DateTime.Now.AddHours(-3), DateTimeKind.Utc));
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -57,7 +58,7 @@ namespace DigitalData.WebApi
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -98,6 +99,7 @@ namespace DigitalData.WebApi
                         // more Xml comment files.
                         //
                         //c.IncludeXmlComments(GetXmlCommentsPath());
+                        //c.IncludeXmlComments(string.Format(@"{0}bin\DigitalData.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory));
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.

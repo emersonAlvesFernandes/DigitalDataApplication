@@ -179,6 +179,7 @@
     <Compile Include="Models\Entities\Item\ItemCreate.cs" />
     <Compile Include="Models\Entities\Item\ItemRead.cs" />
     <Compile Include="Models\Entities\Planning\PlanningCreateCollection.cs" />
+    <Compile Include="Models\Entities\Planning\PlanningRead.cs" />
     <Compile Include="Models\Entities\Planning\PlanningReadCollectionDto.cs" />
     <Compile Include="Models\Entities\SubItem\SubItemCompleteRead.cs" />
     <Compile Include="Models\Entities\SubItem\SubItemCreate.cs" />

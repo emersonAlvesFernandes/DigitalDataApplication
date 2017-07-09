@@ -85,9 +85,13 @@ namespace DigitalData.AppService
             return id;
         }
 
-        public PlanningEntity FillDoneValue(int PlanningId, PlanningEntity planning, int clientId)
-        {            
-            return null;
+        public PlanningEntity FillDoneValue(PlanningEntity planning, int clientId)
+        {
+            //var planningExists = _planningService.GetById(planning.Id);
+            //if(!planningExists)
+            //  throw new Exception("invalid.planning.id");
+
+            return _planningService.FillDoneValue(planning, clientId);
         }
 
         public PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId)

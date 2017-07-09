@@ -13,5 +13,16 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:DigitalData.WebApi.Controllers.SubItemController.GetByItemIdWithScoresAsync(System.Int32,System.Int32)">
+            <summary>
+                Returns SubItens With Plannings
+            </summary>
+            <remarks>
+                Use this on click of item line
+            </remarks>
+            <param name="companyId"></param>
+            <param name="itemId"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

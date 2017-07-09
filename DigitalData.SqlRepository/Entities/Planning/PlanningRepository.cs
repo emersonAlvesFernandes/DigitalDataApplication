@@ -273,7 +273,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
             }
         }
 
-        public PlanningEntity FillDoneValue(int PlanningId, PlanningEntity planning, int clientId)
+        public PlanningEntity FillDoneValue(PlanningEntity planning, int clientId)
         {
             base.Initialize();
             base.OpenConnection();
@@ -284,7 +284,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
                     cmd.CommandText = "spr_upd_preenchimento_clien_planejamento_mensal";
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id", PlanningId);                    
+                    cmd.Parameters.AddWithValue("@id", planning.Id);                    
                     cmd.Parameters.AddWithValue("@val_reali", planning.DoneValue);                    
                     cmd.Parameters.AddWithValue("@cod_usu_clien", clientId);
                     cmd.Parameters.AddWithValue("@des_cor_status", planning.StatusColor);

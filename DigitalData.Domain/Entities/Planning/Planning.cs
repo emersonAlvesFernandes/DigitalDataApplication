@@ -70,14 +70,24 @@ namespace DigitalData.Domain.Planning
 
         public void SetStatusColor()
         {
-            if(DoneValue ==null)
+            if (DoneValue == null)
+            {
+                DoneValue = 0;
                 StatusColor = "BRANCA";
+                return;
+            }
 
             if (DoneValue >= GreenFrom && DoneValue <= GreenTo)
+            {
                 StatusColor = "VERDE";
-                
-            if(DoneValue >= RedFrom && DoneValue <= RedTo)
+                return;
+            }
+
+            if (DoneValue >= RedFrom && DoneValue <= RedTo)
+            {
                 StatusColor = "VERMELHO";
+                return;
+            }
         }
     }
 }

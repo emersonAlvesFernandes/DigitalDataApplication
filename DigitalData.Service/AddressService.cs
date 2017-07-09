@@ -28,9 +28,9 @@ namespace DigitalData.Service
             return _repository.CreateCompanyAddress(companyId, address);
         }
 
-        public AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address)
+        public AddressEntity UpdateCompanyAddress(AddressEntity address)
         {
-            return _repository.UpdateCompanyAddress(addressId, address);
+            return _repository.UpdateCompanyAddress(address);
         }
 
         public AddressEntity GetCompanyAddress(int companyId)

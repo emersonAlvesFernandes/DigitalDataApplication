@@ -77,14 +77,38 @@ namespace DigitalData.AppService
             return ret;
         }
 
-        public AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address)
+        public AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address)
         {
-            var existingAddress = _addressService.GetById(addressId);
+            this.CheckCompanyAddressForUpdate(companyId, address.Id);
+                        
+            return _addressService.UpdateCompanyAddress(address);
+            
+        }
 
-            if (existingAddress != null)
-                return _addressService.UpdateCompanyAddress(addressId, address);
-            else
-                throw new Exception("invalid update: address does not exists");
+        public CompanyEntity UpdateNested(CompanyEntity entity)
+        {
+            this.CheckCompanyAddressForUpdate(entity.Id, entity.Address.Id);
+
+            var companyUpdated = _companyService.Update(entity);
+            var addressUpdated = _addressService.UpdateCompanyAddress(entity.Address);
+            companyUpdated.Address = addressUpdated;
+
+            return companyUpdated;
+        }
+
+        private void CheckCompanyAddressForUpdate(int companyId, int addressId)
+        {
+            var company = _companyService.GetById(companyId);
+            if (company == null)
+                throw new Exception("invalid.company.id");
+
+            var address = _addressService.GetById(addressId);
+            if (address == null)
+                throw new Exception("invalid.company.address.id");
+
+            var nested = _addressService.GetCompanyAddress(companyId);
+            if(nested.Id != addressId)
+                throw new Exception("address.not.related.to.company");
         }
     }
 }

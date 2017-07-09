@@ -88,7 +88,7 @@ namespace DigitalData.SqlRepository.Entities.Address
             }
         }
 
-        public AddressEntity UpdateCompanyAddress(int addressId, AddressEntity address)
+        public AddressEntity UpdateCompanyAddress(AddressEntity address)
         {
             base.Initialize();
             base.OpenConnection();
@@ -97,7 +97,7 @@ namespace DigitalData.SqlRepository.Entities.Address
                 using (var cmd = new SqlCommand("spr_upd_empre_ender", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", addressId);
+                    cmd.Parameters.AddWithValue("@id", address.Id);
                     cmd.Parameters.AddWithValue("@des_logra", address.Address);
                     cmd.Parameters.AddWithValue("@num_logra", address.Number);
                     cmd.Parameters.AddWithValue("@num_cep", address.Zipcode);
@@ -105,11 +105,10 @@ namespace DigitalData.SqlRepository.Entities.Address
                     cmd.Parameters.AddWithValue("@nom_cidad", address.City);
                     cmd.Parameters.AddWithValue("@nom_estad", address.State);
                     cmd.Parameters.AddWithValue("@nom_bairr", address.Neighborhood);
-
-                    //var Id = (int)cmd.ExecuteScalar();
+                    
                     cmd.ExecuteNonQuery();
-                    var newAddress = new AddressEntity(addressId, address);
-                    return newAddress;
+                    
+                    return address;
                 }                                
             }
             finally

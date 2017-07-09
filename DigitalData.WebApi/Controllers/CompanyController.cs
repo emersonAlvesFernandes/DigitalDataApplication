@@ -42,8 +42,8 @@ namespace DigitalData.WebApi.Controllers
             var readCollection = new List<CompanyRead>();
             foreach (var c in collection)
             {
-                var readCompany = TypeAdapter.Adapt<CompanyEntity, CompanyRead>(c);
-                readCollection.Add(readCompany);
+                var companyRead = new CompanyRead(c);
+                readCollection.Add(companyRead);
             }
 
             return this.Ok(readCollection);
@@ -54,31 +54,34 @@ namespace DigitalData.WebApi.Controllers
         [ResponseType(typeof(CompanyEntity))]
         public async Task<IHttpActionResult> GetByIdAsync([FromUri] int id)
         {
-            var company = await Task.Run(() => _companyAppService.GetById(id));
+            var companyEntity = await Task.Run(() => _companyAppService.GetById(id));
 
-            var companyRead = TypeAdapter.Adapt<CompanyEntity, CompanyRead>(company);
+            if (companyEntity == null)
+                return this.Ok();
+
+            var companyRead = new CompanyRead(companyEntity);
 
             return this.Ok(companyRead);
         }
 
         [HttpPost]
         [Route("")]
-        [ResponseType(typeof(CompanyEntity))]
+        [ResponseType(typeof(CompanyRead))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]CompanyCreate company)
         {
             var validationResults = new CompanyCreateValidator().Validate(company);
 
             if (!validationResults.IsValid)
                 return this.BadRequest(string.Join(" , ", validationResults.Errors));
-
-            //var companyEntity = TypeAdapter.Adapt<CompanyCreate, CompanyEntity>(company);            
-
+            
             var addressCreate = company.Address.ToEntity();
             var companyEntity = company.ToEntity(addressCreate);
                         
-            var createdCompany = await Task.Run(() => _companyAppService.Create(companyEntity));            
+            var createdCompany = await Task.Run(() => _companyAppService.Create(companyEntity));
 
-            return this.Ok(createdCompany);
+            var companyRead = new CompanyRead(createdCompany);
+
+            return this.Ok(companyRead);
         }
 
         [HttpPut]
@@ -105,19 +108,36 @@ namespace DigitalData.WebApi.Controllers
         [HttpPut]
         [Route("address/{addressId}")]
         [ResponseType(typeof(AddressSummary))]
-        public async Task<IHttpActionResult> UpdateAddressAsync([FromUri] int addressId, [FromBody]AddressCreate address)
+        public async Task<IHttpActionResult> UpdateAddressAsync([FromUri] int companyId, [FromBody]AddressSummary address)
         {
 
-            var validationResults = new AddressCreateValidator().Validate(address);
+            var validationResults = new AddressSummaryValidator().Validate(address);
             if (!validationResults.IsValid)
                 return this.BadRequest(string.Join(" , ", validationResults.Errors));
-            
-            var addresEntity = TypeAdapter.Adapt<AddressCreate, AddressEntity>(address);
-            addresEntity.Id = addressId;
-                        
-            var updatedCompany = await Task.Run(() => _companyAppService.UpdateCompanyAddress(addressId, addresEntity));
+
+            var addressEntity = address.ToEntity();
+
+            var updatedCompany = await Task.Run(() => _companyAppService.UpdateCompanyAddress(companyId, addressEntity));
 
             return this.Ok(updatedCompany);
+        }
+
+        [HttpPut]
+        [Route("")]
+        [ResponseType(typeof(CompanyRead))]
+        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead)
+        {
+
+            var validationResults = new CompanyReadValidator().Validate(companyRead);
+
+            if (!validationResults.IsValid)
+                return this.BadRequest(string.Join(" , ", validationResults.Errors));
+
+            var nestedEntity = companyRead.ToEntity();
+
+            var updatedCompany = await Task.Run(() => _companyAppService.UpdateNested(nestedEntity));
+            
+            return this.Ok(companyRead);
         }
 
     }

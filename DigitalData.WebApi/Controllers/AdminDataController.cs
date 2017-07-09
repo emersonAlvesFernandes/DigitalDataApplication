@@ -33,8 +33,8 @@ namespace DigitalData.WebApi.Controllers
         public async Task<IHttpActionResult> DeleteAsync()
         {
             var isDeleted = await Task.Run(() => _appService.DeleteAllData());
-            var a = string.Format(@"{0}\bin\DigitalData.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory);
-            return this.Ok(a);
+            //var a = string.Format(@"{0}\bin\DigitalData.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory);
+            return this.Ok("ALL DATA IS GONE! HOPE YOU INTENDED TO DO IT");
         }
     }
 }
