@@ -44,6 +44,8 @@ namespace DigitalData.SqlRepository.Entities.Address
 
         public AddressEntity GetCompanyAddress(int companyId)
         {
+            base.Initialize();
+            base.OpenConnection();
             try
             {
                 base.connection = new SqlConnection(connectionstring);

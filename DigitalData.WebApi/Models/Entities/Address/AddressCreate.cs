@@ -35,28 +35,29 @@ namespace DigitalData.WebApi.Models.Entities.Address
         public AddressCreateValidator()
         {
             RuleFor(x => x.Address)
-                .NotEmpty().WithMessage("Address is required")
-                .Length(0, 100).WithMessage("Company Name cannot be more than 100 characters.");
+                .NotEmpty().WithMessage("Campo Logradouro obrigatório")
+                .Length(0, 100).WithMessage("Logradouro deve ter no máximo 100 characters.");
 
             RuleFor(x => x.Number)
-                .NotEmpty().WithMessage("Number is required")
-                .Length(0, 6).WithMessage("Number must have 6 maximum caracteres.");
+                .NotEmpty().WithMessage("Campo Número obrigatório")
+                .Length(0, 6).WithMessage("Número deve ter no máximo 6 characters.");
+
 
             RuleFor(x => x.Zipcode)
-                .NotEmpty().WithMessage("Zipcode is required")
-                .Length(0, 8).WithMessage("Zipcode must have 8 maximum caracteres.");
+                .NotEmpty().WithMessage("Campo CEP obrigatório")
+                .Length(0, 8).WithMessage("CEP deve ter no máximo 8 caracteres.");
 
             RuleFor(x => x.Neighborhood)
-                .NotEmpty().WithMessage("Neighborhood is required")
-                .Length(0, 25).WithMessage("Neighborhood must have 25 maximum caracteres.");
+                .NotEmpty().WithMessage("Campo Bairro obrigatório.")
+                .Length(0, 25).WithMessage("Bairro deve ter no máximo 8 caracteres.");
 
             RuleFor(x => x.City)
-                .NotEmpty().WithMessage("City is required")
-                .Length(0, 25).WithMessage("City must have 25 maximum caracteres.");
+                .NotEmpty().WithMessage("Campo Cidade obrigatório.")
+                .Length(0, 25).WithMessage("Campo Bairro deve ter no máximo 8 caracteres.");
 
             RuleFor(x => x.State)
-                .NotEmpty().WithMessage("State is required")
-                .Length(0, 2).WithMessage("State must have 2 maximum caracteres.");
+                .NotEmpty().WithMessage("Campo Estado obrigatório.")
+                .Length(0, 2).WithMessage("Campo Estado deve ter no máximo 2 caracteres.");
 
 
             //RuleFor(x => x.StartDate).LessThan(DateTime.Today).WithMessage("You cannot enter a birth date in the future.");

@@ -263,5 +263,7 @@ namespace DigitalData.SqlRepository.Entities.Company
                 base.CloseConnection();
             }
         }
+
+
     }
 }
