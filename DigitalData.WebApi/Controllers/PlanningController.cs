@@ -1,5 +1,6 @@
 ﻿using DigitalData.Domain.Entities.Planning.Contracts;
 using DigitalData.WebApi.Models.Entities.Planning;
+using DigitalData.WebApi.Models.Entities.SubItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,5 @@ namespace DigitalData.WebApi.Controllers
 
             return this.Ok(updated);
         }
-
     }
 }

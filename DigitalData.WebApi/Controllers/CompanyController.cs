@@ -83,9 +83,9 @@ namespace DigitalData.WebApi.Controllers
 
             return this.Ok(companyRead);
         }
-
+        
         [HttpPut]
-        [Route("id")]
+        [Route("old")]
         [ResponseType(typeof(CompanySummary))]
         public async Task<IHttpActionResult> UpdateAsync([FromBody]CompanySummary company)
         {
@@ -123,9 +123,9 @@ namespace DigitalData.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("")]
+        [Route("{id}")]
         [ResponseType(typeof(CompanyRead))]
-        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead)
+        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead, [FromUri]int id)
         {
 
             var validationResults = new CompanyReadValidator().Validate(companyRead);
@@ -140,8 +140,31 @@ namespace DigitalData.WebApi.Controllers
             return this.Ok(companyRead);
         }
 
+        [HttpGet]
+        [Route("composed/{id}")]
+        [ResponseType(typeof(CompanyEntity))]
+        public async Task<IHttpActionResult> GetComposedByIdAsync([FromUri] int id)
+        {
+            var companyEntity = await Task.Run(() => _companyAppService.GetComposed(id));
+
+            if (companyEntity == null)
+                return this.Ok();
+
+            //var companyRead = new CompanyRead(companyEntity);
+
+            return this.Ok(companyEntity);
+        }
 
 
+        [HttpGet]
+        [Route("relations/{id}")]
+        [ResponseType(typeof(CompanyEntity))]
+        public async Task<IHttpActionResult> GetRelationsByCompanyAsync([FromUri] int id)
+        {
+            var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));                        
+
+            return this.Ok(companyEntity);
+        }
 
     }
 }

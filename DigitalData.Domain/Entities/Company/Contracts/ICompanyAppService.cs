@@ -22,5 +22,9 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         AddressEntity UpdateCompanyAddress(int companyId, AddressEntity address);
 
         CompanyEntity UpdateNested(CompanyEntity entity);
+
+        CompanyEntity GetComposed(int companyId);
+
+        CompanyEntity GetAllEntitiesRelations(int companyId);
     }
 }

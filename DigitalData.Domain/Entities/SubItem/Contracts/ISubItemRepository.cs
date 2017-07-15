@@ -10,11 +10,13 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
     {
         SubItemEntity Create(int itemId, SubItemEntity subItem, int userId);
 
+        SubItemEntity Update(SubItemEntity subItem, int userId);
+
         SubItemEntity GetById(int id);
 
         IEnumerable<SubItemEntity> GetByItemId(int itemId);
 
-        IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId);
+        SubItemEntity GetSubItemRelatedToCompanyAndItem(int companyId, int itemId, int subitemId);
 
         bool Delete(int id, int userId);
 

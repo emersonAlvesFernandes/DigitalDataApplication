@@ -22,14 +22,19 @@ namespace DigitalData.Service
             return _repository.Create(itemId, subItem, username);
         }
 
+        public SubItemEntity Update(SubItemEntity subItem, int userId)
+        {
+            return _repository.Update(subItem, userId);
+        }
+
         public IEnumerable<SubItemEntity> GetByItemId(int itemId)
         {
             return _repository.GetByItemId(itemId);
         }
 
-        public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
+        public SubItemEntity GetSubItemRelatedToCompanyAndItem(int companyId, int itemId, int subitemId)
         {
-            return _repository.GetByItemIdWithScores(companyId, itemId);
+            return _repository.GetSubItemRelatedToCompanyAndItem(companyId, itemId, subitemId);
         }
 
         public bool Delete(int id, int userId)

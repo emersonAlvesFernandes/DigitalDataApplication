@@ -13,7 +13,7 @@ namespace DigitalData.SqlRepository.Entities.SubItem
 {
     public class SubItemRepository : RepositoryBase, ISubItemRepository
     {     
-        public SubItemEntity Create(int itemId, SubItemEntity item, int userId)
+        public SubItemEntity Create(int itemId, SubItemEntity subItem, int userId)
         {
             base.Initialize();
             base.OpenConnection();
@@ -26,13 +26,13 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                         cmd.Transaction = tr;
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id_item", itemId);
-                        cmd.Parameters.AddWithValue("@nom_subitem", item.Name);                        
-                        cmd.Parameters.AddWithValue("@des_descr", item.Description);
+                        cmd.Parameters.AddWithValue("@nom_subitem", subItem.Name);                        
+                        cmd.Parameters.AddWithValue("@des_descr", subItem.Description);
 
-                        cmd.Parameters.AddWithValue("@dat_criac", item.CreationDate);
-                        cmd.Parameters.AddWithValue("@dat_atual", item.LastUpdate);
+                        cmd.Parameters.AddWithValue("@dat_criac", subItem.CreationDate);
+                        cmd.Parameters.AddWithValue("@dat_atual", subItem.LastUpdate);
 
-                        cmd.Parameters.AddWithValue("@ind_ativa", item.IsActive);
+                        cmd.Parameters.AddWithValue("@ind_ativa", subItem.IsActive);
                         cmd.Parameters.AddWithValue("@cod_usu", userId);
 
                         var subItemId = (int)cmd.ExecuteScalar();
@@ -40,9 +40,9 @@ namespace DigitalData.SqlRepository.Entities.SubItem
 
                         tr.Commit();
 
-                        item.Id = subItemId;
+                        subItem.Id = subItemId;
 
-                        return item;
+                        return subItem;
                     }
                 }
             }
@@ -55,7 +55,41 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                 base.CloseConnection();
             }
         }
-        
+
+        public SubItemEntity Update(SubItemEntity subItem, int userId)
+        {
+            base.Initialize();
+            base.OpenConnection();
+            try
+            {
+                using (var cmd = new SqlCommand("spr_upd_subitem", connection))
+                {                                        
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_subitem", subItem.Id);
+                    cmd.Parameters.AddWithValue("@nom_subitem", subItem.Name);
+                    cmd.Parameters.AddWithValue("@des_descr", subItem.Description);
+
+                    //cmd.Parameters.AddWithValue("@dat_criac", subItem.CreationDate);
+                    cmd.Parameters.AddWithValue("@dat_atual", subItem.LastUpdate);
+
+                    //cmd.Parameters.AddWithValue("@ind_ativa", subItem.IsActive);
+                    cmd.Parameters.AddWithValue("@cod_usu", userId);
+
+                    cmd.ExecuteNonQuery();
+                        
+                    return subItem;                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
+
         private void CreateRelation(int itemId, int subitemId, SqlCommand cmd)
         {
             try
@@ -75,9 +109,7 @@ namespace DigitalData.SqlRepository.Entities.SubItem
         public SubItemEntity GetById(int id)
         {
             try
-            {
-                var collection = new List<SubItemEntity>();
-
+            {                
                 base.Initialize();
                 this.OpenConnection();
 
@@ -112,9 +144,43 @@ namespace DigitalData.SqlRepository.Entities.SubItem
             }
         }
 
-        public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
+        public SubItemEntity GetSubItemRelatedToCompanyAndItem(int companyId, int itemId, int subitemId)
         {
-            throw new NotImplementedException();
+            try
+            {                
+                base.Initialize();
+                this.OpenConnection();
+
+                using (var cmd = new SqlCommand("spr_ler_item_relac_empre_subitem_item", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
+                    cmd.Parameters.AddWithValue("@id_item", itemId);
+                    cmd.Parameters.AddWithValue("@id_subitem", subitemId);
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        var idSubItem = dataReader["id"].ToInt32();
+                        var name = dataReader["nom_subitem"].ToString();
+                        var description = dataReader["des_descr"].ToString();
+                        var creationDate = dataReader["dat_criac"].ToDateTime();
+                        var lastUpdate = dataReader["dat_atual"].ToDateTime();
+                        var isActive = dataReader["ind_ativa"].ToBoolean();
+
+                        var subItem = new SubItemEntity(idSubItem, name, description, isActive, creationDate, lastUpdate);
+                        return subItem;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
         }
 
         public IEnumerable<SubItemEntity> GetByItemId(int itemId)
@@ -181,12 +247,7 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                 base.CloseConnection();
             }
         }
-        
-        public SubItemEntity Update(SubItemEntity subItem, int userId)
-        {
-            throw new NotImplementedException();
-        }        
-
+                
                         
         public bool Relate(int companyId, int itemId, int id, int userId)
         {

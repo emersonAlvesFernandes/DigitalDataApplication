@@ -32,7 +32,10 @@ namespace DigitalData.Domain.Entities.Company
 
         public DateTime LastUpdate { get;  set; }
 
-        
+
+        public List<ItemEntity> Items { get; set; }
+
+
         public CompanyEntity()
         {
 
@@ -48,6 +51,7 @@ namespace DigitalData.Domain.Entities.Company
             IsActive = isActive;
             CreationDate = creationDate;
             LastUpdate = lastUpdate;
+            Items = new List<ItemEntity>();
         }
 
         public CompanyEntity(int id, string name, string cnpj, string website, string email, bool isActive, AddressEntity address)

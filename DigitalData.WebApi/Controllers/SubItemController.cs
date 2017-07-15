@@ -25,7 +25,7 @@ namespace DigitalData.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("")]
+        [Route("{itemId}")]
         [ResponseType(typeof(SubItemSummaryRead))]
         public async Task<IHttpActionResult> CreateAsync([FromUri]int itemId, [FromBody]SubItemCreate subitemCreate)
         {
@@ -38,6 +38,27 @@ namespace DigitalData.WebApi.Controllers
             var subItemEntity = subitemCreate.ToEntity();
 
             var createdSubItem = await Task.Run(() => _appService.Create(itemId, subItemEntity, user));
+
+            var itemRead = new SubItemSummaryRead()
+                .ToSubItemRead(createdSubItem);
+
+            return this.Ok(itemRead);
+        }
+
+        [HttpPut]
+        [Route("")]
+        [ResponseType(typeof(SubItemSummaryRead))]
+        public async Task<IHttpActionResult> UpdateAsync([FromBody]SubItemSummaryRead subitemUpdate)
+        {
+            var user = 1;
+
+            var validationResults = new SubItemSummaryReadValidator().Validate(subitemUpdate);
+            if (!validationResults.IsValid)
+                return this.BadRequest(string.Join(" , ", validationResults.Errors));
+
+            var subItemEntity = subitemUpdate.ToEntity();
+
+            var createdSubItem = await Task.Run(() => _appService.Update(subItemEntity, user));
 
             var itemRead = new SubItemSummaryRead()
                 .ToSubItemRead(createdSubItem);

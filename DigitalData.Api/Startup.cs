@@ -16,8 +16,9 @@ namespace DigitalData.Api
             var config = new HttpConfiguration();
 
             ConfigureWebApi(config);
+            
             ConfigureOAuth(app);
-            SwaggerConfig.Register();
+            
 
             // Permite requisições de qualquer URL externa
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
@@ -30,6 +31,8 @@ namespace DigitalData.Api
         {
             config.MapHttpAttributeRoutes();
 
+            //Swashbuckle.Bootstrapper.Init();
+            
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

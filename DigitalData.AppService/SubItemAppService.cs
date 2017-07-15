@@ -38,6 +38,11 @@ namespace DigitalData.AppService
             return _subItemService.Create(itemId, subItem, userId);
         }
 
+        public SubItemEntity Update(SubItemEntity subItem, int userId)
+        {
+            return _subItemService.Update(subItem, userId);
+        }
+
         public IEnumerable<SubItemEntity> GetByItemId(int itemId)
         {
             var SubItems = _subItemService.GetByItemId(itemId);
@@ -82,7 +87,6 @@ namespace DigitalData.AppService
                 throw new Exception("invalid.subitem.id");            
         }
 
-
         /// <summary>
         /// Returns SubItens With Plannings
         /// </summary>
@@ -92,7 +96,7 @@ namespace DigitalData.AppService
         public IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId)
         {
             var subItens = _subItemService.GetByItemId(itemId)
-                .Where(x=> x.IsActive == true);
+                .Where(x=> x.IsActive);
 
             
             foreach(var si in subItens)

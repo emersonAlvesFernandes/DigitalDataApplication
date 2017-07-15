@@ -11,6 +11,28 @@ namespace DigitalData.Domain.Entities.Item
 {
     public class ItemEntity
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public bool Desdobramento { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public DateTime CreationDate { get; set; }
+
+        public DateTime? LastUpdate { get; set; }
+
+        public List<PlanningEntity> MonthPlanning { get; set; }
+
+        public PlanningEntity YearPlanning { get; set; }
+        
+        public List<SubItemEntity> SubItems { get; set; }
+
+        public bool IsRelated { get; set; }
+
         //empty constructor for fastmapper purpose
         public ItemEntity()
         {
@@ -40,25 +62,5 @@ namespace DigitalData.Domain.Entities.Item
             this.CreationDate = creationDate;
             this.LastUpdate = lastUpdate;
         }
-
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public bool Desdobramento { get; set; }
-
-        public bool IsActive { get; set; }
-
-        public DateTime CreationDate { get; set; }
-
-        public DateTime? LastUpdate { get; set; }
-
-        public List<PlanningEntity> MonthPlanning { get; set; }
-
-        public PlanningEntity YearPlanning { get; set; }
-        
-        public List<SubItemEntity> SubItems { get; set; }
     }
 }

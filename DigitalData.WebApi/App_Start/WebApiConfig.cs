@@ -23,8 +23,8 @@ namespace DigitalData.WebApi
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
 
-            //CORS
-            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            //CORS                        
+            //var corsAttr = new EnableCorsAttribute("http://vitrine-digital.azureedge.net", "*", "*");
             var corsAttr = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(corsAttr);
 

@@ -42,6 +42,8 @@ namespace DigitalData.Domain.Entities.SubItem
 
         public PlanningEntity YearPlanning { get; set; }
 
+        public bool IsRelated { get; set; }
+
         //public SubItemEntity GetNew(string name, string description)
         //{
         //    var obj = new SubItemEntity()
