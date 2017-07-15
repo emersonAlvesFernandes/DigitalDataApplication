@@ -15,9 +15,10 @@ namespace DigitalData.WebApi
         void Application_Start(object sender, EventArgs e)
         {            
             AreaRegistration.RegisterAllAreas();
+            UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            UnityConfig.RegisterComponents();
+            
         }
     }
 }

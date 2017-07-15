@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using DigitalData.AppService;
+using DigitalData.Domain.Entities.User.Contracts;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,18 @@ namespace DigitalData.WebApi.Provider
 {
     public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
+        private readonly IUserAppService _userappService;
+
+        //public AuthorizationServerProvider()
+        //{
+                        
+        //}
+
+        public AuthorizationServerProvider(IUserAppService userappService)
+        {
+            this._userappService = userappService;
+        }
+
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             //valida token no cache
@@ -27,12 +41,20 @@ namespace DigitalData.WebApi.Provider
             {
                 var user = context.UserName;
                 var password = context.Password;
+                
+                var validUser = _userappService.IsValid(user, password);
 
-                if (user != "R2088" || password != "xpto")
+                if (validUser == null)
                 {
                     context.SetError("invalid_grant", "Usuário ou senha inválidos");
                     return;
                 }
+
+                //if (user != "R2088" || password != "xpto")
+                //{
+                //    context.SetError("invalid_grant", "Usuário ou senha inválidos");
+                //    return;
+                //}
 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 

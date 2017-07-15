@@ -24,7 +24,7 @@ namespace DigitalData.Domain.Entities.Company
 
         public AddressEntity Address { get; set; }
 
-        public ClientUser Client { get;  set; }
+        public List<User.UserEntity> Users { get;  set; }
 
         public bool IsActive { get; set; }
 

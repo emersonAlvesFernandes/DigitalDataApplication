@@ -72,11 +72,18 @@
     <Compile Include="Entities\SubItem\Contracts\ISubItemAppService.cs" />
     <Compile Include="Entities\SubItem\Contracts\ISubItemRepository.cs" />
     <Compile Include="Entities\SubItem\Contracts\ISubItemService.cs" />
+    <Compile Include="Entities\User\Contracts\IFuncionalityService.cs" />
+    <Compile Include="Entities\User\Contracts\IFunctionalityRepository.cs" />
+    <Compile Include="Entities\User\Contracts\IRoleRepository.cs" />
+    <Compile Include="Entities\User\Contracts\IRoleService.cs" />
+    <Compile Include="Entities\User\Contracts\IUserAppService.cs" />
+    <Compile Include="Entities\User\Contracts\IUserRepository.cs" />
+    <Compile Include="Entities\User\Contracts\IUserService.cs" />
+    <Compile Include="Entities\User\Functionality.cs" />
+    <Compile Include="Entities\User\Role.cs" />
     <Compile Include="Enums\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\SubItem\SubItem.cs" />
-    <Compile Include="Entities\User\AdminUser.cs" />
-    <Compile Include="Entities\User\ClientUser.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="ValueObjects\Cnpj.cs" />
     <Compile Include="ValueObjects\Cpf.cs" />
@@ -88,7 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\Feature\" />
-    <Folder Include="Entities\UserProfile\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

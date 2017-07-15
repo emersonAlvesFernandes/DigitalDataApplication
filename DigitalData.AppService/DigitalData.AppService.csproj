@@ -49,6 +49,7 @@
     <Compile Include="PlanningAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubItemAppService.cs" />
+    <Compile Include="UserAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DigitalData.Domain\DigitalData.Domain.csproj">

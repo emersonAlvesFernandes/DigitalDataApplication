@@ -5,6 +5,7 @@ using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.Domain.Entities.Planning.Contracts;
 using DigitalData.Domain.Entities.SubItem.Contracts;
+using DigitalData.Domain.Entities.User.Contracts;
 using DigitalData.Service;
 using DigitalData.SqlRepository;
 using DigitalData.SqlRepository.Contracts;
@@ -13,6 +14,7 @@ using DigitalData.SqlRepository.Entities.Company;
 using DigitalData.SqlRepository.Entities.Item;
 using DigitalData.SqlRepository.Entities.Planning;
 using DigitalData.SqlRepository.Entities.SubItem;
+using DigitalData.SqlRepository.Entities.User;
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Unity.WebApi;
@@ -63,6 +65,22 @@ namespace DigitalData.WebApi
             container.RegisterType<IPlanningRepository, PlanningRepository>();
 
             #endregion
+
+            #region User
+
+            container.RegisterType<IUserAppService, UserAppService>();
+            container.RegisterType<IUserService, UserService>();
+            container.RegisterType<IUserRepository, UserRepository>();
+
+            container.RegisterType<IRoleService, RoleService>();
+            container.RegisterType<IRoleRepository, RoleRepository>();
+
+            container.RegisterType<IFuncionalityService, FunctionalityService>();
+            container.RegisterType<IFunctionalityRepository, FunctionalityRepository>();
+
+
+            #endregion
+
 
             container.RegisterType<IAdminDataAppService, AdminDataAppService>();
             container.RegisterType<IAdminDataService, AdminDataService>();

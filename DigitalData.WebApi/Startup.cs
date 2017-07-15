@@ -24,6 +24,7 @@ namespace DigitalData.WebApi
 
         public void ConfigureOAuth(IAppBuilder app)
         {
+            
             var OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 // Permite requisições sem https

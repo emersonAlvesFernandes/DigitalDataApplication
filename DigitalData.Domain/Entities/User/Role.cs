@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Domain.Entities.User
 {
-    public class AdminUser : User
+    public class Role
     {
+        public int Id { get; set; }
+
+        public string Description { get; set; }
+
+        public List<Functionality> Functionalities { get; set; }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Domain.Entities.User
 {
-    public class ClientUser : User
+    public class Functionality
     {
-        public int Phone { get; set; }
+        public int Id { get; set; }
 
-        public int CelPhone { get; set; }
+        public string Description { get; set; }
     }
 }

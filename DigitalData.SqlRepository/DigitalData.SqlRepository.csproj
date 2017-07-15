@@ -50,6 +50,9 @@
     <Compile Include="Entities\Item\ItemRepository.cs" />
     <Compile Include="Entities\Planning\PlanningRepository.cs" />
     <Compile Include="Entities\SubItem\SubItemRepository.cs" />
+    <Compile Include="Entities\User\FunctionalityRepository.cs" />
+    <Compile Include="Entities\User\RoleRepository.cs" />
+    <Compile Include="Entities\User\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
   </ItemGroup>
