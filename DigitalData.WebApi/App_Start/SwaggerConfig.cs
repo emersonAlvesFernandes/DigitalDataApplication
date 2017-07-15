@@ -3,6 +3,11 @@ using WebActivatorEx;
 using DigitalData.WebApi;
 using Swashbuckle.Application;
 using System;
+using Swashbuckle.Swagger;
+using System.Collections.Generic;
+using System.Web.Http.Description;
+using System.Linq;
+using System.Web.Http.Filters;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -58,6 +63,10 @@ namespace DigitalData.WebApi
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
+                        c.ApiKey("apiKey")
+                            .Description("API Key Authentication")
+                            .Name("apiKey")
+                            .In("header");
                         // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
@@ -149,6 +158,7 @@ namespace DigitalData.WebApi
                         // Operation filters.
                         //
                         //c.OperationFilter<AddDefaultResponse>();
+                        c.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
                         //
                         // If you've defined an OAuth2 flow as described above, you could use a custom filter
                         // to inspect some attribute on each action and infer which (if any) OAuth2 scopes are required
@@ -188,6 +198,9 @@ namespace DigitalData.WebApi
                         // "Logical Name" is passed to the method as shown above.
                         //
                         //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
+                        //c.InjectJavaScript(thisAssembly, "DigitalData.0 - Api.DigitalData.WebApi.Scripts.Smashbuckle.js");
+                        c.InjectJavaScript(thisAssembly, @"DigitalData.0-Api.DigitalData.WebApi.Scripts.Smashbuckle.js");
+                        
 
                         // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
                         // strings as the possible choices. You can use this option to change these to something else,
@@ -199,7 +212,7 @@ namespace DigitalData.WebApi
                         // in a badge at the bottom of the page. Use these options to set a different validator URL or to disable the
                         // feature entirely.
                         //c.SetValidatorUrl("http://localhost/validator");
-                        //c.DisableValidator();
+                        c.DisableValidator();
 
                         // Use this option to control how the Operation listing is displayed.
                         // It can be set to "None" (default), "List" (shows operations for each resource),
@@ -243,6 +256,60 @@ namespace DigitalData.WebApi
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
+        }
+
+        //public class AuthorizationHeaderParameterOperationFilter : IOperationFilter
+        //{
+        //    public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+        //    {
+        //        if (operation.parameters == null)
+        //            operation.parameters = new List<Parameter>();
+
+        //        operation.parameters.Add(new Parameter
+        //        {
+        //            name = "Token",
+        //            @in = "header",
+        //            type = "string",
+        //            required = false
+        //        });
+        //    }
+        //}
+
+        private class AuthorizationHeaderParameterOperationFilter : IOperationFilter
+        {
+            public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+            {
+                var filterPipeline = apiDescription
+                        .ActionDescriptor
+                        .GetFilterPipeline();
+
+                var isAuthorized = filterPipeline
+                        .Select(filterInfo => filterInfo.Instance)
+                        .Any(filter => filter is IAuthorizationFilter);
+
+                var allowAnonymous = apiDescription
+                        .ActionDescriptor
+                        .GetCustomAttributes<AllowAnonymousAttribute>()
+                        .Any();
+
+                if (!isAuthorized)
+                    return;
+
+                if (allowAnonymous)
+                    return;
+
+                if (operation.parameters == null)
+                    operation.parameters = new List<Parameter>();
+
+                operation.parameters.Add(new Parameter
+                {
+                    name = "Authorization",
+                    @in = "header",
+                    description = "access token",
+                    required = true,
+                    type = "string"
+                });
+            }
         }
     }
 }

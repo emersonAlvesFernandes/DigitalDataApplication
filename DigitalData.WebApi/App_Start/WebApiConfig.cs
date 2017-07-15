@@ -31,19 +31,19 @@ namespace DigitalData.WebApi
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             //Redirect root to Swagger UI
-            config.Routes.MapHttpRoute(
-                name: "Swagger UI",
-                routeTemplate: "",
-                defaults: null,
-                constraints: null,
-                handler: new RedirectHandler(message => message.RequestUri.ToString().TrimEnd('/'), "swagger/ui/index"));
+            //config.Routes.MapHttpRoute(
+            //    name: "Swagger UI",
+            //    routeTemplate: "",
+            //    defaults: null,
+            //    constraints: null,
+            //    handler: new RedirectHandler(message => message.RequestUri.ToString().TrimEnd('/'), "swagger/ui/index"));
         }
     }
 }

@@ -34,6 +34,8 @@ namespace DigitalData.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
+        //[OAuthAuthorization]        
+        [Authorize]
         [ResponseType(typeof(List<CompanyRead>))]
         public async Task<IHttpActionResult> GetAllAsync()
         {            
