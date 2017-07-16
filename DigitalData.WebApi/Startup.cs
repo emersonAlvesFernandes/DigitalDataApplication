@@ -10,6 +10,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace DigitalData.WebApi
 {
@@ -18,14 +20,13 @@ namespace DigitalData.WebApi
         public void Configuration(IAppBuilder app)
         {
             #region global.asax
-            //AreaRegistration.RegisterAllAreas();            
+            AreaRegistration.RegisterAllAreas();
             //GlobalConfiguration.Configure(WebApiConfig.Register);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
             //UnityConfig.RegisterComponents();
             #endregion
 
             UnityConfig.RegisterComponents();
-
             var config = new HttpConfiguration();
             WebApiConfig.Register(config);
 

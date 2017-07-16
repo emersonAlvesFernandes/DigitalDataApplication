@@ -192,6 +192,10 @@
     <Compile Include="Models\Entities\Company\CompanyCreate.cs" />
     <Compile Include="Models\Entities\Company\CompanyRead.cs" />
     <Compile Include="Models\Entities\Company\CompanySummary.cs" />
+    <Compile Include="Models\Entities\IdsOnly\PlanningId.cs" />
+    <Compile Include="Models\Entities\IdsOnly\SubItemId.cs" />
+    <Compile Include="Models\Entities\IdsOnly\ItemId.cs" />
+    <Compile Include="Models\Entities\IdsOnly\CompanyId.cs" />
     <Compile Include="Models\Entities\Item\ItemCreate.cs" />
     <Compile Include="Models\Entities\Item\ItemRead.cs" />
     <Compile Include="Models\Entities\Planning\PlanningCreateCollection.cs" />

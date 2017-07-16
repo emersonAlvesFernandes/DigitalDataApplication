@@ -4,6 +4,7 @@ using DigitalData.Domain.Entities.Company;
 using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.WebApi.Models.Entities.Address;
 using DigitalData.WebApi.Models.Entities.Company;
+using DigitalData.WebApi.Models.Entities.IdsOnly;
 using FastMapper;
 using FluentValidation.Results;
 using System;
@@ -156,15 +157,26 @@ namespace DigitalData.WebApi.Controllers
             return this.Ok(companyEntity);
         }
 
+        //[HttpGet]
+        //[Route("relations/{id}")]
+        //[ResponseType(typeof(CompanyEntity))]
+        //public async Task<IHttpActionResult> GetRelationsByCompanyAsync([FromUri] int id)
+        //{
+        //    var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));                        
+
+        //    return this.Ok(companyEntity);
+        //}
 
         [HttpGet]
         [Route("relations/{id}")]
-        [ResponseType(typeof(CompanyEntity))]
+        [ResponseType(typeof(CompanyId))]
         public async Task<IHttpActionResult> GetRelationsByCompanyAsync([FromUri] int id)
         {
-            var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));                        
+            var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));
 
-            return this.Ok(companyEntity);
+            var companyVM = new CompanyId(companyEntity);
+
+            return this.Ok(companyVM);
         }
 
     }
