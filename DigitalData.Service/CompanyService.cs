@@ -14,17 +14,19 @@ namespace DigitalData.Service
 {
     public class CompanyService : ICompanyService
     {
-        private readonly ICompanyRepository _companyRepository;        
-
-        public CompanyService()
-        {
-            this._companyRepository = new CompanyRepository();            
-        }
-
+        private readonly ICompanyRepository _companyRepository;
+                
         public CompanyService(ICompanyRepository repository)
         {
             this._companyRepository = repository;
         }
+
+        public CompanyService()
+        {
+            this._companyRepository = new CompanyRepository();
+        }
+
+
 
         public CompanyEntity Create(CompanyEntity company)
         {                        

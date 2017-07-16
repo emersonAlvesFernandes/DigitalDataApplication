@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Planning;
+using DigitalData.SqlRepository.Entities.Planning;
 
 namespace DigitalData.Service
 {
@@ -16,6 +17,14 @@ namespace DigitalData.Service
         {
             _repository = repository;
         }
+
+        public PlanningService()
+        {
+            _repository = new PlanningRepository();
+        }
+
+
+
 
         public PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int relationId, int userId)
         {

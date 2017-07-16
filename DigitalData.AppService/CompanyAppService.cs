@@ -39,6 +39,17 @@ namespace DigitalData.AppService
             this._planningService = planningService;
         }
 
+        public CompanyAppService()
+        {
+            _companyService = new CompanyService();
+            _addressService = new AddressService();
+            _itemService = new ItemService();
+            _subItemService = new SubItemService();
+            _planningService = new PlanningService();
+
+    }
+
+
         public CompanyEntity Create(CompanyEntity company)
         {
             using (var transaction = new TransactionScope())

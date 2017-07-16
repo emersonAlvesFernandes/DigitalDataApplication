@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Entities.SubItem;
+using DigitalData.SqlRepository.Entities.SubItem;
 
 namespace DigitalData.Service
 {
@@ -16,6 +17,14 @@ namespace DigitalData.Service
         {
             this._repository = repository;
         }
+
+        public SubItemService()
+        {
+            this._repository = new SubItemRepository() ;
+        }
+
+
+
 
         public SubItemEntity Create(int itemId, SubItemEntity subItem, int username)
         {

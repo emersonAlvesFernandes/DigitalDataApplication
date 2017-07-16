@@ -17,15 +17,25 @@ namespace DigitalData.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            #region global.asax
+            //AreaRegistration.RegisterAllAreas();            
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //UnityConfig.RegisterComponents();
+            #endregion
+
+            UnityConfig.RegisterComponents();
+
             var config = new HttpConfiguration();
             WebApiConfig.Register(config);
+
             ConfigureOAuth(app);
 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             app.UseWebApi(config);
 
-            UnityConfig.RegisterComponents();
+            
         }
 
         public void ConfigureOAuth(IAppBuilder app)

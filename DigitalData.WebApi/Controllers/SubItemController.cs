@@ -24,6 +24,11 @@ namespace DigitalData.WebApi.Controllers
             this._appService = appService;
         }
 
+        public SubItemController()
+        {
+            this._appService = new SubItemAppService();
+        }
+
         [HttpPost]
         [Route("{itemId}")]
         [ResponseType(typeof(SubItemSummaryRead))]

@@ -27,6 +27,11 @@ namespace DigitalData.WebApi.Controllers
         {
             this._companyAppService = companyAppService;
         }
+
+        public CompanyController()
+        {
+            _companyAppService = new CompanyAppService();
+        }
         
         [HttpGet]
         [Route("")]                

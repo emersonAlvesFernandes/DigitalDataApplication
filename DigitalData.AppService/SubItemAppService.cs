@@ -9,6 +9,7 @@ using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.Domain.Entities.Planning.Contracts;
 using DigitalData.Domain.Planning;
+using DigitalData.Service;
 
 namespace DigitalData.AppService
 {
@@ -27,6 +28,15 @@ namespace DigitalData.AppService
             this._companyService = companyService;
             this._planningService = planningService;
         }
+
+        public SubItemAppService()
+        {
+            _subItemService = new SubItemService();
+            _itemService = new ItemService();
+            _companyService = new CompanyService();
+            _planningService = new PlanningService();
+        }
+
 
         public SubItemEntity Create(int itemId, SubItemEntity subItem, int userId)
         {
