@@ -20,9 +20,9 @@ namespace DigitalData.WebApi
         public void Configuration(IAppBuilder app)
         {
             #region global.asax
-            AreaRegistration.RegisterAllAreas();
+            //AreaRegistration.RegisterAllAreas();
             //GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
             //UnityConfig.RegisterComponents();
             #endregion
 

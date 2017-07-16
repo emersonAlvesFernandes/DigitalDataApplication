@@ -33,8 +33,7 @@ namespace DigitalData.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("")]
-        [Authorize]
+        [Route("")]        
         [ResponseType(typeof(ItemRead))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]ItemCreate itemCreate)
         {
