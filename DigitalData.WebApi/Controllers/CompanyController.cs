@@ -22,20 +22,14 @@ namespace DigitalData.WebApi.Controllers
     public class CompanyController : ApiController
     {
         private readonly ICompanyAppService _companyAppService;
-
+        
         public CompanyController(ICompanyAppService companyAppService)
         {
             this._companyAppService = companyAppService;
         }
-
-        public CompanyController()
-        {
-            this._companyAppService = new CompanyAppService();
-        }
-
+        
         [HttpGet]
-        [Route("")]        
-        [Authorize]
+        [Route("")]                
         [ResponseType(typeof(List<CompanyRead>))]
         public async Task<IHttpActionResult> GetAllAsync()
         {            

@@ -19,29 +19,24 @@ namespace DigitalData.AppService
 {
     public class CompanyAppService : ICompanyAppService
     {
-        private ICompanyService _companyService;
-        private IAddressService _addressService;
+        private readonly ICompanyService _companyService;
+        private readonly IAddressService _addressService;
+        private readonly IItemService _itemService;
+        private readonly ISubItemService _subItemService;
+        private readonly IPlanningService _planningService;
 
-        private IItemService _itemService;
-        private ISubItemService _subItemService;
-        private IPlanningService _planningService;
-
-        public CompanyAppService(ICompanyService companyService, 
-            IAddressService addressService, IItemService itemService,
-            ISubItemService subItemService, IPlanningService planningService)
+        public CompanyAppService(
+            ICompanyService companyService, 
+            IAddressService addressService, 
+            IItemService itemService,
+            ISubItemService subItemService, 
+            IPlanningService planningService)
         {
             this._companyService = companyService;
             this._addressService = addressService;
             this._itemService = itemService;
             this._subItemService = subItemService;
             this._planningService = planningService;
-        }
-
-        public CompanyAppService()
-        {
-            _companyService = new CompanyService();
-            _addressService = new AddressService();
-
         }
 
         public CompanyEntity Create(CompanyEntity company)

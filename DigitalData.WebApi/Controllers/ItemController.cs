@@ -18,7 +18,7 @@ using System.Web.Http.Description;
 namespace DigitalData.WebApi.Controllers
 {
     [RoutePrefix("api/items")]
-    public class ItemController : ApiController
+    public class ItemController : ApiController //ApiController
     {
         private readonly IItemAppService _appService;
 
@@ -38,14 +38,17 @@ namespace DigitalData.WebApi.Controllers
         [ResponseType(typeof(ItemRead))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]ItemCreate itemCreate)
         {
-
+            #region
             //TODO Criar um BaseController para obter o usuário do token;
 
-            var context = HttpContext.Current.Request.GetOwinContext();
-            var User = context.Authentication.User;
-            var claims = User.Claims;
-            var claim = claims.FirstOrDefault(x => x.Type == "UserId");
-            var userValue = claim.Value.ToInt32();
+            //var context = HttpContext.Current.Request.GetOwinContext();
+            //var User = context.Authentication.User;
+            //var claims = User.Claims;
+            //var claim = claims.FirstOrDefault(x => x.Type == "UserId");
+            //var userValue = claim.Value.ToInt32();
+
+            //var user = 1;
+            #endregion
 
             var user = 1;
 

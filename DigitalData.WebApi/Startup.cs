@@ -24,6 +24,8 @@ namespace DigitalData.WebApi
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             app.UseWebApi(config);
+
+            UnityConfig.RegisterComponents();
         }
 
         public void ConfigureOAuth(IAppBuilder app)

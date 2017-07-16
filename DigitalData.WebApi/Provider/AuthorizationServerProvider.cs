@@ -52,7 +52,7 @@ namespace DigitalData.WebApi.Provider
                 var userFullName = string.Format("{0} {1}", validUser.FirstName, validUser.LastName);
 
                 identity.AddClaim(new Claim(ClaimTypes.Name, userFullName));
-                identity.AddClaim(new Claim("Company", validUser.CompanyId.ToString()));
+                identity.AddClaim(new Claim("CompanyId", validUser.CompanyId.ToString()));
                 identity.AddClaim(new Claim("UserId", validUser.Id.ToString()));
 
                 var userRole = new RoleRepository().GetByUser(validUser.Id);                

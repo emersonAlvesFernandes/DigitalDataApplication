@@ -56,6 +56,5 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\System.W
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\System.Web.Http.WebHost.xml
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\pt-br\System.Net.Http.Formatting.resources.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\bin\pt-br\System.Web.Http.resources.dll
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Api\obj\Debug\DigitalData.Api.pdb

@@ -98,7 +98,6 @@ C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.WebApi\b
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br\System.Web.Http.WebHost.resources.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.pdb
-C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\roslyn\csc.exe
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\roslyn\csc.exe.config
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\roslyn\csc.rsp
@@ -225,5 +224,6 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br\System.Net.Http.Formatting.resources.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br\System.Web.Http.resources.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\bin\pt-br\System.Web.Http.WebHost.resources.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApi\obj\Debug\DigitalData.WebApi.pdb

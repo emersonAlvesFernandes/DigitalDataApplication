@@ -105,8 +105,21 @@ namespace DigitalData.AppService
                 si.MonthPlanning = plannings.ToList();
             }
 
+            return subItens;            
+        }
+
+        public IEnumerable<SubItemEntity> GetByItemIdWithoutScores(int companyId, int itemId)
+        {
+            var subItens = _subItemService.GetByItemId(itemId)
+                .Where(x => x.IsActive);
+
+            //foreach (var si in subItens)
+            //{
+            //    var plannings = _planningService.GetSubItemPlanning(companyId, itemId, si.Id);
+            //    si.MonthPlanning = plannings.ToList();
+            //}
+
             return subItens;
-            //return _subItemService.GetByItemIdWithScores(companyId, itemId);
         }
     }
 }

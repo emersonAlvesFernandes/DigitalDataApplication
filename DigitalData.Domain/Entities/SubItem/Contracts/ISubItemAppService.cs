@@ -15,7 +15,10 @@ namespace DigitalData.Domain.Entities.SubItem.Contracts
         IEnumerable<SubItemEntity> GetByItemId(int itemId);
 
         IEnumerable<SubItemEntity> GetByItemIdWithScores(int companyId, int itemId);
-        
+
+        IEnumerable<SubItemEntity> GetByItemIdWithoutScores(int companyId, int itemId);
+
+
 
         bool Delete(int id, int userId);
 
