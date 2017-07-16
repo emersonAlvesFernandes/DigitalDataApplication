@@ -28,6 +28,8 @@ namespace DigitalData.Domain.Entities.User
         
         public DateTime RegisterDate { get; set; }
 
+        public int CompanyId { get; set; }
+
 
         public UserEntity(int id, string firstName, string lastName, string email, string document, string username, string password
             , string phone1, string phone2, DateTime registerDate)

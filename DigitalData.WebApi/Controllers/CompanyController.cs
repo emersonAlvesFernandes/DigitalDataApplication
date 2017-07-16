@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -33,8 +34,7 @@ namespace DigitalData.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        //[OAuthAuthorization]        
+        [Route("")]        
         [Authorize]
         [ResponseType(typeof(List<CompanyRead>))]
         public async Task<IHttpActionResult> GetAllAsync()

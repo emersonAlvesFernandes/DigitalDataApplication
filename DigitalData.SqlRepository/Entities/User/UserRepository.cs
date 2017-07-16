@@ -100,9 +100,11 @@ namespace DigitalData.SqlRepository.Entities.User
         {            
             try
             {
-                
-                base.connection = new SqlConnection(connectionstring);
-                this.OpenConnection();
+                base.Initialize();
+                base.OpenConnection();
+
+                //base.connection = new SqlConnection(connectionstring);
+                //this.OpenConnection();
 
                 using (var cmd = new SqlCommand("spr_ler_usuario_por_username", connection))
                 {
@@ -123,9 +125,13 @@ namespace DigitalData.SqlRepository.Entities.User
                         var phone1 = dataReader["des_phone1"].ToString();
                         var phone2 = dataReader["des_phone2"].ToString();
                         var registerDate = dataReader["dat_criac"].ToDateTime();
+                        var companyId = dataReader["id_empresa"].ToInt32();
 
                         var c = new UserEntity(id, firstName, lasttName, email, document,
                             username, password, phone1, phone2, registerDate);
+
+                        c.CompanyId = companyId;
+
                         return c;
                     }
                 }

@@ -7,11 +7,13 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using Microsoft.Practices.Unity;
 
 namespace DigitalData.WebApi
 {
     public class Global : HttpApplication
-    {
+    {        
+
         void Application_Start(object sender, EventArgs e)
         {            
             AreaRegistration.RegisterAllAreas();

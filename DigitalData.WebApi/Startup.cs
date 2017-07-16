@@ -1,8 +1,12 @@
-﻿using DigitalData.WebApi.Provider;
+﻿using DigitalData.AppService;
+using DigitalData.Domain.Entities.User.Contracts;
+using DigitalData.WebApi.Provider;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.Practices.Unity;
 using Owin;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -23,8 +27,7 @@ namespace DigitalData.WebApi
         }
 
         public void ConfigureOAuth(IAppBuilder app)
-        {
-            
+        {            
             var OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 // Permite requisições sem https

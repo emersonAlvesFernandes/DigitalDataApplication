@@ -13,5 +13,11 @@ namespace DigitalData.Domain.Entities.User
         public string Description { get; set; }
 
         public List<Functionality> Functionalities { get; set; }
+
+        public Role(int id, string description)
+        {
+            Id = id;
+            Description = description;
+        }
     }
 }

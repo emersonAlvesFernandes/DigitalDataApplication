@@ -1,6 +1,7 @@
 ﻿using DigitalData.AppService;
 using DigitalData.Domain.Entities.Item;
 using DigitalData.Domain.Entities.Item.Contracts;
+using DigitalData.Utils;
 using DigitalData.WebApi.Models.Entities.Item;
 using FastMapper;
 using System;
@@ -8,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -31,9 +34,19 @@ namespace DigitalData.WebApi.Controllers
 
         [HttpPost]
         [Route("")]
+        [Authorize]
         [ResponseType(typeof(ItemRead))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]ItemCreate itemCreate)
         {
+
+            //TODO Criar um BaseController para obter o usuário do token;
+
+            var context = HttpContext.Current.Request.GetOwinContext();
+            var User = context.Authentication.User;
+            var claims = User.Claims;
+            var claim = claims.FirstOrDefault(x => x.Type == "UserId");
+            var userValue = claim.Value.ToInt32();
+
             var user = 1;
 
             var validationResults = new ItemCreateValidator().Validate(itemCreate);

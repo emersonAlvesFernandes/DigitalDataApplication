@@ -235,6 +235,10 @@
       <Project>{077d16ab-f1f9-4388-acc2-0b3923310bce}</Project>
       <Name>DigitalData.SqlRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DigitalData.Utils\DigitalData.Utils.csproj">
+      <Project>{40df9f67-2e24-4ee2-8a35-de230c6af22b}</Project>
+      <Name>DigitalData.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

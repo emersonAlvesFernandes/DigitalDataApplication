@@ -1,5 +1,6 @@
 ﻿using DigitalData.AppService;
 using DigitalData.Domain.Entities.User.Contracts;
+using DigitalData.SqlRepository.Entities.User;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,7 @@ using System.Web;
 namespace DigitalData.WebApi.Provider
 {
     public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
-    {
-        private readonly IUserAppService _userappService;
-
-        //public AuthorizationServerProvider()
-        //{
-                        
-        //}
-
-        public AuthorizationServerProvider(IUserAppService userappService)
-        {
-            this._userappService = userappService;
-        }
-
+    {        
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             //valida token no cache
@@ -42,7 +31,7 @@ namespace DigitalData.WebApi.Provider
                 var user = context.UserName;
                 var password = context.Password;
                 
-                var validUser = _userappService.IsValid(user, password);
+                var validUser = new UserRepository().GetByUsername(password);
 
                 if (validUser == null)
                 {
@@ -50,28 +39,33 @@ namespace DigitalData.WebApi.Provider
                     return;
                 }
 
+                #region manual
                 //if (user != "R2088" || password != "xpto")
                 //{
                 //    context.SetError("invalid_grant", "Usuário ou senha inválidos");
                 //    return;
                 //}
+                #endregion
 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                identity.AddClaim(new Claim(ClaimTypes.Name, user));
+                var userFullName = string.Format("{0} {1}", validUser.FirstName, validUser.LastName);
 
-                //Obter do banco de dados
-                //identity.AddClaim(new Claim(ClaimTypes.Name, companyId));
+                identity.AddClaim(new Claim(ClaimTypes.Name, userFullName));
+                identity.AddClaim(new Claim("Company", validUser.CompanyId.ToString()));
+                identity.AddClaim(new Claim("UserId", validUser.Id.ToString()));
+
+                var userRole = new RoleRepository().GetByUser(validUser.Id);                
                 
-                //Retornar do banco de dados
                 var roles = new List<string>();
-                //roles.Add("User");
-                roles.Add("Admin");
 
+                //roles.Add("Admin");
+                roles.Add(userRole.Description);
                 foreach (var role in roles)
                 {
                     identity.AddClaim(new Claim(ClaimTypes.Role, role));
                 }
+                 
 
                 var principal = new GenericPrincipal(identity, roles.ToArray());
 

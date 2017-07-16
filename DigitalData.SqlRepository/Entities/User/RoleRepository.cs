@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Entities.User;
+using System.Data.SqlClient;
+using System.Data;
+using DigitalData.Utils;
 
 namespace DigitalData.SqlRepository.Entities.User
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository : RepositoryBase, IRoleRepository
     {
         public bool CreateRelation(int roleId, int userId)
         {
@@ -27,7 +30,37 @@ namespace DigitalData.SqlRepository.Entities.User
 
         public Role GetByUser(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                base.Initialize();
+                base.OpenConnection();
+                
+                using (var cmd = new SqlCommand("spr_ler_perfil_usuario", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_usuario", userId);
+
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+
+                        var id = dataReader["id"].ToInt32();
+                        var description = dataReader["des_perfil"].ToString();
+
+                        var role = new Role(id, description);
+                        return role;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
         }
 
         public bool UpdateRelation(int roleId, int userId)
