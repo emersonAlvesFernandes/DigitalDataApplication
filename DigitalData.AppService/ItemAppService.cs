@@ -18,6 +18,7 @@ namespace DigitalData.AppService
         public ItemAppService()
         {
             _itemService = new ItemService();
+            _companyService = new CompanyService();
         }
 
         public ItemAppService(IItemService service, ICompanyService companyService)
