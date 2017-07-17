@@ -162,7 +162,7 @@ namespace DigitalData.WebApi.Controllers
         //[ResponseType(typeof(CompanyEntity))]
         //public async Task<IHttpActionResult> GetRelationsByCompanyAsync([FromUri] int id)
         //{
-        //    var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));                        
+        //    var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));
 
         //    return this.Ok(companyEntity);
         //}
@@ -170,7 +170,7 @@ namespace DigitalData.WebApi.Controllers
         [HttpGet]
         [Route("relations/{id}")]
         [ResponseType(typeof(CompanyId))]
-        public async Task<IHttpActionResult> GetRelationsByCompanyAsync([FromUri] int id)
+        public async Task<IHttpActionResult> GetRelationsByCompanyIdsAsync([FromUri] int id)
         {
             var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));
 

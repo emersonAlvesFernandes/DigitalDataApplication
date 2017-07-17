@@ -16,7 +16,10 @@ namespace DigitalData.WebApi.Models.Entities.IdsOnly
         {
             Id = ce.Id;
             var collection = new List<ItemId>();
-            foreach (var i in ce.Items)
+
+            var validItems = ce.Items.Where(x => x.IsRelated == true);
+
+            foreach (var i in validItems)
             {
                 var item = new ItemId(i);
                 collection.Add(item);

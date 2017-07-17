@@ -86,7 +86,7 @@ namespace DigitalData.AppService
 
         public bool Unrelate(int companyId, int id, int userId)
         {
-            this.ValidateItemCompanyRelation(companyId, id);
+            this.ValidateItemCompanyUnRelation(companyId, id);
 
             var companyItems = _itemService.GetByCompanyId(companyId);
 
@@ -113,6 +113,22 @@ namespace DigitalData.AppService
             var containItem = companyItems.FirstOrDefault(x => x.Id == id);
             if (containItem != null)
                 throw new Exception("relation.already.exists");
+        }
+
+        private void ValidateItemCompanyUnRelation(int companyId, int id)
+        {
+            var item = _itemService.GetById(id);
+            if (item == null)
+                throw new Exception("invalid.item.id");
+
+            var company = _companyService.GetById(companyId);
+            if (company == null)
+                throw new Exception("invalid.company.id");
+
+            var companyItems = _itemService.GetByCompanyId(companyId);
+            var containItem = companyItems.FirstOrDefault(x => x.Id == id);
+            if (containItem == null)
+                throw new Exception("relation.does.not.exists");
         }
 
         public IEnumerable<ItemEntity> GetAvailableItens(int companyId)

@@ -11,8 +11,8 @@ namespace DigitalData.WebApi.Models.Entities.IdsOnly
         public int Id { get; set; }
                 
         public SubItemId(SubItemEntity e)
-        {
-            Id = e.Id;
+        {            
+            Id = e.Id;                            
         }
 
     }
