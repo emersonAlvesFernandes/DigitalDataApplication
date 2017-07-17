@@ -174,6 +174,9 @@ namespace DigitalData.WebApi.Controllers
         {
             var companyEntity = await Task.Run(() => _companyAppService.GetAllEntitiesRelations(id));
 
+            if(companyEntity == null)
+                return this.Ok();
+
             var companyVM = new CompanyId(companyEntity);
 
             return this.Ok(companyVM);

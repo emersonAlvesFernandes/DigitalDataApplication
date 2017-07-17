@@ -158,11 +158,19 @@ namespace DigitalData.AppService
         {
             var company = _companyService.GetById(companyId);
 
+            if (company == null)
+                return null;
+
             // obtem todas relações dos items >> subitens
-            company.Items = _itemService.GetAll().ToList();
-            
+            var collection = _itemService.GetAll();
+
+            if (collection.Count() == 0)
+                return null;
+
+            company.Items = collection.ToList();
+
             // pra cada item da relação
-            foreach(var item in company.Items)
+            foreach (var item in company.Items)
             {
                 // verifica se a empresa tem este item >> flaga 
                 var itemFromCompany = _itemService.GetByCompanyId(companyId).Where(x=>x.Id == item.Id).FirstOrDefault();
