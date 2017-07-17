@@ -25,10 +25,10 @@ namespace DigitalData.WebApi
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             //UnityConfig.RegisterComponents();
             #endregion
-
-            UnityConfig.RegisterComponents();
+            
             var config = new HttpConfiguration();
             WebApiConfig.Register(config);
+            UnityConfig.RegisterComponents();
 
             ConfigureOAuth(app);
 
