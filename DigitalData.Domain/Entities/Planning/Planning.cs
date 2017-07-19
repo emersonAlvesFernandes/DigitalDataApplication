@@ -28,7 +28,7 @@ namespace DigitalData.Domain.Planning
 
         public string StatusColor { get; set; } //TODO: criar enum
 
-        public int Month { get; set; } //TODO: criar enum
+        public int Month { get; set; }  //TODO: criar enum
 
         public int Year { get; set; } 
 
@@ -50,6 +50,7 @@ namespace DigitalData.Domain.Planning
             SetStatusColor();
         }
 
+        //Usado na leitura de plannings agrupados de itens
         public PlanningEntity(int id, double doneValue, double plannedValue,
             double greenFrom, double greenTo, double redFrom,
             double redTo, double budgeted, DateTime creationDate, int month, int year, string readColor)

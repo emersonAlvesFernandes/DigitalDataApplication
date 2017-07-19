@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DigitalData.Domain.Entities.Item;
 using DigitalData.Service;
 using DigitalData.Domain.Entities.Company.Contracts;
+using DigitalData.Domain.Entities.Planning.Contracts;
 
 namespace DigitalData.AppService
 {
@@ -14,6 +15,7 @@ namespace DigitalData.AppService
     {
         private readonly IItemService _itemService;
         private readonly ICompanyService _companyService;
+        private readonly IPlanningService _planningService;
 
         public ItemAppService()
         {
@@ -21,10 +23,11 @@ namespace DigitalData.AppService
             _companyService = new CompanyService();
         }
 
-        public ItemAppService(IItemService service, ICompanyService companyService)
+        public ItemAppService(IItemService service, ICompanyService companyService, IPlanningService planningService)
         {
             _itemService = service;
             _companyService = companyService;
+            _planningService = planningService;
         }
 
         public ItemEntity Create(ItemEntity item, int userId)
@@ -60,6 +63,15 @@ namespace DigitalData.AppService
             return _itemService.GetById(itemId);
         }
 
+        public ItemEntity GetByIdWithMonthlyGroupPlannings(int itemId, int companyId)
+        {
+            var item =  _itemService.GetById(itemId);
+
+            item.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, itemId).ToList();
+
+            return item;
+        }
+
         public ItemEntity Update(ItemEntity item, int userId)
         {
             var existingItem = _itemService.GetById(item.Id);
@@ -82,6 +94,16 @@ namespace DigitalData.AppService
         public IEnumerable<ItemEntity> GetByCompanyId(int companyId)
         {
             return _itemService.GetByCompanyId(companyId);
+        }
+
+        public IEnumerable<ItemEntity> GetByCompanyIdWithMonthlyGroupPlannings(int companyId)
+        {
+            var items =  _itemService.GetByCompanyId(companyId);
+            foreach(var i in items)
+            {
+                i.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, companyId).ToList();
+            }
+            return items;
         }
 
         public bool Unrelate(int companyId, int id, int userId)
@@ -138,6 +160,8 @@ namespace DigitalData.AppService
             var availableItems = allItems.Except(companyItems).ToList();
             return availableItems;
         }
+
+
 
     }
 }

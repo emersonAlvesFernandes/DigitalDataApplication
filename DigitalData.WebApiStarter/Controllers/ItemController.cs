@@ -2,6 +2,7 @@
 using DigitalData.Domain.Entities.Item;
 using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.WebApiStarter.Models.Entities.Item;
+using DigitalData.WebApiStarter.Models.Entities.SubItem;
 using FastMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,18 +14,18 @@ namespace DigitalData.WebApiStarter.Controllers
     [RoutePrefix("api/items")]
     public class ItemController : ApiController //ApiController
     {
-        private readonly IItemAppService _appService;
+        private readonly IItemAppService _itemAppService;
 
         public ItemController()
         {
-            _appService = new ItemAppService();
+            _itemAppService = new ItemAppService();
         }
 
         public ItemController(IItemAppService appService)
         {
-            _appService = appService;
+            _itemAppService = appService;
         }
-
+        
         [HttpPost]
         [Route("")]        
         [ResponseType(typeof(ItemRead))]
@@ -50,7 +51,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
             var itemEntity = itemCreate.ToEntity();
 
-            var createdItem = await Task.Run(() => _appService.Create(itemEntity, user));
+            var createdItem = await Task.Run(() => _itemAppService.Create(itemEntity, user));
 
             var itemRead = TypeAdapter.Adapt<ItemEntity, ItemRead>(createdItem);
 
@@ -62,7 +63,7 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(IEnumerable<ItemRead>))]
         public async Task<IHttpActionResult> GetAllAsync()
         {
-            var collection = await Task.Run(()=> _appService.GetAll());
+            var collection = await Task.Run(()=> _itemAppService.GetAll());
             
             var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>, 
                 IEnumerable<ItemRead>>(collection);
@@ -75,7 +76,7 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(ItemRead))]
         public async Task<IHttpActionResult> GetItemByIdAsync([FromUri]int id)
         {
-            var item = await Task.Run(() => _appService.GetById(id));
+            var item = await Task.Run(() => _itemAppService.GetById(id));
 
             var readItems = TypeAdapter.Adapt<ItemEntity, ItemRead>(item);
 
@@ -87,7 +88,7 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(IEnumerable<ItemRead>))]
         public async Task<IHttpActionResult> GetItemsByCompanyAsync([FromUri]int companyId)
         {
-            var item = await Task.Run(() => _appService.GetByCompanyId(companyId));
+            var item = await Task.Run(() => _itemAppService.GetByCompanyId(companyId));
 
             var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>, 
                 IEnumerable<ItemRead>>(item);
@@ -100,7 +101,7 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(IEnumerable<ItemRead>))]
         public async Task<IHttpActionResult> GetAvailableItemsByCompanyIdAsync([FromUri]int id)
         {
-            var item = await Task.Run(() => _appService.GetAvailableItens(id));
+            var item = await Task.Run(() => _itemAppService.GetAvailableItens(id));
 
             var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>
                 ,IEnumerable<ItemRead>>(item);
@@ -122,7 +123,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
             itemEntity.Id = id;
 
-            var updItem = await Task.Run(() => _appService.Update(itemEntity, userId));
+            var updItem = await Task.Run(() => _itemAppService.Update(itemEntity, userId));
 
             var readItems = TypeAdapter.Adapt<ItemEntity, ItemRead>(updItem);
 
@@ -136,7 +137,7 @@ namespace DigitalData.WebApiStarter.Controllers
         {
             var userId = 1;
 
-            var isRelated = await Task.Run(() => _appService.Relate(companyId, itemId, userId));
+            var isRelated = await Task.Run(() => _itemAppService.Relate(companyId, itemId, userId));
             
             return this.Ok(isRelated);
         }
@@ -148,7 +149,7 @@ namespace DigitalData.WebApiStarter.Controllers
         {
             var userId = 1;
 
-            var isRelated = await Task.Run(() => _appService.Unrelate(companyId, itemId, userId));
+            var isRelated = await Task.Run(() => _itemAppService.Unrelate(companyId, itemId, userId));
 
             return this.Ok(isRelated);
         }
@@ -158,12 +159,50 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> DeleteAsync([FromUri]int id)
         {            
-            var isRelated = await Task.Run(() => _appService.Delete(id));
+            var isRelated = await Task.Run(() => _itemAppService.Delete(id));
             return this.Ok(isRelated);
         }
 
+        /// <summary>
+        /// Testar Fluxo
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{companyId}/{itemId}/plannings")]
+        [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
+        public async Task<IHttpActionResult> GetItemGroupPlanningsAsync([FromUri] int companyId, [FromUri] int itemId)
+        {
+            var itemWithPlannings = await Task.Run(() => _itemAppService.GetByIdWithMonthlyGroupPlannings(companyId, itemId));
+
+            var dto = new ItemCompleteRead(itemWithPlannings);
+
+            return this.Ok(dto);
+        }
+
+        /// <summary>
+        /// TODO: Testar fluxo
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{companyId}/plannings")]
+        [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
+        public async Task<IHttpActionResult> GetAllItemsGroupPlanningsAsync([FromUri] int companyId)
+        {
+            var collection = await Task.Run(() => _itemAppService.GetByCompanyIdWithMonthlyGroupPlannings(companyId));
+
+            var dto = ItemCompleteRead.GetCollectionCompleteRead(collection);
+
+            return this.Ok(collection);
+        }
+
+
         //TODO: Criar uma action que traga todos os itens.
         // cada um com um sumarizado de seus subitens;
+
+
 
     }
 }

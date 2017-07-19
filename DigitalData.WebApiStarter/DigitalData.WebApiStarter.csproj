@@ -175,6 +175,7 @@
     <Compile Include="Models\Entities\IdsOnly\ItemId.cs" />
     <Compile Include="Models\Entities\IdsOnly\PlanningID.cs" />
     <Compile Include="Models\Entities\IdsOnly\SubItemId.cs" />
+    <Compile Include="Models\Entities\Item\ItemCompleteRead.cs" />
     <Compile Include="Models\Entities\Item\ItemCreate.cs" />
     <Compile Include="Models\Entities\Item\ItemRead.cs" />
     <Compile Include="Models\Entities\Planning\PlanningCreateCollection.cs" />
@@ -191,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\digitaldata-api - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

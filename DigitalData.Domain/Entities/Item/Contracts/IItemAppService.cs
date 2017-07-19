@@ -14,7 +14,11 @@ namespace DigitalData.Domain.Entities.Item.Contracts
 
         ItemEntity GetById(int itemId);
 
+        ItemEntity GetByIdWithMonthlyGroupPlannings(int itemId, int companyId);
+
         IEnumerable<ItemEntity> GetByCompanyId(int companyId);
+
+        IEnumerable<ItemEntity> GetByCompanyIdWithMonthlyGroupPlannings(int companyId);
 
         bool Delete(int id);
 

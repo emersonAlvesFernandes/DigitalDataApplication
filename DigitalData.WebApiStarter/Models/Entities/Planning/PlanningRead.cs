@@ -56,6 +56,32 @@ namespace DigitalData.WebApiStarter.Models.Entities.Planning
             var entity = new PlanningEntity(Id, DoneValue, PlannedValue, GreenFrom, GreenTo, RedFrom, RedTo, Budgeted, DateTime.Now, Month, Year);
             return entity;
         }
+
+        public List<PlanningRead> ToPlanningRead(List<PlanningEntity> collection)
+        {
+            var returnCollection = new List<PlanningRead>();
+
+            foreach (var c in collection)
+            {
+                var dto = new PlanningRead(c);
+                returnCollection.Add(dto);
+            }
+
+            return returnCollection;
+        }
+
+        public IEnumerable<PlanningRead> ToPlanningRead(IEnumerable<PlanningEntity> collection)
+        {
+            var returnCollection = new List<PlanningRead>();
+
+            foreach (var c in collection)
+            {
+                var dto = new PlanningRead(c);
+                returnCollection.Add(dto);
+            }
+
+            return returnCollection;
+        }
     }
 
     public class PlanningReadValidator : AbstractValidator<PlanningRead>

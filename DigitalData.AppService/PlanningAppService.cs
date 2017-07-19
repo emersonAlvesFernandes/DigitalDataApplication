@@ -98,5 +98,18 @@ namespace DigitalData.AppService
         {
             return null;
         }
+
+
+        //Retorna apenas o planning, ainda não existe funcionalidade na aplicação que precise apenas desta informação
+        public IEnumerable<PlanningEntity> GetSubItemMonthlyPlannings(int companyId, int itemId, int subItemId)
+        {
+            return _planningService.GetSubItemPlanning(companyId, itemId, subItemId);
+        }
+
+        //Retorna apenas o planning, ainda não existe funcionalidade na aplicação que precise apenas desta informação
+        public IEnumerable<PlanningEntity> GetItemMonthlyGroupedPlannings(int companyId, int itemId)
+        {
+            return _planningService.GetItemGroupedPlannings(companyId, itemId);
+        }
     }
 }

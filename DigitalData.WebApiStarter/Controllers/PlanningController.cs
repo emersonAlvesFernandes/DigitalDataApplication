@@ -1,5 +1,9 @@
 ﻿using DigitalData.Domain.Entities.Planning.Contracts;
+using DigitalData.Domain.Entities.SubItem.Contracts;
 using DigitalData.WebApiStarter.Models.Entities.Planning;
+using DigitalData.WebApiStarter.Models.Entities.SubItem;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -11,10 +15,12 @@ namespace DigitalData.WebApiStarter.Controllers
     {
 
         private readonly IPlanningAppService _app;
+        private readonly ISubItemAppService _appService;
 
-        public PlanningController(IPlanningAppService app)
+        public PlanningController(IPlanningAppService app, ISubItemAppService appService)
         {
             this._app = app;
+            this._appService = appService;
         }
 
         [HttpPost]
@@ -55,6 +61,43 @@ namespace DigitalData.WebApiStarter.Controllers
             var updated = Task.Run(()=> _app.FillDoneValue(entity, clientId));
 
             return this.Ok(updated);
+        }
+
+        /// <summary>
+        /// Retorna apenas os plannings, ainda não existe funcionalidade na aplicação que precise apenas desta informação
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="itemId"></param>
+        /// <param name="subItemId"></param>
+        /// <returns></returns>        
+        [HttpGet]
+        [Route("company/{companyId}/item/{itemId}/subitem/{subItemId}")]
+        [ResponseType(typeof(IEnumerable<PlanningRead>))]
+        public async Task<IHttpActionResult> GetByItemIdWithPlanningsAsync([FromUri] int companyId, [FromUri] int itemId, [FromUri] int subItemId)
+        {
+            var collection = await Task.Run(() => _app.GetSubItemMonthlyPlannings(companyId, itemId, subItemId));
+            
+            var dtoCollection = new PlanningRead().ToPlanningRead(collection);
+            
+            return this.Ok(dtoCollection);
+        }
+
+        /// <summary>
+        /// Retorna apenas os plannings, ainda não existe funcionalidade na aplicação que precise apenas desta informação
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("company/{companyId}/item/{itemId}")]
+        [ResponseType(typeof(IEnumerable<PlanningRead>))]
+        public async Task<IHttpActionResult> GetItemGroupPlanningsAsync([FromUri] int companyId, [FromUri] int itemId)
+        {
+            var collection = await Task.Run(() => _app.GetItemMonthlyGroupedPlannings(companyId, itemId));
+
+            var dtoCollection = new PlanningRead().ToPlanningRead(collection);
+
+            return this.Ok(dtoCollection);
         }
     }
 }

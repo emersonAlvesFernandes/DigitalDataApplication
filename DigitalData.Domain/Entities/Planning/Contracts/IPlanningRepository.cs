@@ -15,8 +15,10 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
 
         IEnumerable<PlanningEntity> GetSubItemPlanning(int companyId, int itemId, int subItemId);
 
-        IEnumerable<PlanningEntity> GetItemPlanning(int companyId, int itemId);
-        
+        IEnumerable<PlanningEntity> GetItemPlannings(int companyId, int itemId);
+
+        IEnumerable<PlanningEntity> GetItemGroupedPlannings(int companyId, int itemId);
+
         PlanningEntity FillDoneValue(PlanningEntity planning, int clientId);
 
         PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId);

@@ -43,7 +43,12 @@ namespace DigitalData.Service
 
         public IEnumerable<PlanningEntity> GetItemPlanning(int companyId, int itemId)
         {
-            return _repository.GetItemPlanning(companyId, itemId);
+            return _repository.GetItemPlannings(companyId, itemId);
+        }
+
+        public IEnumerable<PlanningEntity> GetItemGroupedPlannings(int companyId, int itemId)
+        {
+            return _repository.GetItemGroupedPlannings(companyId, itemId);
         }
 
         public PlanningEntity FillDoneValue(PlanningEntity planning, int clientId)

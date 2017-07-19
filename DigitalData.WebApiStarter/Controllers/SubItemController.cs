@@ -80,6 +80,7 @@ namespace DigitalData.WebApiStarter.Controllers
         }
 
         /// <summary>
+        ///     DEPRECATED
         ///     Returns SubItens With Plannings
         /// </summary>
         /// <remarks>
