@@ -105,8 +105,11 @@
         </member>
         <member name="M:DigitalData.WebApiStarter.Controllers.ItemController.GetItemGroupPlanningsAsync(System.Int32,System.Int32)">
             <summary>
-            Testar Fluxo
+            OK
             </summary>
+            <remarks>
+            Se o item tiver desdobramento, o id dos pontos virão zerados e não será possível editar os valores realizados.        
+            </remarks>
             <param name="companyId"></param>
             <param name="itemId"></param>
             <returns></returns>

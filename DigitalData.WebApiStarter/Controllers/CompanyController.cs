@@ -28,8 +28,7 @@ namespace DigitalData.WebApiStarter.Controllers
         }
         
         [HttpGet]
-        [Route("")]                
-        [Authorize]
+        [Route("")]                        
         [ResponseType(typeof(List<CompanyRead>))]
         public async Task<IHttpActionResult> GetAllAsync()
         {            

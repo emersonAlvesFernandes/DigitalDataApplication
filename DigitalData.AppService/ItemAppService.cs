@@ -101,7 +101,7 @@ namespace DigitalData.AppService
             var items =  _itemService.GetByCompanyId(companyId);
             foreach(var i in items)
             {
-                i.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, companyId).ToList();
+                i.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, i.Id).ToList();
             }
             return items;
         }

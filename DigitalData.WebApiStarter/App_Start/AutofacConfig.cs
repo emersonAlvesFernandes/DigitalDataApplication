@@ -48,37 +48,38 @@ namespace DigitalData.WebApiStarter.App_Start
             builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerLifetimeScope();
             builder.RegisterType<CompanyRepository>().As<ICompanyRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IAddressService>().As<AddressService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IAddressRepository>().As<AddressRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<AddressService>().As<IAddressService>().InstancePerLifetimeScope();
+            builder.RegisterType<AddressRepository>().As<IAddressRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IItemAppService>().As<ItemAppService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IItemService>().As<ItemService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IItemRepository>().As<ItemRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ItemAppService>().As<IItemAppService>().InstancePerLifetimeScope();
+            builder.RegisterType<ItemService>().As<IItemService>().InstancePerLifetimeScope();
+            builder.RegisterType<ItemRepository>().As<IItemRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<ISubItemAppService>().As<SubItemAppService>().InstancePerLifetimeScope();
-            //builder.RegisterType<ISubItemService>().As<SubItemService>().InstancePerLifetimeScope();
-            //builder.RegisterType<ISubItemRepository>().As<SubItemRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<SubItemAppService>().As<ISubItemAppService>().InstancePerLifetimeScope();
+            builder.RegisterType<SubItemService>().As<ISubItemService>().InstancePerLifetimeScope();
+            builder.RegisterType<SubItemRepository>().As<ISubItemRepository>().InstancePerLifetimeScope();
 
 
-            //builder.RegisterType<IPlanningAppService>().As<PlanningAppService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IPlanningService>().As<PlanningService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IPlanningRepository>().As<PlanningRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PlanningAppService>().As<IPlanningAppService>().InstancePerLifetimeScope();
+            builder.RegisterType<PlanningService>().As<IPlanningService>().InstancePerLifetimeScope();
+            builder.RegisterType<PlanningRepository>().As<IPlanningRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IUserAppService>().As<UserAppService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IUserService>().As<UserService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IUserRepository>().As<UserRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserAppService>().As<IUserAppService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IRoleService>().As<RoleService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IRoleRepository>().As<RoleRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<RoleService>().As<IRoleService>().InstancePerLifetimeScope();
+            builder.RegisterType<RoleRepository>().As<IRoleRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IFuncionalityService>().As<FunctionalityService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IFunctionalityRepository>().As<FunctionalityRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<FunctionalityService>().As<IFuncionalityService>().InstancePerLifetimeScope();
+            builder.RegisterType<FunctionalityRepository>().As<IFunctionalityRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IAdminDataAppService>().As<AdminDataAppService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IAdminDataService>().As<AdminDataService>().InstancePerLifetimeScope();
-            //builder.RegisterType<IAdminDataRepository>().As<AdminDataRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<AdminDataAppService>().As<IAdminDataAppService>().InstancePerLifetimeScope();
+            builder.RegisterType<AdminDataService>().As<IAdminDataService>().InstancePerLifetimeScope();
+            builder.RegisterType<AdminDataRepository>().As<IAdminDataRepository>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<IRepositoryBase>().As<RepositoryBase>().InstancePerLifetimeScope();
+            builder.RegisterType<RepositoryBase>().As<IRepositoryBase>().InstancePerLifetimeScope();
+
 
 
 

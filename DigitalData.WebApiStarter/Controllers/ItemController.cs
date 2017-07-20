@@ -164,8 +164,11 @@ namespace DigitalData.WebApiStarter.Controllers
         }
 
         /// <summary>
-        /// Testar Fluxo
+        /// OK
         /// </summary>
+        /// <remarks>
+        /// Se o item tiver desdobramento, o id dos pontos virão zerados e não será possível editar os valores realizados.        
+        /// </remarks>
         /// <param name="companyId"></param>
         /// <param name="itemId"></param>
         /// <returns></returns>
@@ -174,7 +177,7 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
         public async Task<IHttpActionResult> GetItemGroupPlanningsAsync([FromUri] int companyId, [FromUri] int itemId)
         {
-            var itemWithPlannings = await Task.Run(() => _itemAppService.GetByIdWithMonthlyGroupPlannings(companyId, itemId));
+            var itemWithPlannings = await Task.Run(() => _itemAppService.GetByIdWithMonthlyGroupPlannings(itemId, companyId));
 
             var dto = new ItemCompleteRead(itemWithPlannings);
 

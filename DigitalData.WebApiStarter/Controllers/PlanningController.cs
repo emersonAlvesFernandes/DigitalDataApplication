@@ -36,6 +36,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
             var monthlyPlanningEntity = createDto.GetEntityMonthlyPlanningCollection();
             
+            //TODO: tratar se não vier preenchido
             var yearPlanningEntity = createDto.GetEntityYearPlanningCollection();
 
             var dictionary = await Task.Run(() => _app.Create(createDto.CompanyId, createDto.ItemId, createDto.SubItemId, monthlyPlanningEntity, yearPlanningEntity, userId));

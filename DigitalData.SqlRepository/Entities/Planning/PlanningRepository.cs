@@ -256,7 +256,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
                     var dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        var id = dataReader["id"].ToInt32();
+                        //var id = dataReader["id"].ToInt32();
                         var year = dataReader["num_ano"].ToInt32();
                         var month = dataReader["cod_mes"].ToInt32();
                         var doneValue = dataReader["val_reali"].ToDouble();
@@ -269,7 +269,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
                         //var creationDate = dataReader["dat_criac"].ToDateTime();
                         var creationDate = DateTime.Now;
                         
-                        var planning = new PlanningEntity(id, doneValue, plannedValue, 
+                        var planning = new PlanningEntity(0, doneValue, plannedValue, 
                             greenFrom, greenTo, redFrom, redTo, budgeted,
                             creationDate, month, year);
 
