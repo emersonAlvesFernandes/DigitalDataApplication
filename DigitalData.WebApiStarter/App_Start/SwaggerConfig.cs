@@ -4,6 +4,11 @@ using System.Web.Http;
 using System.Xml.XPath;
 using Swashbuckle.Application;
 using System.Reflection;
+using Swashbuckle.Swagger;
+using System.Web.Http.Description;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http.Filters;
 
 namespace Compusight.MoveDesk.UserManagementApi.Configuration
 {
@@ -34,6 +39,43 @@ namespace Compusight.MoveDesk.UserManagementApi.Configuration
                 string.Format("{0}bin\\{1}.xml", AppDomain.CurrentDomain.BaseDirectory, Assembly.GetExecutingAssembly().GetName().Name);
 
             return path;
+        }
+
+        private class AuthorizationHeaderParameterOperationFilter : IOperationFilter
+        {
+            public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+            {
+                var filterPipeline = apiDescription
+                        .ActionDescriptor
+                        .GetFilterPipeline();
+
+                var isAuthorized = filterPipeline
+                        .Select(filterInfo => filterInfo.Instance)
+                        .Any(filter => filter is IAuthorizationFilter);
+
+                var allowAnonymous = apiDescription
+                        .ActionDescriptor
+                        .GetCustomAttributes<AllowAnonymousAttribute>()
+                        .Any();
+
+                if (!isAuthorized)
+                    return;
+
+                if (allowAnonymous)
+                    return;
+
+                if (operation.parameters == null)
+                    operation.parameters = new List<Parameter>();
+
+                operation.parameters.Add(new Parameter
+                {
+                    name = "Authorization",
+                    @in = "header",
+                    description = "access token",
+                    required = true,
+                    type = "string"
+                });
+            }
         }
     }
 }

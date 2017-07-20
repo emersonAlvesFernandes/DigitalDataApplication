@@ -3,3 +3,8 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\bin\Debug\
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Debug\DigitalData.Utils.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Debug\DigitalData.Utils.pdb
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Debug\DigitalData.Utils.csprojResolveAssemblyReference.cache
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Utils\bin\Debug\DigitalData.Utils.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Utils\bin\Debug\DigitalData.Utils.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Debug\DigitalData.Utils.csprojResolveAssemblyReference.cache
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Debug\DigitalData.Utils.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Debug\DigitalData.Utils.pdb

@@ -103,6 +103,21 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.ItemController.GetItemGroupPlanningsAsync(System.Int32,System.Int32)">
+            <summary>
+            Testar Fluxo
+            </summary>
+            <param name="companyId"></param>
+            <param name="itemId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.ItemController.GetAllItemsGroupPlanningsAsync(System.Int32)">
+            <summary>
+            TODO: Testar fluxo
+            </summary>
+            <param name="companyId"></param>
+            <returns></returns>
+        </member>
         <member name="M:DigitalData.WebApiStarter.Controllers.PlanningController.GetByItemIdWithPlanningsAsync(System.Int32,System.Int32,System.Int32)">
             <summary>
             Retorna apenas os plannings, ainda não existe funcionalidade na aplicação que precise apenas desta informação

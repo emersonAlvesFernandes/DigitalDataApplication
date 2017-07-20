@@ -33,3 +33,5 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debu
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Service\obj\Debug\DigitalData.Service.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.Utils.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.Service\bin\Debug\DigitalData.Utils.pdb
