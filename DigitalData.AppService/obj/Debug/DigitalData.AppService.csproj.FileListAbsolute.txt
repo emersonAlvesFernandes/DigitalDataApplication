@@ -23,6 +23,8 @@ C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppServi
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.SqlRepository.pdb
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Utils.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Utils.pdb
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.AppService.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.AppService.pdb
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Domain.dll
@@ -39,5 +41,3 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\D
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Debug\DigitalData.AppService.pdb
-C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Utils.dll
-C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Debug\DigitalData.Utils.pdb

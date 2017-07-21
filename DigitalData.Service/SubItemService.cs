@@ -41,6 +41,11 @@ namespace DigitalData.Service
             return _repository.GetByItemId(itemId);
         }
 
+        public IEnumerable<SubItemEntity> GetByCompanyAndItemId(int itemId, int companyId)
+        {
+            return _repository.GetByCompanyAndItemId(itemId, companyId);
+        }
+
         public SubItemEntity GetSubItemRelatedToCompanyAndItem(int companyId, int itemId, int subitemId)
         {
             return _repository.GetSubItemRelatedToCompanyAndItem(companyId, itemId, subitemId);

@@ -14,6 +14,5 @@ namespace DigitalData.WebApiStarter.Models.Entities.IdsOnly
         {            
             Id = e.Id;                            
         }
-
     }
 }

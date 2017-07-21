@@ -12,14 +12,30 @@ namespace DigitalData.WebApiStarter.Models.Entities.IdsOnly
 
         public List<ItemId> Items { get; set; }
 
+        //public CompanyId(CompanyEntity ce)
+        //{
+        //    Id = ce.Id;
+        //    var collection = new List<ItemId>();
+
+        //    var validItems = ce.Items.Where(x => x.IsRelated == true);
+
+        //    foreach (var i in validItems)
+        //    {
+        //        var item = new ItemId(i);
+        //        collection.Add(item);
+        //    }
+
+        //    Items = collection;
+        //}
+
         public CompanyId(CompanyEntity ce)
         {
             Id = ce.Id;
             var collection = new List<ItemId>();
 
-            var validItems = ce.Items.Where(x => x.IsRelated == true);
+            var relatedItems = ce.Items;
 
-            foreach (var i in validItems)
+            foreach (var i in relatedItems)
             {
                 var item = new ItemId(i);
                 collection.Add(item);
@@ -27,6 +43,5 @@ namespace DigitalData.WebApiStarter.Models.Entities.IdsOnly
 
             Items = collection;
         }
-
     }
 }

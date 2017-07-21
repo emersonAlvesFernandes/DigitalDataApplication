@@ -103,6 +103,64 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.UpdateAsync(DigitalData.WebApiStarter.Models.Entities.Company.CompanySummary)">
+            <summary>
+            Atualiza somente a entidade Empresa
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.UpdateAddressAsync(System.Int32,DigitalData.WebApiStarter.Models.Entities.Address.AddressSummary)">
+            <summary>
+            Atualiza apenas a entidade endereço
+            </summary>
+            <param name="companyId"></param>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.UpdateNestedAsync(DigitalData.WebApiStarter.Models.Entities.Company.CompanyRead)">
+            <summary>
+            Atualiza a entidade encadeada de empresa e endereço. Alteração de dto em 21/07/2017
+            </summary>
+            <remarks>
+            Alteração de dto em 21/07/2017: retirada do Id da query, está no body;
+            </remarks>
+            <param name="companyRead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.GetComposedByIdAsync(System.Int32)">
+            <summary>
+                Listagem de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+            </summary>
+            <remarks>
+            </remarks>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.GetComposedIdsByIdAsync(System.Int32)">
+            <summary>
+                Listagem (apenas os Ids) de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.GetRelationsByCompanyIdsAsync(System.Int32)">
+            <summary>
+                Listagem de itens e subitens já cadastrados no sistema identificados pela tag isRelated, que identifica se está relacionado com a empresa informada;
+            </summary>
+            <remarks>
+                Este serviço deve ser usado para a tela de vínculo da empresa com itens e subitens.
+                Ela retorna a relação da empresa com os itens e subitens existentes no sistema. cada entidade possui uma flag "isRelated",
+                indicando se a empresa tem vínculo.
+                Ao clicar na tab de vínculo, são apresentadas duas opçõs: vincular itens e desvincular items.
+                Ao clicar na primeira opção: chamar este serviço e deve-se exibir apenas as entidades das quais NÃO HÁ vínculo dada a empresa. Desta forma,
+                possibilita mandar em lote os novos vínculos;
+                Ao clicar na segunda opção: chamar este serviço e deve-se exibir apenas as entidades das quais HÁ VÍNCULO. Desta forma,
+                possibilita mandar em lote as ações de remover vínculo;               
+            </remarks>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:DigitalData.WebApiStarter.Controllers.ItemController.GetItemGroupPlanningsAsync(System.Int32,System.Int32)">
             <summary>
             OK

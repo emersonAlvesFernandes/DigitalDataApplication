@@ -138,10 +138,10 @@ namespace DigitalData.SqlRepository.Entities.Item
                 base.connection = new SqlConnection(connectionstring);
                 this.OpenConnection();
 
-                using (var cmd = new SqlCommand("spr_ler_item", connection))
+                using (var cmd = new SqlCommand("spr_ler_item_por_id", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@id_item", id);
 
                     var dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())

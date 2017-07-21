@@ -68,19 +68,26 @@ namespace DigitalData.WebApiStarter.Controllers
 
             if (!validationResults.IsValid)
                 return this.BadRequest(string.Join(" , ", validationResults.Errors));
-            
+
             var addressCreate = company.Address.ToEntity();
             var companyEntity = company.ToEntity(addressCreate);
-                        
+
             var createdCompany = await Task.Run(() => _companyAppService.Create(companyEntity));
 
             var companyRead = new CompanyRead(createdCompany);
 
             return this.Ok(companyRead);
         }
-        
+
+
+
+        /// <summary>
+        /// Atualiza somente a entidade Empresa
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("old")]
+        [Route("summary")]
         [ResponseType(typeof(CompanySummary))]
         public async Task<IHttpActionResult> UpdateAsync([FromBody]CompanySummary company)
         {
@@ -90,18 +97,25 @@ namespace DigitalData.WebApiStarter.Controllers
             if (!results.IsValid)
                 return this.BadRequest(string.Join(" , ", results.Errors));
 
-            var companyEntity = company.ToEntity();            
+            var companyEntity = company.ToEntity();
 
             var updatedCompany = await Task.Run(() => _companyAppService.Update(companyEntity));
 
-            
-            var viewModel = TypeAdapter.Adapt<CompanyEntity, CompanySummary>(updatedCompany); 
-            
+
+            var viewModel = TypeAdapter.Adapt<CompanyEntity, CompanySummary>(updatedCompany);
+
             return this.Ok(viewModel);
         }
-        
+
+
+        /// <summary>
+        /// Atualiza apenas a entidade endereço
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="address"></param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("address/{addressId}")]
+        [Route("summary/address/{addressId}")]
         [ResponseType(typeof(AddressSummary))]
         public async Task<IHttpActionResult> UpdateAddressAsync([FromUri] int companyId, [FromBody]AddressSummary address)
         {
@@ -117,10 +131,19 @@ namespace DigitalData.WebApiStarter.Controllers
             return this.Ok(updatedCompany);
         }
 
+
+        /// <summary>
+        /// Atualiza a entidade encadeada de empresa e endereço. Alteração de dto em 21/07/2017
+        /// </summary>
+        /// <remarks>
+        /// Alteração de dto em 21/07/2017: retirada do Id da query, está no body;
+        /// </remarks>
+        /// <param name="companyRead"></param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("{id}")]
+        [Route("")]
         [ResponseType(typeof(CompanyRead))]
-        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead, [FromUri]int id)
+        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead)
         {
 
             var validationResults = new CompanyReadValidator().Validate(companyRead);
@@ -135,6 +158,14 @@ namespace DigitalData.WebApiStarter.Controllers
             return this.Ok(companyRead);
         }
 
+
+        /// <summary>
+        ///     Listagem de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("composed/{id}")]
         [ResponseType(typeof(CompanyEntity))]
@@ -150,6 +181,28 @@ namespace DigitalData.WebApiStarter.Controllers
             return this.Ok(companyEntity);
         }
 
+
+
+        /// <summary>
+        ///     Listagem (apenas os Ids) de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("composed/ids/{id}")]
+        [ResponseType(typeof(CompanyEntity))]
+        public async Task<IHttpActionResult> GetComposedIdsByIdAsync([FromUri] int id)
+        {
+            var companyEntity = await Task.Run(() => _companyAppService.GetComposed(id));
+
+            if (companyEntity == null)
+                return this.Ok();
+
+            var companyVM = new CompanyId(companyEntity);
+
+            return this.Ok(companyVM);
+        }
+
         //[HttpGet]
         //[Route("relations/{id}")]
         //[ResponseType(typeof(CompanyEntity))]
@@ -160,6 +213,21 @@ namespace DigitalData.WebApiStarter.Controllers
         //    return this.Ok(companyEntity);
         //}
 
+        /// <summary>
+        ///     Listagem de itens e subitens já cadastrados no sistema identificados pela tag isRelated, que identifica se está relacionado com a empresa informada;
+        /// </summary>
+        /// <remarks>
+        ///     Este serviço deve ser usado para a tela de vínculo da empresa com itens e subitens.
+        ///     Ela retorna a relação da empresa com os itens e subitens existentes no sistema. cada entidade possui uma flag "isRelated",
+        ///     indicando se a empresa tem vínculo.
+        ///     Ao clicar na tab de vínculo, são apresentadas duas opçõs: vincular itens e desvincular items.
+        ///     Ao clicar na primeira opção: chamar este serviço e deve-se exibir apenas as entidades das quais NÃO HÁ vínculo dada a empresa. Desta forma,
+        ///     possibilita mandar em lote os novos vínculos;
+        ///     Ao clicar na segunda opção: chamar este serviço e deve-se exibir apenas as entidades das quais HÁ VÍNCULO. Desta forma,
+        ///     possibilita mandar em lote as ações de remover vínculo;               
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("relations/{id}")]
         [ResponseType(typeof(CompanyId))]
@@ -170,9 +238,9 @@ namespace DigitalData.WebApiStarter.Controllers
             if(companyEntity == null)
                 return this.Ok();
 
-            var companyVM = new CompanyId(companyEntity);
+            //var companyVM = new CompanyId(companyEntity);
 
-            return this.Ok(companyVM);
+            return this.Ok(companyEntity);
         }
 
     }

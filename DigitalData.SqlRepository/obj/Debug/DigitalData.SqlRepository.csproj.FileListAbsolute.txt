@@ -15,6 +15,8 @@ C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepos
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\Excel.pdb
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.dll
 C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.pdb
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Utils.dll
+C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Utils.pdb
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.SqlRepository.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.SqlRepository.pdb
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Domain.dll
@@ -27,5 +29,3 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bi
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\obj\Debug\DigitalData.SqlRepository.pdb
-C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Utils.dll
-C:\Users\emerson.santos\Source\Repos\DigitalDataApplication\DigitalData.SqlRepository\bin\Debug\DigitalData.Utils.pdb

@@ -139,18 +139,21 @@ namespace DigitalData.AppService
 
             var companyEntity = _companyService.GetById(companyId);
             //companyEntity.Address = _addressService.GetCompanyAddress(companyId);
-            companyEntity.Items = _itemService.GetByCompanyId(companyId).ToList();
+            companyEntity.Items = _itemService.GetByCompanyId(companyId)
+                .Where(x=>x.IsActive == true)
+                .ToList();
                         
             foreach (var item in companyEntity.Items)
             {
-                item.SubItems = _subItemService.GetByItemId(item.Id).ToList();
+                item.SubItems = _subItemService.GetByCompanyAndItemId(item.Id, companyId)
+                    .Where(x => x.IsActive == true)
+                    .ToList();
 
                 foreach (var subitem in item.SubItems)
                 {
                     subitem.MonthPlanning = _planningService.GetSubItemPlanning(companyId, item.Id, subitem.Id).ToList();                    
                 }
             }
-
             return companyEntity;
         }
 
@@ -186,6 +189,6 @@ namespace DigitalData.AppService
                 }
             }
             return company;
-        }
+        }        
     }
 }

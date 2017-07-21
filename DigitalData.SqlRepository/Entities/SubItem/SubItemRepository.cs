@@ -223,7 +223,49 @@ namespace DigitalData.SqlRepository.Entities.SubItem
                 base.CloseConnection();
             }
         }
-        
+
+        public IEnumerable<SubItemEntity> GetByCompanyAndItemId(int itemId, int companyId)
+        {
+            try
+            {
+                var collection = new List<SubItemEntity>();
+
+                base.Initialize();
+                this.OpenConnection();
+
+                using (var cmd = new SqlCommand("spr_ler_empre_subitem", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_item", itemId);
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        var id = dataReader["id"].ToInt32();
+                        var name = dataReader["nom_subitem"].ToString();
+                        var description = dataReader["des_descr"].ToString();
+                        var creationDate = dataReader["dat_criac"].ToDateTime();
+                        var lastUpdate = dataReader["dat_atual"].ToDateTime();
+                        var isActive = dataReader["ind_ativa"].ToBoolean();
+
+
+                        var subItem = new SubItemEntity(id, name, description, isActive, creationDate, lastUpdate);
+
+                        collection.Add(subItem);
+                    }
+                }
+                return collection;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
+
         public bool Delete(int id, int userId)
         {
             base.Initialize();
