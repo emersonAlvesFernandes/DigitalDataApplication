@@ -26,7 +26,7 @@ namespace Compusight.MoveDesk.UserManagementApi.Configuration
             configuration
                 .EnableSwagger(c =>
                 {
-                    c.SingleApiVersion("v1", "My.Api");
+                    c.SingleApiVersion("v1", "Vitrine Digital Api");
                     c.PrettyPrint();
                     c.IncludeXmlComments(() => new XPathDocument(GetXmlDocumentationPath()));
                 })
