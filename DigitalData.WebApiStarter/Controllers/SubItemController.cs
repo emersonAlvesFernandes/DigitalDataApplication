@@ -104,15 +104,14 @@ namespace DigitalData.WebApiStarter.Controllers
 
         [HttpGet]
         [Route("{companyId}/{itemId}")]
-        [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
+        [ResponseType(typeof(IEnumerable<SubItemSummaryRead>))]
         public async Task<IHttpActionResult> GetByCompanyAndItemIAsync([FromUri] int companyId, [FromUri] int itemId)
         {
-            var collection = await Task.Run(() => _appService.GetByItemIdWithoutScores(companyId, itemId));
+            var collection = await Task.Run(() => _appService.GetByCompanyAndItemId(itemId, companyId));
 
-            var itemReadCollection = new SubItemCompleteRead()
-                .ToSubItemCompleteReadCollection(collection);
+            var dtoCollection = new SubItemSummaryRead().ToSubItemReadCollection(collection);
 
-            return this.Ok(itemReadCollection);
+            return this.Ok(dtoCollection);
         }
 
         [HttpDelete]

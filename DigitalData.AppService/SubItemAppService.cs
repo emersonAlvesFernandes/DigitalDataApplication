@@ -131,5 +131,10 @@ namespace DigitalData.AppService
 
             return subItens;
         }
+
+        public IEnumerable<SubItemEntity> GetByCompanyAndItemId(int itemId, int companyId)
+        {
+            return _subItemService.GetByCompanyAndItemId(itemId, companyId);
+        }
     }
 }

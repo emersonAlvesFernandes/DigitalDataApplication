@@ -225,7 +225,10 @@ namespace DigitalData.WebApiStarter.Controllers
         ///     possibilita mandar em lote os novos vínculos;
         ///     Ao clicar na segunda opção: chamar este serviço e deve-se exibir apenas as entidades das quais HÁ VÍNCULO. Desta forma,
         ///     possibilita mandar em lote as ações de remover vínculo;               
+        ///     
+        /// ++ TODO: Ajustar o dto para remover propriedades não utilizadas como por exemplo os plannings
         /// </remarks>
+        /// 
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
