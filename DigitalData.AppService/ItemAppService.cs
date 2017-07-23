@@ -63,13 +63,20 @@ namespace DigitalData.AppService
             return _itemService.GetById(itemId);
         }
 
+        //TODO: testar
         public ItemEntity GetByIdWithMonthlyGroupPlannings(int itemId, int companyId)
         {
-            var item =  _itemService.GetById(itemId);
+            var companyItems = _itemService.GetByCompanyId(companyId);
+            var item = companyItems.Where(x => x.Id == itemId).FirstOrDefault();
 
-            item.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, itemId).ToList();
+            if (item.Desdobramento)            
+                item.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, itemId).ToList();                            
+            else            
+                item.MonthPlanning = _planningService.GetItemPlanning(companyId, itemId).ToList();
+            
+            item.YearPlanning = _planningService.GetYearPlanning(companyId, itemId, null);
 
-            return item;
+            return item;            
         }
 
         public ItemEntity Update(ItemEntity item, int userId)
@@ -96,12 +103,14 @@ namespace DigitalData.AppService
             return _itemService.GetByCompanyId(companyId);
         }
 
+        //TODO: Testar
         public IEnumerable<ItemEntity> GetByCompanyIdWithMonthlyGroupPlannings(int companyId)
         {
             var items =  _itemService.GetByCompanyId(companyId);
             foreach(var i in items)
             {
                 i.MonthPlanning = _planningService.GetItemGroupedPlannings(companyId, i.Id).ToList();
+                i.YearPlanning = _planningService.GetYearPlanning(companyId, i.Id, null);
             }
             return items;
         }

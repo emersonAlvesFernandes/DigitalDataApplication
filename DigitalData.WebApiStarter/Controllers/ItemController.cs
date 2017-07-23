@@ -174,7 +174,7 @@ namespace DigitalData.WebApiStarter.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{companyId}/{itemId}/plannings")]
-        [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
+        [ResponseType(typeof(IEnumerable<ItemCompleteRead>))]
         public async Task<IHttpActionResult> GetItemGroupPlanningsAsync([FromUri] int companyId, [FromUri] int itemId)
         {
             var itemWithPlannings = await Task.Run(() => _itemAppService.GetByIdWithMonthlyGroupPlannings(itemId, companyId));
@@ -191,7 +191,7 @@ namespace DigitalData.WebApiStarter.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{companyId}/plannings")]
-        [ResponseType(typeof(IEnumerable<SubItemCompleteRead>))]
+        [ResponseType(typeof(IEnumerable<ItemCompleteRead>))]
         public async Task<IHttpActionResult> GetAllItemsGroupPlanningsAsync([FromUri] int companyId)
         {
             var collection = await Task.Run(() => _itemAppService.GetByCompanyIdWithMonthlyGroupPlannings(companyId));

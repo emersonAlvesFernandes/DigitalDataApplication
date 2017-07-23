@@ -19,7 +19,9 @@ namespace DigitalData.WebApiStarter.Models.Entities.Item
 
         public bool IsActive { get; set; }
 
-        public List<PlanningRead> ReadPlannings { get; set; }
+        public List<PlanningRead> Plannings { get; set; }
+
+        public PlanningRead YearPlanning { get; set; }
 
         public ItemCompleteRead(ItemEntity entity)
         {
@@ -28,7 +30,8 @@ namespace DigitalData.WebApiStarter.Models.Entities.Item
             Description = entity.Description;
             Desdobramento = entity.Desdobramento;
             IsActive = entity.IsActive;
-            ReadPlannings = new PlanningRead().ToPlanningRead(entity.MonthPlanning);
+            Plannings = new PlanningRead().ToPlanningRead(entity.MonthPlanning);
+            YearPlanning = entity.YearPlanning!= null ? new PlanningRead(entity.YearPlanning): null;
         }
 
         public static List<ItemCompleteRead> GetCollectionCompleteRead(IEnumerable<ItemEntity> entityCollection)

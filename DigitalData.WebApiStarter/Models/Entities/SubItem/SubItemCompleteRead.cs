@@ -16,7 +16,9 @@ namespace DigitalData.WebApiStarter.Models.Entities.SubItem
         public string Description { get; set; }
 
         public List<PlanningEntity> Plannings { get; set; }
-        
+
+        public PlanningEntity YearPlanning { get; set; }
+
         public List<SubItemCompleteRead> ToSubItemCompleteReadCollection(IEnumerable<SubItemEntity> entityCollection)
         {
             var readCollection = new List<SubItemCompleteRead>();
@@ -28,10 +30,12 @@ namespace DigitalData.WebApiStarter.Models.Entities.SubItem
                     Id = entity.Id,
                     Name = entity.Name,
                     Description = entity.Description,
-                    Plannings = entity.MonthPlanning                                       
+                    Plannings = entity.MonthPlanning,
+                    YearPlanning = entity.YearPlanning                    
                 };
 
                 readCollection.Add(subItemRead);
+
             }
             return readCollection;
         }

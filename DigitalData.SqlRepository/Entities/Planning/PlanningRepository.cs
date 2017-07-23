@@ -194,7 +194,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
                 base.connection = new SqlConnection(connectionstring);
                 this.OpenConnection();
 
-                using (var cmd = new SqlCommand("ler_plan_item", connection))
+                using (var cmd = new SqlCommand("spr_ler_plan_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_item", itemId);
@@ -247,7 +247,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
                 base.connection = new SqlConnection(connectionstring);
                 this.OpenConnection();
 
-                using (var cmd = new SqlCommand("ler_plan_agrup_item", connection))
+                using (var cmd = new SqlCommand("spr_ler_plan_agrup_item", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_item", itemId);
@@ -356,5 +356,57 @@ namespace DigitalData.SqlRepository.Entities.Planning
             }
         }
         
+        public PlanningEntity GetYearPlanning(int companyId, int itemId, int? subItemId)
+        {
+            base.Initialize();
+            base.OpenConnection();
+
+            try
+            {                
+                base.connection = new SqlConnection(connectionstring);
+                this.OpenConnection();
+
+                using (var cmd = new SqlCommand("spr_ler_plan_anual", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
+                    cmd.Parameters.AddWithValue("@id_item", itemId);                    
+                    cmd.Parameters.AddWithValue("@id_subitem", subItemId);
+
+                    var dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        var id = dataReader["id"].ToInt32();
+                        var year = dataReader["num_ano"].ToInt32();
+                        //var month = dataReader["cod_mes"].ToInt32();
+                        var doneValue = dataReader["val_reali"].ToDouble();
+                        var plannedValue = dataReader["val_previ"].ToDouble();
+                        var greenFrom = dataReader["val_verde_ini"].ToDouble();
+                        var greenTo = dataReader["val_verde_fim"].ToDouble();
+                        var redFrom = dataReader["val_verme_ini"].ToDouble();
+                        var redTo = dataReader["val_verme_fim"].ToDouble();
+                        var budgeted = dataReader["val_orcad"].ToDouble();
+                        var creationDate = dataReader["dat_criac"].ToDateTime();
+                        var statusColor = dataReader["des_cor_status"].ToString();
+
+                        var planning = new PlanningEntity(id,
+                            doneValue, plannedValue, greenFrom, greenTo, redFrom, redTo, budgeted,
+                            creationDate, 0, year, statusColor);
+
+                        return planning;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
+
     }
 }

@@ -29,6 +29,8 @@ namespace DigitalData.WebApiStarter.Controllers
         public async Task<IHttpActionResult> CreateAsync([FromBody]PlanningCreateCollection createDto)
         {
             var userId = 1;
+            //if (createDto.SubItemId == 0)
+            //    createDto.SubItemId = null;
 
             var yearDto = new PlanningCreateDtoValidator().Validate(createDto.YearPlanning);
             if(!yearDto.IsValid)

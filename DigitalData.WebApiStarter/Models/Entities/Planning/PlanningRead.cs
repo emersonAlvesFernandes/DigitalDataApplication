@@ -33,17 +33,20 @@ namespace DigitalData.WebApiStarter.Models.Entities.Planning
 
         public PlanningRead(PlanningEntity entity)
         {
-            Id = entity.Id;
-            DoneValue = entity.DoneValue;
-            PlannedValue = entity.PlannedValue;
-            GreenFrom = entity.GreenFrom;
-            GreenTo = entity.GreenTo;
-            RedFrom = entity.RedFrom;
-            RedTo = entity.RedTo;
-            Budgeted = entity.Budgeted;
-            StatusColor = entity.StatusColor;
-            Month = entity.Month;
-            Year = entity.Year;
+            if (entity != null)
+            {
+                Id = entity.Id;
+                DoneValue = entity.DoneValue;
+                PlannedValue = entity.PlannedValue;
+                GreenFrom = entity.GreenFrom;
+                GreenTo = entity.GreenTo;
+                RedFrom = entity.RedFrom;
+                RedTo = entity.RedTo;
+                Budgeted = entity.Budgeted;
+                StatusColor = entity.StatusColor;
+                Month = entity.Month;
+                Year = entity.Year;
+            }
         }
 
         public PlanningRead()

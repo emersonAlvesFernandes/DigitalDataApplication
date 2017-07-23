@@ -9,6 +9,7 @@ using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.Domain.Entities.SubItem.Contracts;
 using System.Transactions;
+using DigitalData.Domain.Entities.Item;
 
 namespace DigitalData.AppService
 {
@@ -64,18 +65,22 @@ namespace DigitalData.AppService
                 throw new Exception("invalid.company");
 
             var companyItems = _itemService.GetByCompanyId(companyId);
-            var foundItem = companyItems.Where(x => x.Id == itemId);
+            var foundItem = companyItems.FirstOrDefault(x => x.Id == itemId);
             if (foundItem == null)
-                throw new Exception("item.invalid");
+                throw new Exception("item.invalid");            
 
             if (subItemId != null)
             {
+                if(!foundItem.Desdobramento)
+                    throw new Exception("para incluir este subitem, o item precisa ter desdobramento");
+
                 var itemSubitems = _subItemService.GetByItemId(itemId);
                 var foundSubItem = itemSubitems.Where(x => x.Id == subItemId);
                 if (foundSubItem == null)
                     throw new Exception("subitem.invalid");
             }            
         }
+
 
         private int GetRelationId(int companyId, int itemId, int? subItemId)
         {
@@ -109,7 +114,13 @@ namespace DigitalData.AppService
         //Retorna apenas o planning, ainda não existe funcionalidade na aplicação que precise apenas desta informação
         public IEnumerable<PlanningEntity> GetItemMonthlyGroupedPlannings(int companyId, int itemId)
         {
-            return _planningService.GetItemGroupedPlannings(companyId, itemId);
+            var companyItems = _itemService.GetByCompanyId(companyId);
+            var item = companyItems.Where(x => x.Id == itemId).FirstOrDefault();
+
+            if(item.Desdobramento)
+                return _planningService.GetItemGroupedPlannings(companyId, itemId);
+            else
+                return _planningService.GetItemPlanning(companyId, itemId);
         }
     }
 }

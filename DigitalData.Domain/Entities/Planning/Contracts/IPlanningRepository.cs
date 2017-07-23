@@ -22,5 +22,7 @@ namespace DigitalData.Domain.Entities.Planning.Contracts
         PlanningEntity FillDoneValue(PlanningEntity planning, int clientId);
 
         PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId);
+
+        PlanningEntity GetYearPlanning(int companyId, int itemId, int? subItemId);
     }
 }

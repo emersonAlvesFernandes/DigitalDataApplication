@@ -24,8 +24,6 @@ namespace DigitalData.Service
         }
 
 
-
-
         public PlanningEntity CreateMonthPlanning(int companyId, int itemId, int? subItemId, PlanningEntity planning, int relationId, int userId)
         {
             return _repository.CreateMonthPlanning(companyId, itemId, subItemId, planning, relationId, userId);
@@ -61,6 +59,9 @@ namespace DigitalData.Service
             return _repository.Update(idPlanning, planning, adminId);
         }
 
-        
+        public PlanningEntity GetYearPlanning(int companyId, int itemId, int? subItemId)
+        {
+            return _repository.GetYearPlanning(companyId, itemId, subItemId);
+        }
     }
 }

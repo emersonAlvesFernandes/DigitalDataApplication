@@ -14,7 +14,7 @@ namespace DigitalData.WebApiStarter.Models.Entities.Planning
 
         public int ItemId { get; set; }
 
-        public int SubItemId { get; set; }
+        public int? SubItemId { get; set; }
 
         public List<PlanningCreateDto> MonthlyPlanning { get; set; }
 

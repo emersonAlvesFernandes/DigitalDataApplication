@@ -1,0 +1,10 @@
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\DigitalData.AppService.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\DigitalData.Domain.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\DigitalData.Service.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\Excel.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\DigitalData.SqlRepository.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\ICSharpCode.SharpZipLib.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\DigitalData.Utils.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\bin\Local\Excel.pdb
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Local\DigitalData.AppService.csprojResolveAssemblyReference.cache
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.AppService\obj\Local\DigitalData.AppService.dll

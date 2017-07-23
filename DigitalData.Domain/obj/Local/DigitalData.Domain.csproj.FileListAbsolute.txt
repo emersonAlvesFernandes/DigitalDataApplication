@@ -1,0 +1,5 @@
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Local\DigitalData.Domain.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Local\Excel.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Local\ICSharpCode.SharpZipLib.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\bin\Local\Excel.pdb
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Domain\obj\Local\DigitalData.Domain.dll
