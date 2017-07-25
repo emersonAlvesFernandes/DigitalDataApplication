@@ -10,6 +10,7 @@ using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.Domain.Entities.Planning.Contracts;
 using DigitalData.Domain.Planning;
 using DigitalData.Service;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.AppService
 {
@@ -41,6 +42,9 @@ namespace DigitalData.AppService
         public SubItemEntity Create(int itemId, SubItemEntity subItem, int userId)
         {
             var item = _itemService.GetById(itemId);
+
+            if (item.Desdobramento == false)
+                throw new Exception("atomic.item");
 
             if (item == null)
                 throw new Exception("invelida.id");
@@ -85,16 +89,23 @@ namespace DigitalData.AppService
         private void ValidateSubItemCompanyRelation(int companyId, int itemId, int id)
         {
             var company = _companyService.GetById(companyId);
-            if (company == null || company.IsActive == false)
-                throw new Exception("invalid.company.id");
+            if (company == null || company.IsActive == false)                
+                throw new InvalidCompanyException();//throw new Exception("invalid.company.id");
 
             var item = _itemService.GetById(itemId);
             if (item == null || item.IsActive == false)
-                throw new Exception("invalid.item.id");
-                    
+                throw new InvalidItemException(); //throw new Exception("invalid.item.id");
+
+            var itemRelated = _itemService.GetByCompanyId(companyId).ToList().FirstOrDefault(x => x.Id == itemId);
+            if (itemRelated == null || itemRelated.IsActive == false)
+                throw new InvalidItemCompanyRelationException(); //throw new Exception("item.not.related.to.company");
+
+            if (item.Desdobramento == false)
+                throw new AtomicItemException(); // throw new Exception("atomic.item");
+
             var subitem = _subItemService.GetById(id);
             if (subitem == null || subitem.IsActive == false)
-                throw new Exception("invalid.subitem.id");            
+                throw new InvalidSubItemException(); //throw new Exception("invalid.subitem.id");            
         }
 
         /// <summary>

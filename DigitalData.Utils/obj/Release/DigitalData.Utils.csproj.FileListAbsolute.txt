@@ -2,3 +2,4 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\bin\Releas
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\bin\Release\DigitalData.Utils.pdb
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Release\DigitalData.Utils.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Release\DigitalData.Utils.pdb
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.Utils\obj\Release\DigitalData.Utils.csprojResolveAssemblyReference.cache

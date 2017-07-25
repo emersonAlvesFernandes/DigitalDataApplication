@@ -1,13 +1,16 @@
 ﻿using DigitalData.AppService;
 using DigitalData.Domain.Entities.SubItem.Contracts;
+using DigitalData.WebApiStarter.Filters;
 using DigitalData.WebApiStarter.Models.Entities.SubItem;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using static DigitalData.WebApiStarter.Filters.ApiExceptionFilterAttribute;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
+    [ApiExceptionFilterAttribute]
     [RoutePrefix("api/subitems")]
     public class SubItemController : ApiController
     {

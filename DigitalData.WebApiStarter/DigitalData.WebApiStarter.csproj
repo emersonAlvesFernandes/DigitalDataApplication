@@ -163,6 +163,7 @@
     <Compile Include="Controllers\PlanningController.cs" />
     <Compile Include="Controllers\SubItemController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Filters\ApiExceptionFilterAttribute.cs" />
     <Compile Include="Models\Authentication\AuthUser.cs" />
     <Compile Include="Models\DefaultDataCreate.cs" />
     <Compile Include="Models\DefaultDataExcelCreate.cs" />
@@ -202,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DigitalData.AppService\DigitalData.AppService.csproj">

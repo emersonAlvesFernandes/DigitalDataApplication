@@ -14,6 +14,7 @@ using DigitalData.Domain.Entities.SubItem.Contracts;
 using DigitalData.Domain.Entities.Planning.Contracts;
 using DigitalData.Domain.Entities.Item;
 using DigitalData.Domain.Entities.SubItem;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.AppService
 {
@@ -118,7 +119,8 @@ namespace DigitalData.AppService
         {
             var company = _companyService.GetById(companyId);
             if (company == null)
-                throw new Exception("invalid.company.id");
+                //throw new Exception("invalid.company.id");
+                throw new ApiException("empresa inválida");
 
             var address = _addressService.GetById(addressId);
             if (address == null)
@@ -149,10 +151,16 @@ namespace DigitalData.AppService
                     .Where(x => x.IsActive == true)
                     .ToList();
 
+                item.YearPlanning = _planningService.GetYearPlanning(companyId, item.Id, null);
+                item.MonthPlanning = _planningService.GetItemPlanning(companyId, item.Id).ToList();
+
+
                 foreach (var subitem in item.SubItems)
                 {
                     subitem.MonthPlanning = _planningService.GetSubItemPlanning(companyId, item.Id, subitem.Id).ToList();                    
                 }
+
+                
             }
             return companyEntity;
         }

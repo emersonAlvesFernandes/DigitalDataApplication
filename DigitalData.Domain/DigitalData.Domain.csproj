@@ -49,6 +49,7 @@
     <Compile Include="AdminData\IAdminDataAppService.cs" />
     <Compile Include="AdminData\IAdminDataRepository.cs" />
     <Compile Include="AdminData\IAdminDataService.cs" />
+    <Compile Include="ApiException\ApiException.cs" />
     <Compile Include="Entities\Address\AddressEntity.cs" />
     <Compile Include="Entities\Address\Contracts\IAddressRepository.cs" />
     <Compile Include="Entities\Address\Contracts\IAddressService.cs" />
