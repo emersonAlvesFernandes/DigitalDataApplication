@@ -23,5 +23,8 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         //TODO: Criar método para obter o logo separadamente
 
         int GetCompanyItemSubItemRelationId(int companyId, int itemId, int? subItemId);
+
+        bool CreateCompanyUserRelation(int userId, int companyId);
+
     }
 }

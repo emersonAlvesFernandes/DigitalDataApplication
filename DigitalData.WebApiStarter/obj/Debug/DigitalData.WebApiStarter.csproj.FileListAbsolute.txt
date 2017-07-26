@@ -220,3 +220,5 @@ C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApiStarter\bi
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApiStarter\obj\Debug\DigitalData.WebApiStarter.csprojResolveAssemblyReference.cache
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApiStarter\obj\Debug\DigitalData.WebApiStarter.dll
 C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApiStarter\obj\Debug\DigitalData.WebApiStarter.pdb
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApiStarter\bin\AutoMapper.dll
+C:\Users\Pichau\Source\Repos\DigitalDataApplication\DigitalData.WebApiStarter\bin\AutoMapper.xml

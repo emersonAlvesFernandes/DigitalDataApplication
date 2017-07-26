@@ -8,7 +8,7 @@ namespace DigitalData.Domain.Entities.User.Contracts
 {
     public interface IUserAppService
     {
-        UserEntity Create(UserEntity user);
+        UserEntity Create(UserEntity user, int roleId);
 
         UserEntity IsValid(string userName, string psw);
 

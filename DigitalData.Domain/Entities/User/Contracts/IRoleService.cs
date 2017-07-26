@@ -17,5 +17,7 @@ namespace DigitalData.Domain.Entities.User.Contracts
         bool UpdateRelation(int roleId, int userId);
 
         bool DeleteRelation(int roleId, int userId);
+
+        void Validate(int roleId);
     }
 }

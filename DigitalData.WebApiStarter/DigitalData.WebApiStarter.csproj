@@ -60,6 +60,9 @@
       <HintPath>..\packages\Autofac.WebApi2.Owin.4.0.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="FastMapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FastMapper.1.2.0\lib\net40\FastMapper.dll</HintPath>
     </Reference>
@@ -163,6 +166,7 @@
     <Compile Include="Controllers\PlanningController.cs" />
     <Compile Include="Controllers\SubItemController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\ApiExceptionFilterAttribute.cs" />
     <Compile Include="Models\Authentication\AuthUser.cs" />
     <Compile Include="Models\DefaultDataCreate.cs" />
@@ -185,6 +189,8 @@
     <Compile Include="Models\Entities\SubItem\SubItemCompleteRead.cs" />
     <Compile Include="Models\Entities\SubItem\SubItemCreate.cs" />
     <Compile Include="Models\Entities\SubItem\SubItemSummaryRead.cs" />
+    <Compile Include="Models\Entities\User\UserCreate.cs" />
+    <Compile Include="Models\Entities\User\UserRead.cs" />
     <Compile Include="Models\ErrorInfoModel.cs" />
     <Compile Include="Models\HttpRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

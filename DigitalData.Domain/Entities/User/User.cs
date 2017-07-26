@@ -30,6 +30,20 @@ namespace DigitalData.Domain.Entities.User
 
         public int CompanyId { get; set; }
 
+        public bool IsActive { get; set; }
+
+
+        public UserEntity()
+        {
+            this.SetInitialValues();
+        }
+
+        private void SetInitialValues()
+        {
+            RegisterDate = DateTime.Now.Date;
+            IsActive = true;
+            
+        }
 
         public UserEntity(int id, string firstName, string lastName, string email, string document, string username, string password
             , string phone1, string phone2, DateTime registerDate)
@@ -53,7 +67,6 @@ namespace DigitalData.Domain.Entities.User
             if (Password.Equals(psw))
                 return true;
             else return false;
-        }
-
+        }        
     }
 }

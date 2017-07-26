@@ -29,9 +29,10 @@ namespace DigitalData.WebApiStarter.Provider
                 var user = context.UserName;
                 var password = context.Password;
 
-                var validUser = new UserRepository().GetByUsername(password);
-
-                if (validUser == null)
+                var userEntity = new UserRepository().GetByUsername(user);
+                var isValid = userEntity.Validate(password);
+                
+                if (userEntity == null || isValid == false)
                 {
                     context.SetError("invalid_grant", "Usuário ou senha inválidos");
                     return;
@@ -47,13 +48,20 @@ namespace DigitalData.WebApiStarter.Provider
 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                var userFullName = string.Format("{0} {1}", validUser.FirstName, validUser.LastName);
+                var userFullName = string.Format("{0} {1}", userEntity.FirstName, userEntity.LastName);
 
                 identity.AddClaim(new Claim(ClaimTypes.Name, userFullName));
-                identity.AddClaim(new Claim("CompanyId", validUser.CompanyId.ToString()));
-                identity.AddClaim(new Claim("UserId", validUser.Id.ToString()));
+                identity.AddClaim(new Claim("CompanyId", userEntity.CompanyId.ToString()));
+                identity.AddClaim(new Claim("UserId", userEntity.Id.ToString()));
 
-                var userRole = new RoleRepository().GetByUser(validUser.Id);
+                var userRole = new RoleRepository().GetByUser(userEntity.Id);
+
+                if(userRole == null)
+                {
+                    context.SetError("invalid_grant", "Falha ao obter permissões do usuário");
+                    return;
+                }
+
 
                 var roles = new List<string>();
 

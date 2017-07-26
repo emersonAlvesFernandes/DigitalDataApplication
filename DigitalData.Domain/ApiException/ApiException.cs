@@ -39,7 +39,17 @@ namespace DigitalData.Domain.ApiException
             get { return this.statusCode; }
         }
     }
-    
+
+    public class InvalidRoleException : ApiException
+    {
+        private static string message = "perfil inválido";
+
+        public InvalidRoleException() : base(message)
+        {
+            base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
+
     public class InvalidCompanyException : ApiException
     {        
         private static string message = "empresa inválida";

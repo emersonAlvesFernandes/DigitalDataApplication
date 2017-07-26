@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Entities.User;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.Service
 {
-    public class RoleService : IRoleService, IFunctionalityRepository
+    public class RoleService : IRoleService
     {
         private readonly IRoleRepository _roleRepository;
         private readonly IFunctionalityRepository _funcionalityRepository;
@@ -46,6 +47,14 @@ namespace DigitalData.Service
             role.Functionalities = _funcionalityRepository.GetAllByRole(role.Id).ToList();            
 
             return role;
+        }
+
+        public void Validate(int roleId)
+        {
+            var role = _roleRepository.GetAll().FirstOrDefault(x=> x.Id == roleId);
+
+            if (role == null)
+                throw new InvalidRoleException();
         }
 
         public bool UpdateRelation(int roleId, int userId)

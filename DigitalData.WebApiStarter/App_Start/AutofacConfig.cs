@@ -78,6 +78,10 @@ namespace DigitalData.WebApiStarter.App_Start
             builder.RegisterType<AdminDataService>().As<IAdminDataService>().InstancePerLifetimeScope();
             builder.RegisterType<AdminDataRepository>().As<IAdminDataRepository>().InstancePerLifetimeScope();
 
+            
+            builder.RegisterType<RoleService>().As<IRoleService>().InstancePerLifetimeScope();
+            builder.RegisterType<RoleRepository>().As<IRoleRepository>().InstancePerLifetimeScope();
+
             builder.RegisterType<RepositoryBase>().As<IRepositoryBase>().InstancePerLifetimeScope();
 
 

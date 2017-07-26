@@ -264,6 +264,30 @@ namespace DigitalData.SqlRepository.Entities.Company
             }
         }
 
+        public bool CreateCompanyUserRelation(int userId, int companyId)
+        {
+            base.Initialize();
+            base.OpenConnection();
+            try
+            {
+                using (var cmd = new SqlCommand("spr_ins_empre_usuar", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_usuario", userId);
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
 
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                base.CloseConnection();
+            }
+        }
     }
 }

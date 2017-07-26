@@ -13,6 +13,8 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         IEnumerable<CompanyEntity> GetAll();
 
         CompanyEntity GetById(int id);
+        
+        void Validate(int id);
 
         CompanyEntity Update(CompanyEntity company);
 
@@ -21,5 +23,8 @@ namespace DigitalData.Domain.Entities.Company.Contracts
         IEnumerable<CompanyEntity> GetCompanyByItem(int itemId);
 
         int GetCompanyItemSubItemRelationId(int compnyId, int itemId, int? subItemId);
+
+        bool CreateCompanyUserRelation(int userId, int companyId);
+
     }
 }

@@ -19,7 +19,7 @@ namespace DigitalData.SqlRepository.Entities.User
             base.OpenConnection();
             try
             {
-                using (var cmd = new SqlCommand("spr_ins_empre", connection))
+                using (var cmd = new SqlCommand("spr_ins_usuar", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -28,11 +28,11 @@ namespace DigitalData.SqlRepository.Entities.User
                     cmd.Parameters.AddWithValue("@des_email", user.Email);
                     cmd.Parameters.AddWithValue("@des_cpf", user.Document);
                     cmd.Parameters.AddWithValue("@des_username", user.UserName);
-                    cmd.Parameters.AddWithValue("@des_psw", user.Password);
-                    cmd.Parameters.AddWithValue("@dat_criac", user.RegisterDate);
+                    cmd.Parameters.AddWithValue("@des_psw", user.Password);                    
                     cmd.Parameters.AddWithValue("@des_phone1", user.Phone1);
-                    cmd.Parameters.AddWithValue("@des_phone2", user.Phone2);                    
-                    cmd.Parameters.AddWithValue("@ind_ativo", user.FirstName);
+                    cmd.Parameters.AddWithValue("@des_phone2", user.Phone2);
+                    cmd.Parameters.AddWithValue("@dat_criac", user.RegisterDate);
+                    cmd.Parameters.AddWithValue("@ind_ativo", user.IsActive);
 
                     var id = (int)cmd.ExecuteScalar();
                     user.Id = id;
@@ -51,17 +51,20 @@ namespace DigitalData.SqlRepository.Entities.User
 
         public IEnumerable<UserEntity> GetAllByCompany(int companyId)
         {
+
+            base.Initialize();
+            base.OpenConnection();
             try
             {
                 var collection = new List<UserEntity>();
 
-                base.connection = new SqlConnection(connectionstring);
-                this.OpenConnection();
+                //base.connection = new SqlConnection(connectionstring);
+                //this.OpenConnection();
 
                 using (var cmd = new SqlCommand("spr_ler_usuario_empresa", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_item", companyId);
+                    cmd.Parameters.AddWithValue("@id_empresa", companyId);
 
                     var dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
@@ -73,12 +76,12 @@ namespace DigitalData.SqlRepository.Entities.User
                         var email = dataReader["des_email"].ToString();
                         var document = dataReader["des_cpf"].ToString();
                         var username = dataReader["des_username"].ToString();
-                        //var password = dataReader["des_psw"].ToString();
-                        var password = "*****";
+                        //var password = dataReader["des_psw"].ToString();                       
+                        var password = "****************";
                         var phone1 = dataReader["des_phone1"].ToString();
                         var phone2 = dataReader["des_phone2"].ToString();
                         var registerDate = dataReader["dat_criac"].ToDateTime();
-
+                        
                         var c = new UserEntity(id, firstName, lasttName, email, document, 
                             username, password, phone1, phone2, registerDate);
                         collection.Add(c);
@@ -148,7 +151,7 @@ namespace DigitalData.SqlRepository.Entities.User
         }
         
         //
-        public Domain.Entities.User.UserEntity Update(Domain.Entities.User.UserEntity user)
+        public UserEntity Update(UserEntity user)
         {
             throw new NotImplementedException();
         }

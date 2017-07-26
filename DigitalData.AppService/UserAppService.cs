@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DigitalData.Domain.Entities.User;
 using DigitalData.Domain.Entities.Company.Contracts;
+using System.Transactions;
 
 namespace DigitalData.AppService
 {
@@ -27,17 +28,27 @@ namespace DigitalData.AppService
             _companyService = companyService;
         }
 
-        public UserEntity Create(UserEntity user)
+        public UserEntity Create(UserEntity user, int roleId)
         {
-            return _userService.Create(user);
+            _companyService.Validate(user.CompanyId);
+            _roleService.Validate(roleId);
+            //Validar usuário já existente
+
+            using (var transaction = new TransactionScope())
+            {                
+                var createdUser = _userService.Create(user);
+                var companyRelation = _companyService.CreateCompanyUserRelation(createdUser.Id, createdUser.CompanyId);
+                var RoleRelation = _roleService.CreateRelation(roleId, createdUser.Id);
+                    
+                transaction.Complete();
+                return createdUser;
+            }                
         }
 
         public IEnumerable<UserEntity> GetAllByCompany(int companyId)
         {
-            var company = _companyService.GetById(companyId);
-            if (company == null)
-                throw new Exception("invalid.company");
-
+            _companyService.Validate(companyId);
+            
             return _userService.GetAllByCompany(companyId);
         }
 

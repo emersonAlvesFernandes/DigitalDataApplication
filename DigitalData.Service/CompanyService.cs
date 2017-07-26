@@ -9,6 +9,7 @@ using DigitalData.SqlRepository.Entities.Company;
 using DigitalData.Domain.Entities.Address.Contracts;
 using DigitalData.Domain.Entities.Address;
 using DigitalData.SqlRepository.Entities.Address;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.Service
 {
@@ -48,6 +49,14 @@ namespace DigitalData.Service
             return _companyRepository.GetById(id);
         }
 
+        public void Validate(int id)
+        {
+            var company = _companyRepository.GetById(id);
+
+            if(company == null)
+                throw new InvalidCompanyException();            
+        }
+
         public CompanyEntity Update(CompanyEntity company)
         {
             return _companyRepository.Update(company);
@@ -61,6 +70,11 @@ namespace DigitalData.Service
         public int GetCompanyItemSubItemRelationId(int companyId, int itemId, int? subItemId)
         {
             return _companyRepository.GetCompanyItemSubItemRelationId(companyId, itemId, subItemId);
+        }
+
+        public bool CreateCompanyUserRelation(int userId, int companyId)
+        {
+            return _companyRepository.CreateCompanyUserRelation(userId, companyId);
         }
     }
 }
