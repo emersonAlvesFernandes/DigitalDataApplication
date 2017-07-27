@@ -12,7 +12,7 @@ using System.Web.Http.Description;
 namespace DigitalData.WebApiStarter.Controllers
 {
     [RoutePrefix("api/items")]
-    public class ItemController : ApiController //ApiController
+    public class ItemController : BaseController 
     {
         private readonly IItemAppService _itemAppService;
 
@@ -25,7 +25,8 @@ namespace DigitalData.WebApiStarter.Controllers
         {
             _itemAppService = appService;
         }
-        
+
+        [Authorize]
         [HttpPost]
         [Route("")]        
         [ResponseType(typeof(ItemRead))]
@@ -43,7 +44,8 @@ namespace DigitalData.WebApiStarter.Controllers
             //var user = 1;
             #endregion
 
-            var user = 1;
+            //var user = 1;
+            var user = base.CompanyId;
 
             var validationResults = new ItemCreateValidator().Validate(itemCreate);
             if (!validationResults.IsValid)
@@ -65,8 +67,7 @@ namespace DigitalData.WebApiStarter.Controllers
         {
             var collection = await Task.Run(()=> _itemAppService.GetAll());
             
-            var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>, 
-                IEnumerable<ItemRead>>(collection);
+            var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>, IEnumerable<ItemRead>>(collection);
                         
             return this.Ok(readItems);
         }
@@ -90,8 +91,7 @@ namespace DigitalData.WebApiStarter.Controllers
         {
             var item = await Task.Run(() => _itemAppService.GetByCompanyId(companyId));
 
-            var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>, 
-                IEnumerable<ItemRead>>(item);
+            var readItems = TypeAdapter.Adapt<IEnumerable<ItemEntity>, IEnumerable<ItemRead>>(item);
 
             return this.Ok(readItems);
         }

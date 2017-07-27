@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
+    
     public class BaseController : ApiController
     {
         private Microsoft.Owin.IOwinContext Context
@@ -45,7 +46,16 @@ namespace DigitalData.WebApiStarter.Controllers
             private set{}
         }
 
-        public int CompanyId { get { return Claims.FirstOrDefault(x => x.Type == "CompanyId").Value.ToInt32(); } private set {} }
+        public int CompanyId
+        {
+            get
+            {
+                var value =  Claims.FirstOrDefault(x => x.Type == "CompanyId").Value.ToInt32();
+                return value;
+            }
+
+            private set {}
+        }
 
         //public string Name { get { return Claims; } private set { } }
 

@@ -16,21 +16,38 @@ namespace Compusight.MoveDesk.UserManagementApi.Configuration
     /// Represent Swagger configuration.
     /// </summary>
     public class SwaggerConfig
-    {
+    {        
         /// <summary>
         /// Configures Swagger API 
         /// </summary>
         /// <param name="configuration">Instance of <see cref="HttpConfiguration"/>.</param>
         public static void Configure(HttpConfiguration configuration)
         {
+            var ThisAssembly = typeof(SwaggerConfig).Assembly;
+
             configuration
                 .EnableSwagger(c =>
                 {
                     c.SingleApiVersion("v1", "Vitrine Digital Api");
                     c.PrettyPrint();
                     c.IncludeXmlComments(() => new XPathDocument(GetXmlDocumentationPath()));
+
+                    c.ApiKey("apiKey")
+                            .Description("API Key Authentication")
+                            .Name("apiKey")
+                            .In("header");
+
+
+                    c.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
                 })
-                .EnableSwaggerUi(c => { });
+
+                .EnableSwaggerUi(c => 
+                {
+                    c.InjectJavaScript(ThisAssembly, @"DigitalData.WebApiStarter.CustomContent.basic-auth.js");
+                    c.DisableValidator();
+                });
+
+
         }
 
         private static string GetXmlDocumentationPath()
@@ -63,6 +80,9 @@ namespace Compusight.MoveDesk.UserManagementApi.Configuration
 
                 if (allowAnonymous)
                     return;
+
+                //TODO: Verificar o por que o código abaixo só executa uma vez
+                // e não insere o conteúdo no header;
 
                 if (operation.parameters == null)
                     operation.parameters = new List<Parameter>();

@@ -76,14 +76,13 @@ namespace DigitalData.SqlRepository.Entities.User
                         var email = dataReader["des_email"].ToString();
                         var document = dataReader["des_cpf"].ToString();
                         var username = dataReader["des_username"].ToString();
-                        //var password = dataReader["des_psw"].ToString();                       
-                        var password = "****************";
+                        var password = dataReader["des_psw"].ToString();                       
+                        //var password = "****************";
                         var phone1 = dataReader["des_phone1"].ToString();
                         var phone2 = dataReader["des_phone2"].ToString();
                         var registerDate = dataReader["dat_criac"].ToDateTime();
                         
-                        var c = new UserEntity(id, firstName, lasttName, email, document, 
-                            username, password, phone1, phone2, registerDate);
+                        var c = new UserEntity(id, firstName, lasttName, email, document, username, password, phone1, phone2, registerDate);
                         collection.Add(c);
                     }
                 }

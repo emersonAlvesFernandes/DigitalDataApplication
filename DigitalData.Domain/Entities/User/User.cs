@@ -45,8 +45,8 @@ namespace DigitalData.Domain.Entities.User
             
         }
 
-        public UserEntity(int id, string firstName, string lastName, string email, string document, string username, string password
-            , string phone1, string phone2, DateTime registerDate)
+        //Read Entity
+        public UserEntity(int id, string firstName, string lastName, string email, string document, string username, string password, string phone1, string phone2, DateTime registerDate)
         {
             this.Id = id;
             this.FirstName = firstName;
@@ -54,19 +54,57 @@ namespace DigitalData.Domain.Entities.User
             this.Email = email;
             this.Document = document;
             this.UserName = username;
-            this.Password = password.Trim();
+            //this.Password = base64Decode(password.Trim());
+            this.Password = password;
             this.Phone1 = phone1;
             this.Phone2 = phone2;
             this.RegisterDate = registerDate;
         }
-
-        //TODO: encrypt and decrypt psw here
-
+       
         public bool Validate(string psw)
         {
             if (Password.Equals(psw))
                 return true;
             else return false;
-        }        
+        }
+
+        private string Base64Encode(string sData)
+        {
+            try
+            {
+                var encData_byte = new byte[sData.Length];
+
+                encData_byte = System.Text.Encoding.UTF8.GetBytes(sData);
+
+                var encodedData = Convert.ToBase64String(encData_byte);
+
+                return encodedData;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in base64Encode" + ex.Message);
+            }
+        }
+
+        public string base64Decode(string sData)
+        {
+
+            var encoder = new System.Text.UTF8Encoding();
+
+            var utf8Decode = encoder.GetDecoder();
+
+            byte[] todecode_byte = Convert.FromBase64String(sData);
+
+            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+
+            char[] decoded_char = new char[charCount];
+
+            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+
+            string result = new String(decoded_char);
+
+            return result;
+        }
     }
 }
