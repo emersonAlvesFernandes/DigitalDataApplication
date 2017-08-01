@@ -118,17 +118,16 @@ namespace DigitalData.AppService
         private void CheckCompanyAddressForUpdate(int companyId, int addressId)
         {
             var company = _companyService.GetById(companyId);
-            if (company == null)
-                //throw new Exception("invalid.company.id");
-                throw new ApiException("empresa inválida");
+            if (company == null)                
+                throw new InvalidCompanyException();
 
             var address = _addressService.GetById(addressId);
             if (address == null)
-                throw new Exception("invalid.company.address.id");
+                throw new InvalidCompanyAddressException();
 
             var nested = _addressService.GetCompanyAddress(companyId);
-            if(nested.Id != addressId)
-                throw new Exception("address.not.related.to.company");
+            if (nested.Id != addressId)
+                throw new InvalidCompanyAddressRelationException(); 
         }
 
         public CompanyEntity GetComposed(int companyId)

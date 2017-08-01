@@ -37,7 +37,7 @@ namespace DigitalData.SqlRepository.Entities.Planning
                     cmd.Parameters.AddWithValue("@val_verde_fim", planning.GreenTo);
                     cmd.Parameters.AddWithValue("@val_verme_ini", planning.RedFrom);
                     cmd.Parameters.AddWithValue("@val_verme_fim", planning.RedTo);
-                    cmd.Parameters.AddWithValue("@val_orcad", planning.RedTo);
+                    cmd.Parameters.AddWithValue("@val_orcad", planning.Budgeted);
                     cmd.Parameters.AddWithValue("@dat_criac", planning.CreationDate);
                     cmd.Parameters.AddWithValue("@cod_usu_adm", userId);                    
                     cmd.Parameters.AddWithValue("@des_cor_status", planning.StatusColor);
@@ -103,8 +103,8 @@ namespace DigitalData.SqlRepository.Entities.Planning
                     cmd.Parameters.AddWithValue("@val_verde_ini", planning.GreenFrom);
                     cmd.Parameters.AddWithValue("@val_verde_fim", planning.GreenTo);
                     cmd.Parameters.AddWithValue("@val_verme_ini", planning.RedFrom);
-                    cmd.Parameters.AddWithValue("@val_verme_fim", planning.RedFrom);
-                    cmd.Parameters.AddWithValue("@val_orcad", planning.RedTo);
+                    cmd.Parameters.AddWithValue("@val_verme_fim", planning.RedTo);
+                    cmd.Parameters.AddWithValue("@val_orcad", planning.Budgeted);
                     cmd.Parameters.AddWithValue("@dat_criac", planning.CreationDate);
                     cmd.Parameters.AddWithValue("@cod_usu_adm", userId);
                     cmd.Parameters.AddWithValue("@des_cor_status", planning.StatusColor);
@@ -308,11 +308,13 @@ namespace DigitalData.SqlRepository.Entities.Planning
                     cmd.Parameters.AddWithValue("@val_verde_ini", planning.GreenFrom);
                     cmd.Parameters.AddWithValue("@val_verde_fim", planning.GreenTo);
                     cmd.Parameters.AddWithValue("@val_verme_ini", planning.RedFrom);
-                    cmd.Parameters.AddWithValue("@val_verme_fim", planning.RedFrom);
-                    cmd.Parameters.AddWithValue("@val_orcad", planning.RedTo);
+                    cmd.Parameters.AddWithValue("@val_verme_fim", planning.RedTo);
+                    cmd.Parameters.AddWithValue("@val_orcad", planning.Budgeted);
                     cmd.Parameters.AddWithValue("@dat_criac", planning.CreationDate);
                     cmd.Parameters.AddWithValue("@cod_usu_adm", adminId);
                     cmd.Parameters.AddWithValue("@des_cor_status", planning.StatusColor);
+
+                    cmd.ExecuteNonQuery();
 
                     return planning;                                        
                 }

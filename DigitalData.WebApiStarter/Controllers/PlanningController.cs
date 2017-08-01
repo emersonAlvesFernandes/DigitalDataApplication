@@ -32,14 +32,16 @@ namespace DigitalData.WebApiStarter.Controllers
             //if (createDto.SubItemId == 0)
             //    createDto.SubItemId = null;
 
-            var yearDto = new PlanningCreateDtoValidator().Validate(createDto.YearPlanning);
-            if(!yearDto.IsValid)
-                return this.BadRequest(string.Join(" , ", yearDto.Errors));
+            //var yearDto = new PlanningCreateDtoValidator().Validate(createDto.YearPlanning);
+            //if(!yearDto.IsValid)
+            //    return this.BadRequest(string.Join(" , ", yearDto.Errors));
 
             var monthlyPlanningEntity = createDto.GetEntityMonthlyPlanningCollection();
-            
+
             //TODO: tratar se não vier preenchido
-            var yearPlanningEntity = createDto.GetEntityYearPlanningCollection();
+            //var yearPlanningEntity = createDto.GetEntityYearPlanningCollection();
+            var yearPlanningEntity = createDto.GetCalculatedEntityYearPlanningCollection(monthlyPlanningEntity);
+
 
             var dictionary = await Task.Run(() => _app.Create(createDto.CompanyId, createDto.ItemId, createDto.SubItemId, monthlyPlanningEntity, yearPlanningEntity, userId));
 
@@ -49,9 +51,9 @@ namespace DigitalData.WebApiStarter.Controllers
         }
 
         [HttpPut]
-        [Route("")]
+        [Route("fillDoneValue")]
         [ResponseType(typeof(PlanningRead))]
-        public async Task<IHttpActionResult> GetAllBySubItemAsync([FromBody]PlanningRead updateDto)
+        public async Task<IHttpActionResult> FillDoneValueAsync([FromBody]PlanningRead updateDto)
         {
             var clientId = 1;
 
@@ -61,7 +63,25 @@ namespace DigitalData.WebApiStarter.Controllers
 
             var entity = updateDto.ToPlanningEntity();
 
-            var updated = Task.Run(()=> _app.FillDoneValue(entity, clientId));
+            var updated = await Task.Run(()=> _app.FillDoneValue(entity, clientId));
+
+            return this.Ok(updated);
+        }
+
+        [HttpPut]
+        [Route("")]
+        [ResponseType(typeof(PlanningRead))]
+        public async Task<IHttpActionResult> UpdateAsync([FromBody]PlanningRead updateDto)
+        {
+            var clientId = 1;
+
+            var dto = new PlanningReadValidator().Validate(updateDto);
+            if (!dto.IsValid)
+                return this.BadRequest(string.Join(" , ", dto.Errors));
+
+            var entity = updateDto.ToPlanningEntity();
+
+            var updated = await Task.Run(() => _app.Update(updateDto.Id, entity, clientId));
 
             return this.Ok(updated);
         }

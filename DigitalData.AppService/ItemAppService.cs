@@ -8,6 +8,7 @@ using DigitalData.Domain.Entities.Item;
 using DigitalData.Service;
 using DigitalData.Domain.Entities.Company.Contracts;
 using DigitalData.Domain.Entities.Planning.Contracts;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.AppService
 {
@@ -39,12 +40,12 @@ namespace DigitalData.AppService
         {
             var companiesWithItem = _companyService.GetCompanyByItem(itemId);
             if (companiesWithItem.Count() > 0)
-                throw new Exception("item.already.related.to.company");
+                throw new InvalidDeleteItemException(); 
 
             var item = _itemService.GetById(itemId);
 
             if (item == null)
-                throw new Exception("invalid.id");
+                throw new InvalidItemException();
 
             return _itemService.Delete(itemId);            
         }
@@ -84,7 +85,7 @@ namespace DigitalData.AppService
             var existingItem = _itemService.GetById(item.Id);
 
             if (existingItem == null)
-                throw new Exception("invalid.item.id");
+                throw new InvalidItemException(); //throw new Exception("invalid.item.id");
 
             return _itemService.Update(item, userId);
         }
@@ -134,11 +135,11 @@ namespace DigitalData.AppService
         {
             var item = _itemService.GetById(id);
             if (item == null)
-                throw new Exception("invalid.item.id");
+                throw new InvalidItemException();
 
             var company = _companyService.GetById(companyId);
             if (company == null)
-                throw new Exception("invalid.company.id");
+                throw new InvalidCompanyException();
 
             var companyItems = _itemService.GetByCompanyId(companyId);
             var containItem = companyItems.FirstOrDefault(x => x.Id == id);

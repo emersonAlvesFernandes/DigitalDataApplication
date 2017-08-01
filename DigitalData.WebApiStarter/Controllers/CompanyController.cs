@@ -141,9 +141,9 @@ namespace DigitalData.WebApiStarter.Controllers
         /// <param name="companyRead"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("")]
+        [Route("{id}")]
         [ResponseType(typeof(CompanyRead))]
-        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead)
+        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead, [FromUri] int id)
         {
 
             var validationResults = new CompanyReadValidator().Validate(companyRead);
@@ -160,7 +160,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
 
         /// <summary>
-        ///     Listagem de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+        ///     Listagem de itens, subitens e planejamentos dos quais estão relacionados com a empresa 
         /// </summary>
         /// <remarks>
         /// </remarks>
@@ -184,7 +184,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
 
         /// <summary>
-        ///     Listagem (apenas os Ids) de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+        ///     Listagem (apenas os Ids) de itens, subitens e planejamentos dos quais estão relacionados com a empresa 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

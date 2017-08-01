@@ -12,7 +12,7 @@ using System.Web.Http.Description;
 namespace DigitalData.WebApiStarter.Controllers
 {
     [RoutePrefix("api/items")]
-    public class ItemController : BaseController 
+    public class ItemController : ApiController //BaseController 
     {
         private readonly IItemAppService _itemAppService;
 
@@ -26,7 +26,7 @@ namespace DigitalData.WebApiStarter.Controllers
             _itemAppService = appService;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [Route("")]        
         [ResponseType(typeof(ItemRead))]
@@ -44,8 +44,8 @@ namespace DigitalData.WebApiStarter.Controllers
             //var user = 1;
             #endregion
 
-            //var user = 1;
-            var user = base.CompanyId;
+            var user = 1;
+            //var user = base.CompanyId; herdar de base controller
 
             var validationResults = new ItemCreateValidator().Validate(itemCreate);
             if (!validationResults.IsValid)

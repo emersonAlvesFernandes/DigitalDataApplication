@@ -30,7 +30,12 @@ namespace DigitalData.Domain.Planning
 
         public int Month { get; set; }  //TODO: criar enum
 
-        public int Year { get; set; } 
+        public int Year { get; set; }
+
+        public PlanningEntity()
+        {
+
+        }
 
         public PlanningEntity(int id, double? doneValue, double plannedValue, 
             double greenFrom, double greenTo, double redFrom, 
@@ -90,5 +95,50 @@ namespace DigitalData.Domain.Planning
                 return;
             }
         }
+
+        public PlanningEntity GetYearPlanningByMonthlyCollection(List<PlanningEntity> monthlyPlannings)
+        {
+            double budgeted = 0;
+            double greenFrom = 0;
+            double greenTo = 0;
+            double redFrom = 0;
+            double redTo = 0;
+            double doneValue = 0;
+            double plannedValue = 0;
+
+            foreach (var p in monthlyPlannings)
+            {
+                budgeted += p.Budgeted;
+                greenFrom += greenFrom;
+                greenTo += greenTo;
+                redFrom += redFrom;
+                redTo += redTo;
+                doneValue += doneValue;
+                plannedValue += plannedValue;
+            }
+            var id = 0;
+            var year = monthlyPlannings.Select(x => x.Year).FirstOrDefault();
+            //TODO calcular o planned
+            var planning = new PlanningEntity()
+            {
+                Id = id,
+                Budgeted = budgeted,
+                GreenFrom = greenFrom,
+                GreenTo = greenTo,
+                RedFrom = redFrom,
+                RedTo = redTo,
+                CreationDate = DateTime.Now,
+                DoneValue = doneValue,
+                Month = 0,
+                PlannedValue = plannedValue,
+                Year = year                
+            };
+
+            planning.SetStatusColor();
+
+            return planning;
+
+        }
+
     }
 }

@@ -10,6 +10,7 @@ using DigitalData.Domain.Entities.Item.Contracts;
 using DigitalData.Domain.Entities.SubItem.Contracts;
 using System.Transactions;
 using DigitalData.Domain.Entities.Item;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.AppService
 {
@@ -44,7 +45,7 @@ namespace DigitalData.AppService
                     var monthPlanning = _planningService.CreateMonthPlanning(companyId, itemId, subItemId, p, relationId, userId);
                     monthPlanningCollection.Add(monthPlanning);
                 }
-
+                
                 var yearPlanningEntity = _planningService.CreateYearPlanning(companyId, itemId, subItemId, yearPlanning, relationId,  userId);
 
                 var dictionaryEntity = new Dictionary<PlanningEntity, List<PlanningEntity>>();
@@ -58,26 +59,27 @@ namespace DigitalData.AppService
             }                               
         }        
 
+        //TODO: Criar um serviço de validação
         private void ValidateRelation(int companyId, int itemId, int? subItemId)
         {
             var company = _companyService.GetById(companyId);
-            if (company == null)
-                throw new Exception("invalid.company");
+            if (company == null)                
+                throw new InvalidCompanyException(); 
 
             var companyItems = _itemService.GetByCompanyId(companyId);
             var foundItem = companyItems.FirstOrDefault(x => x.Id == itemId);
-            if (foundItem == null)
-                throw new Exception("item.invalid");            
+            if (foundItem == null)                        
+                throw new InvalidItemException(); 
 
             if (subItemId != null)
             {
-                if(!foundItem.Desdobramento)
-                    throw new Exception("para incluir este subitem, o item precisa ter desdobramento");
+                if (!foundItem.Desdobramento)
+                    throw new AtomicItemException(); 
 
                 var itemSubitems = _subItemService.GetByItemId(itemId);
                 var foundSubItem = itemSubitems.Where(x => x.Id == subItemId);
                 if (foundSubItem == null)
-                    throw new Exception("subitem.invalid");
+                    throw new InvalidSubItemException(); 
             }            
         }
 
@@ -101,7 +103,7 @@ namespace DigitalData.AppService
 
         public PlanningEntity Update(int PlanningId, PlanningEntity planning, int adminId)
         {
-            return null;
+            return _planningService.Update(PlanningId, planning, adminId);
         }
 
 

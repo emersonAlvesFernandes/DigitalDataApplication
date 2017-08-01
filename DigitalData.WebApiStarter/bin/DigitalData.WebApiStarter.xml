@@ -118,7 +118,7 @@
             <param name="address"></param>
             <returns></returns>
         </member>
-        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.UpdateNestedAsync(DigitalData.WebApiStarter.Models.Entities.Company.CompanyRead)">
+        <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.UpdateNestedAsync(DigitalData.WebApiStarter.Models.Entities.Company.CompanyRead,System.Int32)">
             <summary>
             Atualiza a entidade encadeada de empresa e endereço. Alteração de dto em 21/07/2017
             </summary>
@@ -130,7 +130,7 @@
         </member>
         <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.GetComposedByIdAsync(System.Int32)">
             <summary>
-                Listagem de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+                Listagem de itens, subitens e planejamentos dos quais estão relacionados com a empresa 
             </summary>
             <remarks>
             </remarks>
@@ -139,7 +139,7 @@
         </member>
         <member name="M:DigitalData.WebApiStarter.Controllers.CompanyController.GetComposedIdsByIdAsync(System.Int32)">
             <summary>
-                Listagem (apenas os Ids) de itens, subitens e pontuação dos quais estão relacionados com a empresa 
+                Listagem (apenas os Ids) de itens, subitens e planejamentos dos quais estão relacionados com a empresa 
             </summary>
             <param name="id"></param>
             <returns></returns>

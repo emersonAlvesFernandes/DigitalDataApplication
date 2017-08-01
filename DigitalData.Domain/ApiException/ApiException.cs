@@ -60,6 +60,26 @@ namespace DigitalData.Domain.ApiException
         }
     }
 
+    public class InvalidCompanyAddressException : ApiException
+    {
+        private static string message = "endereço da empresa inválido";
+
+        public InvalidCompanyAddressException() : base(message)
+        {
+            base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
+
+    public class InvalidCompanyAddressRelationException : ApiException
+    {
+        private static string message = "endereço não relacionado a empresa informada";
+
+        public InvalidCompanyAddressRelationException() : base(message)
+        {
+            base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
+
     public class InvalidItemException : ApiException
     {
         //private static string message = "invalid.item.id";
@@ -85,11 +105,21 @@ namespace DigitalData.Domain.ApiException
     public class AtomicItemException : ApiException
     {        
         //private static string message = "atomic.item.cannot.have.subitems";
-        private static string message = "Apenas itens com desdobramento podem ter subitens";
+        private static string message = "Apenas itens com desdobramento podem conter subitens";
 
         public AtomicItemException() : base(message)
         {
             base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
+
+    public class InvalidDeleteItemException : ApiException
+    {        
+        private static string message = "Item não pode ser deletado pois já está relacionado a alguma empresa";
+
+        public InvalidDeleteItemException() : base(message)
+        {
+            this.statusCode = HttpStatusCode.BadRequest;
         }
     }
 

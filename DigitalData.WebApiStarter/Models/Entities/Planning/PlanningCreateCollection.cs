@@ -37,6 +37,12 @@ namespace DigitalData.WebApiStarter.Models.Entities.Planning
             var yearPlanningEntity = YearPlanning.ToEntity();
             return yearPlanningEntity;
         }
+
+        public PlanningEntity GetCalculatedEntityYearPlanningCollection(List<PlanningEntity> monthlyPlannings)
+        {
+            var yearPlanningEntity = YearPlanning.GetYearPlanning(monthlyPlannings);
+            return yearPlanningEntity;
+        }
     }
 
     public class PlanningCreateDto
@@ -66,7 +72,15 @@ namespace DigitalData.WebApiStarter.Models.Entities.Planning
                 Month, Year);
 
             return entity;
-        }        
+        }
+
+        public PlanningEntity GetYearPlanning(List<PlanningEntity> MonthlyPlanning)
+        {
+            var planning = new PlanningEntity().GetYearPlanningByMonthlyCollection(MonthlyPlanning);
+            return planning;
+        }
+
+
     }
 
     public class PlanningCreateDtoValidator : AbstractValidator<PlanningCreateDto>
