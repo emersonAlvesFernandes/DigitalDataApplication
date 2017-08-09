@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DigitalData.Domain.Entities.User;
 using DigitalData.Domain.Entities.Company.Contracts;
 using System.Transactions;
+using DigitalData.Domain.ApiException;
 
 namespace DigitalData.AppService
 {
@@ -30,9 +31,7 @@ namespace DigitalData.AppService
 
         public UserEntity Create(UserEntity user, int roleId)
         {
-            _companyService.Validate(user.CompanyId);
-            _roleService.Validate(roleId);
-            //Validar usuário já existente
+            this.ValidateCreation(user, roleId);
 
             using (var transaction = new TransactionScope())
             {                
@@ -51,33 +50,56 @@ namespace DigitalData.AppService
             
             return _userService.GetAllByCompany(companyId);
         }
-
-        public UserEntity IsValid(string userName, string psw)
-        {
-            var user =  _userService.GetByUsername(userName);
-
-            var isValid = user.Validate(psw);
-            if (isValid)
-                return null;
-            
-            // TODO buscar ROLE
-
-            return user;
-        }
-        
+                
         public UserEntity Update(UserEntity user)
         {
             var entity = _userService.GetByUsername(user.UserName);
             if(entity == null)
-                throw new Exception("invalid.user");
+                throw new NotExistingUserException();
+
+            GetPasswordValidatedUser(user.UserName, user.Password);
 
             return _userService.Update(user);
-
         }
 
-        public bool UpdatePassword(string psw, int userId)
+        public bool UpdatePassword(string psw, string oldPsw, string userName)
         {
-            throw new NotImplementedException();
+            var user = this.GetPasswordValidatedUser(userName, oldPsw);
+
+            if (user == null)
+                return false;
+
+            return _userService.UpdatePassword(psw, user.Id); 
+        }
+
+
+
+
+        private void ValidateCreation(UserEntity user, int roleId)
+        {
+            _companyService.Validate(user.CompanyId);
+            _roleService.Validate(roleId);
+
+            var userName = _userService.GetByUsername(user.UserName);
+            if (userName != null)
+                throw new ExistingUserException();
+
+            var userEmail = _userService.GetByEmail(user.Email);
+            if (userEmail != null)
+                throw new ExistingUserException();            
+        }
+
+        private UserEntity GetPasswordValidatedUser(string userName, string psw)
+        {
+            var user = _userService.GetByUsername(userName);
+
+            var isValid = user.Validate(psw);
+            if (isValid)
+                return null;
+
+            // TODO buscar ROLE
+
+            return user;
         }
     }
 }

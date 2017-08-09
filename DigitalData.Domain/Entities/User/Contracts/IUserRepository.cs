@@ -14,6 +14,8 @@ namespace DigitalData.Domain.Entities.User.Contracts
 
         UserEntity GetByUsername(string userName);
 
+        UserEntity GetByEmail(string userName);
+
         IEnumerable<UserEntity> GetAllByCompany(int companyId);
 
 
@@ -22,8 +24,6 @@ namespace DigitalData.Domain.Entities.User.Contracts
         bool UpdatePassword(string psw, int userId);
 
         #endregion
-
-
 
     }
 }

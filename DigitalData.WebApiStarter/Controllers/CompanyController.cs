@@ -5,8 +5,15 @@ using DigitalData.WebApiStarter.Models.Entities.Address;
 using DigitalData.WebApiStarter.Models.Entities.Company;
 using DigitalData.WebApiStarter.Models.Entities.IdsOnly;
 using FastMapper;
+using Microsoft.Owin.Security;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -27,6 +34,7 @@ namespace DigitalData.WebApiStarter.Controllers
             _companyAppService = new CompanyAppService();
         }
         
+        //[Authorize]
         [HttpGet]
         [Route("")]                        
         [ResponseType(typeof(List<CompanyRead>))]
@@ -78,8 +86,6 @@ namespace DigitalData.WebApiStarter.Controllers
 
             return this.Ok(companyRead);
         }
-
-
 
         /// <summary>
         /// Atualiza somente a entidade Empresa

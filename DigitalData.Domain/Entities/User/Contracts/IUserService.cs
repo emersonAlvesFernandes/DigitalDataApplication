@@ -16,6 +16,7 @@ namespace DigitalData.Domain.Entities.User.Contracts
 
         IEnumerable<UserEntity> GetAllByCompany(int companyId);
 
+        UserEntity GetByEmail(string userEmail);
 
         #region password        
 

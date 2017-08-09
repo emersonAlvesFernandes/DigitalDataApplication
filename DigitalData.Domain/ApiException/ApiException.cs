@@ -133,4 +133,24 @@ namespace DigitalData.Domain.ApiException
             base.statusCode = HttpStatusCode.BadRequest;
         }
     }
+
+    public class ExistingUserException : ApiException
+    {        
+        private static string message = "Usuário existente";
+
+        public ExistingUserException() : base(message)
+        {
+            base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
+
+    public class NotExistingUserException : ApiException
+    {
+        private static string message = "Usuário inexistente";
+
+        public NotExistingUserException() : base(message)
+        {
+            base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
 }

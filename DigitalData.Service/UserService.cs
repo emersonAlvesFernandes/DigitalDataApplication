@@ -28,6 +28,11 @@ namespace DigitalData.Service
             return _userRepository.GetByUsername(userName);
         }
 
+        public UserEntity GetByEmail(string userEmail)
+        {
+            return _userRepository.GetByEmail(userEmail);
+        }
+
         public IEnumerable<UserEntity> GetAllByCompany(int companyId)
         {
             return _userRepository.GetAllByCompany(companyId);

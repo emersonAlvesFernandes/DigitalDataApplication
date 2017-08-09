@@ -10,12 +10,12 @@ namespace DigitalData.Domain.Entities.User.Contracts
     {
         UserEntity Create(UserEntity user, int roleId);
 
-        UserEntity IsValid(string userName, string psw);
+        //UserEntity IsValid(string userName, string psw);
 
         UserEntity Update(UserEntity user);
 
         IEnumerable<UserEntity> GetAllByCompany(int companyId);
         
-        bool UpdatePassword(string psw, int userId);        
+        bool UpdatePassword(string newPsw, string oldPsw, string userName);        
     }
 }
