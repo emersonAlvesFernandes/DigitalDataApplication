@@ -138,10 +138,12 @@ namespace DigitalData.Domain.ApiException
     {        
         private static string message = "Usuário existente";
 
-        public ExistingUserException() : base(message)
-        {
-            base.statusCode = HttpStatusCode.BadRequest;
-        }
+        public ExistingUserException() : base(HttpStatusCode.BadRequest, "existing.user"){ }
+
+        //public ExistingUserException() : base(message)
+        //{
+        //    base.statusCode = HttpStatusCode.BadRequest;
+        //}
     }
 
     public class NotExistingUserException : ApiException
@@ -149,6 +151,17 @@ namespace DigitalData.Domain.ApiException
         private static string message = "Usuário inexistente";
 
         public NotExistingUserException() : base(message)
+        {
+            base.statusCode = HttpStatusCode.BadRequest;
+        }
+    }
+
+    public class InvalidUserOrPAsswordException : ApiException
+    {
+        //private static string message = "Usuário ou Senha inválidos";
+        private static string message = "invalid.user.or.password";
+
+        public InvalidUserOrPAsswordException() : base(message)
         {
             base.statusCode = HttpStatusCode.BadRequest;
         }

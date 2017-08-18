@@ -53,7 +53,6 @@ namespace DigitalData.WebApiStarter.Controllers
             return this.Ok(userReadCollection);
         }
 
-
         /// <summary>
         ///     Testar
         /// </summary>
@@ -71,7 +70,6 @@ namespace DigitalData.WebApiStarter.Controllers
             
             return this.Ok(isUpdated);
         }
-
 
         /// <summary>
         ///     Testar

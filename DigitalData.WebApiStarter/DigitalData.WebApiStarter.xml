@@ -216,6 +216,24 @@
             Represents test controller that should be removed.
             </summary>
         </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.UserController.UpdatePasswordAsync(System.String,System.String,System.String)">
+            <summary>
+                Testar
+            </summary>
+            <param name="companyId"></param>
+            <param name="oldPsw">todo: describe oldPsw parameter on UpdatePasswordAsync</param>
+            <param name="newPsw">todo: describe newPsw parameter on UpdatePasswordAsync</param>
+            <param name="userName">todo: describe userName parameter on UpdatePasswordAsync</param>
+            <returns></returns>
+        </member>
+        <member name="M:DigitalData.WebApiStarter.Controllers.UserController.UpdateAsync(DigitalData.WebApiStarter.Models.Entities.User.UserCreate,System.Int32)">
+            <summary>
+                Testar
+            </summary>
+            <param name="userCreate"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="T:DigitalData.WebApiStarter.Models.ErrorInfoModel">
             <summary>
             Represents error information that can be shown to user.

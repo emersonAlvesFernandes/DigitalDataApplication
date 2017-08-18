@@ -195,8 +195,7 @@ namespace DigitalData.SqlRepository.Entities.User
                 base.CloseConnection();
             }
         }
-        
-        //
+                
         public UserEntity Update(UserEntity user)
         {
             base.Initialize();
@@ -231,8 +230,7 @@ namespace DigitalData.SqlRepository.Entities.User
             {
                 base.CloseConnection();
             }
-        }
-        //
+        }        
 
         public bool UpdatePassword(string psw, int userId)
         {

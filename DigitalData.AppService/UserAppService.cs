@@ -67,12 +67,10 @@ namespace DigitalData.AppService
             var user = this.GetPasswordValidatedUser(userName, oldPsw);
 
             if (user == null)
-                return false;
+                throw new InvalidUserOrPAsswordException();
 
             return _userService.UpdatePassword(psw, user.Id); 
         }
-
-
 
 
         private void ValidateCreation(UserEntity user, int roleId)
