@@ -71,8 +71,7 @@ namespace DigitalData.AppService
 
             return _userService.UpdatePassword(psw, user.Id); 
         }
-
-
+        
         private void ValidateCreation(UserEntity user, int roleId)
         {
             _companyService.Validate(user.CompanyId);

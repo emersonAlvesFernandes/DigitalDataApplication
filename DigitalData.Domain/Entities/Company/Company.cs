@@ -7,9 +7,7 @@ using System.Collections.Generic;
 namespace DigitalData.Domain.Entities.Company
 {
     public class CompanyEntity
-    {
-        
-
+    {        
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -31,7 +29,6 @@ namespace DigitalData.Domain.Entities.Company
         public DateTime CreationDate { get; set; }
 
         public DateTime LastUpdate { get;  set; }
-
 
         public List<ItemEntity> Items { get; set; }
 

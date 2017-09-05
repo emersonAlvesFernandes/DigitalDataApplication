@@ -167,10 +167,6 @@ namespace DigitalData.WebApi.Controllers
         {            
             var isRelated = await Task.Run(() => _appService.Delete(id));
             return this.Ok(isRelated);
-        }
-
-        //TODO: Criar uma action que traga todos os itens.
-        // cada um com um sumarizado de seus subitens;
-
+        }        
     }
 }

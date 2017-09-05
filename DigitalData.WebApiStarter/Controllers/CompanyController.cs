@@ -19,6 +19,7 @@ using System.Web.Http.Description;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
+    //[Authorize]
     [RoutePrefix("api/companies")]
     public class CompanyController : ApiController
     {
@@ -33,8 +34,7 @@ namespace DigitalData.WebApiStarter.Controllers
         {
             _companyAppService = new CompanyAppService();
         }
-        
-        //[Authorize]
+                
         [HttpGet]
         [Route("")]                        
         [ResponseType(typeof(List<CompanyRead>))]

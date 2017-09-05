@@ -57,9 +57,9 @@ namespace DigitalData.WebApiStarter.Controllers
         ///     Testar
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="oldPsw">todo: describe oldPsw parameter on UpdatePasswordAsync</param>
-        /// <param name="newPsw">todo: describe newPsw parameter on UpdatePasswordAsync</param>
-        /// <param name="userName">todo: describe userName parameter on UpdatePasswordAsync</param>
+        /// <param name="oldPsw">old password</param>
+        /// <param name="newPsw">new password</param>
+        /// <param name="userName">chosen username</param>
         /// <returns></returns>
         [HttpPut]
         [Route("password/{oldPsw}/{newPsw}/{userName}")]

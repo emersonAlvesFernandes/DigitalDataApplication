@@ -50,12 +50,7 @@ namespace DigitalData.WebApiStarter.Models.Entities.User
 
             RuleFor(x => x.RoleId)
                 .NotEmpty().WithMessage("Id do perfil obrigatório");
-
-            //TODO : validar todos os campos
-
-            //RuleFor(x => x.StartDate).LessThan(DateTime.Today).WithMessage("You cannot enter a birth date in the future.");
-
-            //RuleFor(x => x.Username).Length(8, 999).WithMessage("The user name must be at least 8 characters long.");
+                       
         }
     }
 }

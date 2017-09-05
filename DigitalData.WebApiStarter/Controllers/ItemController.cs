@@ -200,12 +200,5 @@ namespace DigitalData.WebApiStarter.Controllers
 
             return this.Ok(collection);
         }
-
-
-        //TODO: Criar uma action que traga todos os itens.
-        // cada um com um sumarizado de seus subitens;
-
-
-
     }
 }

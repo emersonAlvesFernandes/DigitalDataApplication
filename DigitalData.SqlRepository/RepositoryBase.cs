@@ -14,8 +14,7 @@ namespace DigitalData.SqlRepository
         public SqlConnection connection { get; set; }
         //public string connectionstring = ConfigurationManager.ConnectionStrings["DigitalDataSqlDb"].ConnectionString;
         public string connectionstring = ConfigurationManager.ConnectionStrings["CnnStr"].ConnectionString;
-        //public string connectionstring = ConfigurationManager.ConnectionStrings["BMBDigitalDataSqlDb"].ConnectionString; 
-
+        
         public RepositoryBase()
         {
             //try
