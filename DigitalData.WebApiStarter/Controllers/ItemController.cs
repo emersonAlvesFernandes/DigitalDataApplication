@@ -11,8 +11,9 @@ using System.Web.Http.Description;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
+    //[Authorize]
     [RoutePrefix("api/items")]
-    public class ItemController : ApiController //BaseController 
+    public class ItemController : ApiController //BaseController
     {
         private readonly IItemAppService _itemAppService;
 
@@ -26,26 +27,14 @@ namespace DigitalData.WebApiStarter.Controllers
             _itemAppService = appService;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [Route("")]        
         [ResponseType(typeof(ItemRead))]
         public async Task<IHttpActionResult> CreateAsync([FromBody]ItemCreate itemCreate)
-        {
-            #region
-            //TODO Criar um BaseController para obter o usuário do token;
-
-            //var context = HttpContext.Current.Request.GetOwinContext();
-            //var User = context.Authentication.User;
-            //var claims = User.Claims;
-            //var claim = claims.FirstOrDefault(x => x.Type == "UserId");
-            //var userValue = claim.Value.ToInt32();
-
-            //var user = 1;
-            #endregion
-
+        {            
             var user = 1;
-            //var user = base.CompanyId; herdar de base controller
+            //var user = base.UserId; //herdar de base controller
 
             var validationResults = new ItemCreateValidator().Validate(itemCreate);
             if (!validationResults.IsValid)
@@ -117,6 +106,7 @@ namespace DigitalData.WebApiStarter.Controllers
             //It does not allow activate item by this method
 
             var userId = 1;
+            //var userId = base.UserId;
 
             //var itemEntity = TypeAdapter.Adapt<ItemCreate, ItemEntity>(item);
             var itemEntity = itemCreate.ToEntity();
@@ -136,6 +126,7 @@ namespace DigitalData.WebApiStarter.Controllers
         public async Task<IHttpActionResult> RelateAsync([FromUri]int companyId, [FromUri]int itemId)
         {
             var userId = 1;
+            //var userId = base.UserId;
 
             var isRelated = await Task.Run(() => _itemAppService.Relate(companyId, itemId, userId));
             
@@ -148,6 +139,7 @@ namespace DigitalData.WebApiStarter.Controllers
         public async Task<IHttpActionResult> UnrelateAsync([FromUri]int companyId, [FromUri]int itemId)
         {
             var userId = 1;
+            //var userId = base.UserId;
 
             var isRelated = await Task.Run(() => _itemAppService.Unrelate(companyId, itemId, userId));
 

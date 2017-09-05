@@ -118,7 +118,7 @@ namespace DigitalData.Domain.Planning
             }
             var id = 0;
             var year = monthlyPlannings.Select(x => x.Year).FirstOrDefault();
-            //TODO calcular o planned
+            
             var planning = new PlanningEntity()
             {
                 Id = id,

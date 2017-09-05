@@ -41,6 +41,7 @@ namespace DigitalData.WebApiStarter.Controllers
             return this.Ok(userRead);
         }
 
+        //[Authorize]
         [HttpGet]
         [Route("{companyId}")]
         [ResponseType(typeof(IEnumerable<UserRead>))]
@@ -61,6 +62,7 @@ namespace DigitalData.WebApiStarter.Controllers
         /// <param name="newPsw">new password</param>
         /// <param name="userName">chosen username</param>
         /// <returns></returns>
+        //[Authorize]
         [HttpPut]
         [Route("password/{oldPsw}/{newPsw}/{userName}")]
         [ResponseType(typeof(bool))]
@@ -77,6 +79,7 @@ namespace DigitalData.WebApiStarter.Controllers
         /// <param name="userCreate"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
+        //[Authorize]
         [HttpPost]
         [Route("update")]
         [ResponseType(typeof(UserRead))]

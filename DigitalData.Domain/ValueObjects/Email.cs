@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DigitalData.Domain.ValueObjects
 {
+    //TODO: utilizar a classe como um objeto de valor
     public class Email
     {
         public string Address { get; set; }
-
-        //TODO:
+        
         public bool Validate()
         {
             return true;

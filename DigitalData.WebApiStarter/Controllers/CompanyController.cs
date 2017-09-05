@@ -19,7 +19,7 @@ using System.Web.Http.Description;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/companies")]
     public class CompanyController : ApiController
     {
@@ -139,7 +139,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
 
         /// <summary>
-        /// Atualiza a entidade encadeada de empresa e endereço. Alteração de dto em 21/07/2017
+        /// Atualiza a entidade encadeada de empresa e endereço. 
         /// </summary>
         /// <remarks>
         /// Alteração de dto em 21/07/2017: retirada do Id da query, está no body;
@@ -149,7 +149,7 @@ namespace DigitalData.WebApiStarter.Controllers
         [HttpPut]
         [Route("{id}")]
         [ResponseType(typeof(CompanyRead))]
-        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead, [FromUri] int id)
+        public async Task<IHttpActionResult> UpdateNestedAsync([FromBody]CompanyRead companyRead)
         {
 
             var validationResults = new CompanyReadValidator().Validate(companyRead);

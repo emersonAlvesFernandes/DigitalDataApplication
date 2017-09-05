@@ -10,9 +10,10 @@ using static DigitalData.WebApiStarter.Filters.ApiExceptionFilterAttribute;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
+    //[Authorize]
     [ApiExceptionFilterAttribute]
     [RoutePrefix("api/subitems")]
-    public class SubItemController : ApiController
+    public class SubItemController : ApiController  //BaseController
     {
         private readonly ISubItemAppService _appService;
         
@@ -32,6 +33,7 @@ namespace DigitalData.WebApiStarter.Controllers
         public async Task<IHttpActionResult> CreateAsync([FromUri]int itemId, [FromBody]SubItemCreate subitemCreate)
         {
             var UserId = 1;
+            //var userId = base.UserId;
 
             var validationResults = new SubItemCreateValidator().Validate(subitemCreate);
             if (!validationResults.IsValid)
@@ -51,9 +53,9 @@ namespace DigitalData.WebApiStarter.Controllers
         [Route("")]
         [ResponseType(typeof(SubItemSummaryRead))]
         public async Task<IHttpActionResult> UpdateAsync([FromBody]SubItemSummaryRead subitemUpdate)
-        {
-            //var user = UserId;
+        {            
             var user = 1;
+            //var userId = base.UserId;
 
             var validationResults = new SubItemSummaryReadValidator().Validate(subitemUpdate);
             if (!validationResults.IsValid)
@@ -121,9 +123,9 @@ namespace DigitalData.WebApiStarter.Controllers
         [Route("{id}")]
         [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> DeleteAsync([FromUri] int id)
-        {
-            //var userId = UserId;
+        {            
             var userId = 1;
+            //var userId = base.UserId;
 
             var isDeleted = await Task.Run(() => _appService.Delete(id, userId));
 
@@ -134,9 +136,9 @@ namespace DigitalData.WebApiStarter.Controllers
         [Route("relate/{companyId}/{itemId}/{id}")]
         [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> RelateAsync([FromUri]int companyId, [FromUri]int itemId, [FromUri]int id)
-        {
-            //var user = UserId;
+        {            
             var user = 1;
+            //var userId = base.UserId;
 
             var isRelated = await Task.Run(()=> _appService.Relate(companyId, itemId, id, user));
 
@@ -147,9 +149,9 @@ namespace DigitalData.WebApiStarter.Controllers
         [Route("unrelate/{companyId}/{itemId}/{id}")]
         [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> UnrelateAsync([FromUri]int companyId, [FromUri]int itemId, [FromUri]int id)
-        {
-            //var userId = UserId;
+        {            
             var userId = 1;
+            //var userId = base.UserId;
 
             var isUnrelated = await Task.Run(() => _appService.UnRelate(companyId, itemId, id,  userId));
 

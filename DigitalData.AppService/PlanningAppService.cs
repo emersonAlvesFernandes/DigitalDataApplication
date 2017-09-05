@@ -58,8 +58,7 @@ namespace DigitalData.AppService
                 return dictionaryEntity;
             }                               
         }        
-
-        //TODO: Criar um serviço de validação
+        
         private void ValidateRelation(int companyId, int itemId, int? subItemId)
         {
             var company = _companyService.GetById(companyId);
@@ -82,7 +81,6 @@ namespace DigitalData.AppService
                     throw new InvalidSubItemException(); 
             }            
         }
-
 
         private int GetRelationId(int companyId, int itemId, int? subItemId)
         {

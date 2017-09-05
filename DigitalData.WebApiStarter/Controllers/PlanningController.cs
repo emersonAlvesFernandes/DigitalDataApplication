@@ -10,8 +10,9 @@ using System.Web.Http.Description;
 
 namespace DigitalData.WebApiStarter.Controllers
 {
+    //[Authorize]
     [RoutePrefix("api/planning")]
-    public class PlanningController : ApiController
+    public class PlanningController : BaseController //ApiController 
     {
 
         private readonly IPlanningAppService _app;
@@ -29,6 +30,9 @@ namespace DigitalData.WebApiStarter.Controllers
         public async Task<IHttpActionResult> CreateAsync([FromBody]PlanningCreateCollection createDto)
         {
             var userId = 1;
+            //var userId = base.UserId;
+
+            
             //if (createDto.SubItemId == 0)
             //    createDto.SubItemId = null;
 
@@ -55,7 +59,8 @@ namespace DigitalData.WebApiStarter.Controllers
         [ResponseType(typeof(PlanningRead))]
         public async Task<IHttpActionResult> FillDoneValueAsync([FromBody]PlanningRead updateDto)
         {
-            var clientId = 1;
+            var userId = 1;
+            //var userId = base.UserId;
 
             var dto = new PlanningReadValidator().Validate(updateDto);
             if(!dto.IsValid)
@@ -63,7 +68,7 @@ namespace DigitalData.WebApiStarter.Controllers
 
             var entity = updateDto.ToPlanningEntity();
 
-            var updated = await Task.Run(()=> _app.FillDoneValue(entity, clientId));
+            var updated = await Task.Run(()=> _app.FillDoneValue(entity, userId));
 
             return this.Ok(updated);
         }
@@ -74,6 +79,8 @@ namespace DigitalData.WebApiStarter.Controllers
         public async Task<IHttpActionResult> UpdateAsync([FromBody]PlanningRead updateDto)
         {
             var clientId = 1;
+            //var userId = base.UserId;
+
 
             var dto = new PlanningReadValidator().Validate(updateDto);
             if (!dto.IsValid)
